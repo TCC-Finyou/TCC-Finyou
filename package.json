@@ -1,0 +1,25 @@
+{
+  "name": "tcc-finyou",
+  "version": "1.0.0",
+  "description": "Um website de gestão financeira para auxiliar na gestão das próprias finanças.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "controle",
+    "objetivos",
+    "finanças",
+    "auxílio"
+  ],
+  "author": "Vinícius Gonçalves, Michele de Sousa dos Santos, Larissa Andrade Nascimento, Eric Gabriel Cerqueira Sebastião, Anna Beatriz de Castro Braga, Bianca Bernardo de Almeida",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22"
+  }
+}
