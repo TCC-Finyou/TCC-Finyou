@@ -4,13 +4,126 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%- include('../templates/head.ejs') %>
     <meta name="description" content="Site com a funçaõ de controle financeiro para os usuários, com a facilidade de gerir suas finanças.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
+    <%- include('../templates/head.ejs') %>
+    <!-- STYLES -->
+
+    <link rel="stylesheet" href="css/home.css">
+
     <title>Finyou</title>
 </head>
 <body>
     <%- include('../templates/header.ejs') %>
+
+    <main>
+        <section id="banner-section">
+            <picture id="banner">
+                <!-- <source srcset="assets/banners/fundo-header-desk.jpg" media="(min-width: 769px)"> -->
+                <img src="assets/banners/fundo-header.jpg" alt="Gráficos subindo">
+            </picture>
+
+            <picture id="main-banner-image">
+                <img src="assets/images/conversando-cartao.png" alt="Conversando sobre dinheiro e cartões">
+            </picture>
+
+            <h1>Finanças para você</h1>
+            <p>Finanças de um jeito simples</p>
+
+            <button>Participe</button>
+        </section>
+
+        <section id="main-topics">
+            <div>
+                <img src="assets/icons/cloud.png" alt="Desempenho nas nuvens">
+                <h2>Desempenho</h2>
+                <p>Visualize a sua vida financeira em poucos segundos</p>
+            </div>
+
+            <div>
+                <img src="assets/icons/money.png" alt="Mais dinheiro">
+                <h2>Investimento</h2>
+                <p>Invista no que combina com você</p>
+            </div>
+
+            <div>
+                <img src="assets/icons/person.png" alt="Disponível para todos">
+                <h2>Acessibilidade</h2>
+                <p>Tudo para ser o mais simples para você</p>
+            </div>
+        </section>
+
+        <section id="cta-finyou">
+            <div>
+                <img src="assets/icons/chart-up.png" alt="Gráfico de barras subindo">
+                <h2>O que é Finyou?</h2>
+                <p>Uma aplicação Web para te ajudar a ter um maior controle sobre as suas finanças.</p>
+
+                <button>Saiba mais</button>
+            </div>
+
+            <div>
+                <img src="assets/icons/basket.png" alt="Cesta de compras">
+                <h2>Conheça o pacote Finyou+</h2>
+                <p>Assine a Finyou+ e organize as suas finanças do seu próprio jeito.</p>
+                <button>Conhecer pacotes</button>
+            </div>
+        </section>
+
+        <section id="benefits-finyou">
+            <div id="benefits-intro">
+                <h2>O que a Finyou te fornecerá?</h2>
+
+                <div>
+                    <img src="assets/images/guardando-dinheiro-cofre.jpg" alt="Mulher poupando dinheiro">
+
+                    <p>Uma visão geral e simplificada da sua vida financeira, para que você possa decidir o que fazer.</p>
+                </div>
+            </div>
+
+            <div id="benefits">
+                <div>
+                    <img src="assets/images/calculando-gastos.jpg" alt="Calculando gastos com um amigo">
+
+                    <h3>Conta conjunta</h3>
+
+                    <p>Crie uma conta com mais de uma pessoa para que consigam atingir suas metas juntos.</p>
+                </div>
+
+                <div>
+                    <img src="assets/images/estudando-financas.jpg" alt="Amigas estudando finanças juntas">
+
+                    <h3>Relatório mensal</h3>
+
+                    <p>Tenha todo mês um relatório geral, e veja para onde vai o seu dinheiro.</p>
+                </div>
+
+                <div>
+                    <img src="assets/images/conversando-grafico.jpg" alt="Conversando sobre gráficos financeiros">
+
+                    <h3>Informações gráficas</h3>
+
+                    <p>Informações rápidas e fáceis para você não perder tempo e o foco financeiro.</p>
+                </div>
+
+                <div>
+                    <img src="assets/images/cofre-porco.jpg" alt="Mulher orgulhosa com seu cofre de porquinho cheio">
+
+                    <h3>Metas</h3>
+
+                    <p>Tenha objetivos definidos para te ajudar a focar.</p>
+                </div>
+
+                <div>
+                    <img src="assets/images/pagando-contas.jpg" alt="Mulher pagando suas contas">
+
+                    <h3>Categorizar finanças</h3>
+
+                    <p>Categorize as suas contas para ser mais fácil economizar.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <%- include('../templates/footer.ejs') %>
 </body>
