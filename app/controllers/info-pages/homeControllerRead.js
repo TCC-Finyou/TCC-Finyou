@@ -1,5 +1,5 @@
 class HomeController {
-    getHomePage(req, res) {
+    getPage(req, res) {
         res.render("pages/index.ejs")
     }
 }

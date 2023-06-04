@@ -1,5 +1,6 @@
 :root {
 	--background-main-color: #f7f7f7;
+    --background-darker-color: #e0e0e0;
 
     --text-light-color: #42c7f0;
 	--text-main-color: #404040;
@@ -37,6 +38,14 @@ main {
     padding-top: 90px;
 }
 
+section {
+    margin-bottom: 40px;
+}
+
+section:last-child {
+    margin-bottom: 0px;
+}
+
 picture img {
     width: 100%;
     height: 100%;
@@ -49,6 +58,7 @@ img {
 }
 
 p {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
     line-height: 1.5;
 }
 
