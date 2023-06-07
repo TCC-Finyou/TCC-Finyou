@@ -58,8 +58,13 @@ img {
 }
 
 p {
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    font-size: clamp(1.2rem, 1vw, 1.4rem);
     line-height: 1.5;
+    text-align: justify;
+}
+
+ul {
+    list-style-type: none;
 }
 
 a {

@@ -5,12 +5,101 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../templates/head.ejs') %>
+    <link rel="stylesheet" href="css/pacotes.css">
     <meta name="description" content="O site disponibilizará pacotes para os usuários, tendo opções de escolha para o que prefirir. ">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <title>Pacotes</title>
 </head>
 <body>
     <%- include('../templates/header.ejs') %>
+
+    <main>
+        <section id="pacotes-intro">
+            <h1>Vantagens de assinar o Finyou+</h1>
+
+            <div>
+                <picture>
+                    <img src="assets/images/barraca-limao.jpg" alt="Menina vendendo suco de limão">
+                </picture>
+
+                <p>Organize facilmente suas rendas.</p>
+            </div>
+
+            <div>
+                <picture>
+                    <img src="assets/images/estudando-financas.jpg" alt="Estudando finanças">
+                </picture>
+
+                <p>Gráficos e textos com poucos termos técnicos.</p>
+            </div>
+
+            <div>
+                <picture>
+                    <img src="assets/images/crianca-comprando.jpg" alt="Criança comprando ursinho">
+                </picture>
+
+                <p>Sonhe, planeje e conquiste!</p>
+            </div>
+        </section>
+
+        <section id="main-topics">
+            <ul>
+                <li>
+                    <img src="assets/icons/check.png" alt="Sinal de confere" width="36" height="36">
+                    Com a assinatura você se organiza segundo suas especificidades;
+                </li>
+
+                <li>
+                    <img src="assets/icons/check.png" alt="Sinal de confere" width="36" height="36">
+                    Com a assinatura você visualiza melhor a sua evolução;
+                </li>
+
+                <li>
+                    <img src="assets/icons/check.png" alt="Sinal de confere" width="36" height="36">
+                    Com a assinatura o céu é o limite para suas metas.
+                </li>
+            </ul>
+        </section>
+
+        <section id="pacotes">
+            <h2>Conheça os pacotes Finyou+</h2>
+
+            <p>Com o Finyou+, você conseguirá ter mais opções em auxiliar o seu dinheiro.</p>
+
+            <div id="pacotes-cards">
+                <div>
+                    <p>Por 1 mês a partir de</p>
+                    <h3>R$ 21,90</h3>
+
+                    <ul>
+                        <li>
+                            <img src="assets/icons/check.png" alt="Sinal de confere" width="36" height="36">
+                            Cadastre 10 metas;
+                        </li>
+
+                        <li>
+                            <img src="assets/icons/check.png" alt="Sinal de confere" width="36" height="36">
+                            Crie tags personalizadas;
+                        </li>
+
+                        <li>
+                            <img src="assets/icons/check.png" alt="Sinal de confere" width="36" height="36">
+                            Receba relatórios mensais e anuais detalhados;
+                        </li>
+
+                        <li>
+                            <img src="assets/icons/check.png" alt="Sinal de confere" width="36" height="36">
+                            Crie uma conta com até 5 pessoas.
+                        </li>
+                    </ul>
+
+                    <a href="#">Comprar pacote</a>
+
+                    <span>Primeiro mês gratuito!</span>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <%- include('../templates/footer.ejs') %>
 </body>

@@ -12,6 +12,42 @@
 <body>
     <%- include('../templates/header.ejs') %>
 
+    <main>
+        <section>
+            <h1>Cadastre-se</h1>
+
+            <form action="">
+                <label for="">Nome do usuário</label>
+                <input type="text" placeholder="Nome do usuário">
+
+                <label for="">E-mail</label>
+                <input type="email" placeholder="E-mail">
+
+                <label for="">Data de nascimento</label>
+                <input type="date">
+
+                <label for="">CEP</label>
+                <input type="text">
+
+                <label for="">Senha</label>
+                <input type="password">
+
+                <label for="">Confirmação de senha</label>
+                <input type="password">
+
+                <button>Cadastre-se</button>
+            </form>
+
+            <a href="">Já tem conta? Clique aqui para entrar</a>
+
+        </section>
+
+        <section>
+            <a href=""><img src="assets/icons/facebook.png">Cadastre-se pelo Facebook</a>
+            <a href=""><img src="assets/icons/google.png">Cadastre-se pelo Google</a>
+        </section>
+    </main>
+
     <%- include('../templates/footer.ejs') %>
 </body>
 </html>

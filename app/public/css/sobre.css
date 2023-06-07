@@ -11,9 +11,9 @@
 #sobre-intro h1 {
     grid-column: 2;
     align-self: flex-end;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: var(--text-dark-color);
-    font-size: clamp(1.7rem, 5vw, 2.2rem);
+    font-size: clamp(1.7rem, 2vw, 2.5rem);
 }
 
 #sobre-intro picture {
@@ -74,7 +74,7 @@
 
 #metas-finyou h2 {
     color: var(--text-dark-color);
-    font-size: clamp(1.7rem, 5vw, 2.2rem);
+    font-size: clamp(1.7rem, 2vw, 2rem);
     text-align: center;
 }
 
@@ -99,8 +99,8 @@
 
 #metas div h3 {
     color: var(--text-dark-color);
-    font-size: clamp(1.5rem, 4vw, 1.7rem);
-    margin-bottom: 24px;
+    font-size: clamp(1.7rem, 2vw, 2rem);
+    margin-bottom: 16px;
 }
 
 @media (max-width: 769px) {
@@ -115,15 +115,15 @@
 #secondary-topics {
     display: flex;
     justify-content: center;
-    background-color: var(--background-darker-color);
     padding: 40px clamp(30px, 9vw, 50px);
+    background-color: var(--background-darker-color);
 }
 
 #secondary-topics ul li {
     display: flex;
     align-items: center;
     padding: 10px 0;
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    font-size: clamp(1.2rem, 1vw, 1.4rem);
 }
 
 #secondary-topics ul li img {
@@ -150,9 +150,9 @@
 }
 
 #cta-sobre div p {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: var(--text-dark-color);
-    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    font-size: clamp(1.7rem, 2vw, 2rem);
 }
 
 #cta-sobre div a {

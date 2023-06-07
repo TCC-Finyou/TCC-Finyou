@@ -11,7 +11,29 @@
 </head>
 <body>
     <%- include('../templates/header.ejs') %>
+    <main>
+        <section>
+            <h1>Entrar</h1>
 
+            <form action="">
+                <label for="">E-mail</label>
+                <input type="email">
+
+                <label for="">Senha</label>
+                <input type="password">
+
+                <button>Entrar</button>
+            </form>
+
+            <a href="">Esqueceu a senha? Clique aqui para recuperar</a>
+
+        </section>
+        
+        <section>
+            <a href=""><img src="assets/icons/facebook.png">Cadastre-se pelo Facebook</a>
+            <a href=""><img src="assets/icons/google.png">Cadastre-se pelo Google</a>
+        </section>
+    </main>
     <%- include('../templates/footer.ejs') %>
 </body>
 </html>
