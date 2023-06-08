@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../templates/head.ejs') %>
+    <link rel="stylesheet" href="css/info-pages/autenticacao.css">
     <meta name="description" content="Recusro para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <title>Cadastro</title>
@@ -13,38 +14,41 @@
     <%- include('../templates/header.ejs') %>
 
     <main>
-        <section>
+        <section id="autenticacao-intro">
             <h1>Cadastre-se</h1>
 
-            <form action="">
-                <label for="">Nome do usuário</label>
-                <input type="text" placeholder="Nome do usuário">
+            <form action="/cadastro" method="post" id="autenticacao-form">
+                <label for="nome">Nome do usuário</label>
+                <input type="text" placeholder="Nome do usuário" id="nome" name="nome">
 
-                <label for="">E-mail</label>
-                <input type="email" placeholder="E-mail">
+                <label for="email">E-mail</label>
+                <input type="email" placeholder="E-mail" id="email" name="email">
 
-                <label for="">Data de nascimento</label>
-                <input type="date">
+                <label for="data-nascimento">Data de nascimento</label>
+                <input type="text" placeholder="dd / mm / aaaa" id="data-nascimento" name="data_nascimento">
 
-                <label for="">CEP</label>
-                <input type="text">
+                <label for="senha">Senha</label>
+                <input type="password" placeholder="Senha" id="senha" name="senha">
 
-                <label for="">Senha</label>
-                <input type="password">
+                <label for="confirmacao-senha">Confirmação de senha</label>
+                <input type="password" placeholder="Confirmação de senha" id="confirmacao-senha">
 
-                <label for="">Confirmação de senha</label>
-                <input type="password">
-
-                <button>Cadastre-se</button>
+                <button type="submit">Cadastre-se</button>
             </form>
 
-            <a href="">Já tem conta? Clique aqui para entrar</a>
-
+            <a href="/login">Já tem conta? Clique aqui para entrar</a>
         </section>
 
-        <section>
-            <a href=""><img src="assets/icons/facebook.png">Cadastre-se pelo Facebook</a>
-            <a href=""><img src="assets/icons/google.png">Cadastre-se pelo Google</a>
+        <section id="autenticacao-social-media">
+            <a href="">
+                <img src="assets/icons/facebook-blue.png">
+                Cadastre-se pelo Facebook
+            </a>
+
+            <a href="">
+                <img src="assets/icons/google.png">
+                Cadastre-se pelo Google
+            </a>
         </section>
     </main>
 

@@ -13,7 +13,6 @@
     align-self: flex-end;
     margin-bottom: 16px;
     color: var(--text-dark-color);
-    font-size: clamp(1.7rem, 2vw, 2.5rem);
 }
 
 #sobre-intro picture {
@@ -74,7 +73,6 @@
 
 #metas-finyou h2 {
     color: var(--text-dark-color);
-    font-size: clamp(1.7rem, 2vw, 2rem);
     text-align: center;
 }
 
@@ -99,7 +97,6 @@
 
 #metas div h3 {
     color: var(--text-dark-color);
-    font-size: clamp(1.7rem, 2vw, 2rem);
     margin-bottom: 16px;
 }
 
@@ -163,7 +160,7 @@
     border-radius: 10px;
     background-color: var(--contrast-color);
     color: white;
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 1vw, 1.4rem);
     text-align: center;
 }
 

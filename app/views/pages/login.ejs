@@ -5,35 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../templates/head.ejs') %>
+    <link rel="stylesheet" href="css/info-pages/autenticacao.css">
     <meta name="description" content="Recusro para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <title>Entrar</title>
 </head>
 <body>
     <%- include('../templates/header.ejs') %>
+
     <main>
-        <section>
+        <section id="autenticacao-intro">
             <h1>Entrar</h1>
 
-            <form action="">
-                <label for="">E-mail</label>
-                <input type="email">
+            <form action="/login" method="post" id="autenticacao-form">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Email" name="email">
 
-                <label for="">Senha</label>
-                <input type="password">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Senha" name="senha">
 
-                <button>Entrar</button>
+                <button type="submit">Entrar</button>
             </form>
 
             <a href="">Esqueceu a senha? Clique aqui para recuperar</a>
-
         </section>
-        
-        <section>
-            <a href=""><img src="assets/icons/facebook.png">Cadastre-se pelo Facebook</a>
-            <a href=""><img src="assets/icons/google.png">Cadastre-se pelo Google</a>
+
+        <section id="autenticacao-social-media">
+            <a href="">
+                <img src="assets/icons/facebook-blue.png">
+                Cadastre-se pelo Facebook
+            </a>
+
+            <a href="">
+                <img src="assets/icons/google.png">
+                Cadastre-se pelo Google
+            </a>
         </section>
     </main>
+
     <%- include('../templates/footer.ejs') %>
 </body>
 </html>

@@ -1,0 +1,68 @@
+/* ! FORMULÁRIO */
+
+#autenticacao-intro {
+    max-width: 1000px;
+    margin-inline: auto;
+    padding: 40px clamp(30px, 9vw, 50px) 0;
+}
+
+#autenticacao-intro h1 {
+    margin: 0 8px 16px;
+    color: var(--text-dark-color);
+}
+
+#autenticacao-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#autenticacao-form label {
+    margin: 0 8px 8px;
+    font-size: clamp(1.2rem, 1vw, 1.4rem);
+}
+
+#autenticacao-form input {
+    height: 48px;
+    margin-bottom: 16px;
+    padding-inline-start: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}
+
+#autenticacao-form button {
+    height: 64px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--main-gradient);
+    color: white;
+    font-size: clamp(1.2rem, 1vw, 1.4rem);
+}
+
+#autenticacao-intro a {
+    display: block;
+    color: var(--text-light-color);
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* ! LOGIN COM REDES SOCIAIS */
+
+#autenticacao-social-media {
+    max-width: 1000px;
+    margin-inline: auto;
+    padding: 0 clamp(30px, 9vw, 50px) 8px;
+}
+
+#autenticacao-social-media a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 16px;
+    margin-bottom: 32px;
+    padding: 16px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    color: var(--text-dark-color);
+    font-size: clamp(1rem, 1vw, 1.4rem);
+}
