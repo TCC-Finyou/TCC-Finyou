@@ -11,7 +11,6 @@
 }
 
 #pacotes-intro h1 {
-    color: var(--text-dark-color);
     text-align: center;
 }
 
@@ -57,7 +56,6 @@
     display: flex;
     align-items: center;
     padding: 10px 0;
-    font-size: clamp(1.2rem, 1vw, 1.4rem);
 }
 
 #main-topics ul li img {
@@ -75,7 +73,6 @@
 #pacotes > h2 {
     margin-bottom: 24px;
     padding: 0 clamp(30px, 9vw, 50px);
-    color: var(--text-dark-color);
 }
 
 #pacotes > p {
@@ -103,13 +100,14 @@
 
 #pacotes-cards div p {
     margin-inline: 80px;
-    font-size: clamp(1rem, 1vw, 1.4rem);
+    font-size: .9rem;
 }
 
 #pacotes-cards div h3 {
     margin-inline: 80px;
-    font-size: clamp(2.5rem, 2vw, 3.5rem);
     margin-bottom: 6px;
+    font-size: 1.8rem;
+    color: white;
 }
 
 #pacotes-cards div ul {
@@ -118,9 +116,9 @@
 
 #pacotes-cards div ul li {
     display: flex;
-    padding: 10px 0;
     align-items: center;
-    font-size: clamp(1rem, 1vw, 1.4rem);
+    padding: 10px 0;
+    font-size: .9rem;
 }
 
 #pacotes-cards div ul li img {
@@ -128,21 +126,17 @@
 }
 
 #pacotes-cards div a {
-    padding: 8px;
+    margin: 0 80px 24px;
+    padding: clamp(10px, 2vw, 15px) 8px;
+    border-radius: 8px;
     background-color: var(--contrast-color);
     text-align: center;
-    border-radius: 8px;
-    margin: 0 80px 24px;
-    font-size: clamp(1rem, 1vw, 1.4rem);
 }
 
 #pacotes-cards div span {
     width: fit-content;
     margin-inline: auto;
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
 }
-
-
 
 @media (max-width: 769px){
     #pacotes-cards div {

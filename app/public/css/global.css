@@ -15,6 +15,8 @@
     --contrast-color-hover: #221155;
 
     --main-gradient: linear-gradient(90deg, #1f547b, #23a3b4);
+
+    font-size: clamp(1.2rem, 1vw, 1.4rem);
 }
 
 *,
@@ -48,15 +50,18 @@ section:last-child {
 }
 
 h1 {
-    font-size: clamp(2rem, 5vw, 2.2rem);
+    font-size: 2rem;
+    color: var(--text-dark-color);
 }
 
 h2 {
-    font-size: clamp(1.7rem, 3vw, 2rem);
+    font-size: 1.8rem;
+    color: var(--text-dark-color);
 }
 
 h3 {
-    font-size: clamp(1.5rem, 3vw, 1.7rem);
+    font-size: 1.5rem;
+    color: var(--text-dark-color);
 }
 
 picture img {
@@ -71,9 +76,7 @@ img {
 }
 
 p {
-    font-size: clamp(1.2rem, 1vw, 1.4rem);
     line-height: 1.5;
-    text-align: justify;
 }
 
 ul {
@@ -128,7 +131,7 @@ header nav {
 
 #menu a {
     position: relative;
-	font-size: clamp(1.1rem, 1vw, 1.7rem);
+	font-size: 1.1rem;
     width: max-content;
     padding: 5px 0;
 }
@@ -210,7 +213,7 @@ header nav {
 
     #menu a {
         margin: 5px 0;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -242,6 +245,7 @@ footer {
 
 #footer-card-container div h2 {
     margin-bottom: 10px;
+    color: white;
     font-size: 1.3rem;
 }
 
@@ -270,6 +274,6 @@ footer {
 }
 
 #footer-language span {
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: 600;
 }
