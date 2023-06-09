@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const router = require('./app/routes/router');
 const app = express();
-const port = process.env.PORT_OUR
+const port = process.env.PORT
 
 app.use(express.static(path.join(__dirname, "app", "public")));
 
