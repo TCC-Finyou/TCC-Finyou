@@ -1,6 +1,6 @@
 class CadastroController {
     getPage(req, res) {
-        res.render("pages/cadastro.ejs")
+        return res.render("pages/cadastro.ejs")
     }
 }
 

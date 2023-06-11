@@ -1,19 +1,19 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+    provider = "mysql"
+    url      = env("DATABASE_URL")
 }
 
 model Usuario {
-    id Int @id @default(autoincrement())
-    nome String @db.VarChar(255)
-    email String @unique @db.VarChar(120)
-    senha String @db.Char(60)
+    id              String   @id @default(uuid())
+    nome            String   @db.VarChar(255)
+    email           String   @unique @db.VarChar(120)
+    senha           String   @db.Char(60)
     data_nascimento DateTime @db.Date
-    premium Int @db.TinyInt @default(0)
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    premium         Int      @default(0) @db.TinyInt
+    created_at      DateTime @default(now())
+    updated_at      DateTime @updatedAt
 }

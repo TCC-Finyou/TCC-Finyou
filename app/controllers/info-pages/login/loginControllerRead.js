@@ -1,6 +1,6 @@
 class LoginController {
     getPage(req, res) {
-        res.render("pages/login.ejs")
+        return res.render("pages/login.ejs")
     }
 }
 

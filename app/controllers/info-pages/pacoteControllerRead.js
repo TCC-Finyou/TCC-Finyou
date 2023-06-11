@@ -1,6 +1,6 @@
 class PacoteController {
     getPage(req, res) {
-        res.render("pages/pacotes.ejs")
+        return res.render("pages/pacotes.ejs")
     }
 }
 

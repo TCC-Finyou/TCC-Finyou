@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
-const prisma = require("../../server/database/prismaClient");
 
 class Authentication {
     async encryptPassword(req, res, next) {
@@ -14,49 +13,15 @@ class Authentication {
 
             return next();
         } catch (erro) {
-            res.redirect("/cadastro");
+            res.render("pages/cadastro");
 
             console.log(erro);
             throw erro;
         }
     }
 
-    async authorizeLogin(req, res, next) {
-        const {
-            email,
-            senha
-        } = req.body;
-
-        const user = await prisma.usuario.findUnique({
-            where: {
-                email
-            }
-        });
-
-        if (!user) {
-            console.log("Usuário não cadastrado");
-            return res.render("pages/login.ejs");
-        }
-
-        bcrypt.compare(senha, user.senha).then(auth => {
-            if (auth) {
-                const token = jwt.sign({ userId: user.email }, process.env.SECRET);
-
-                req.session.token = token;
-
-                return next();
-            }
-
-            return res.render("pages/login.ejs");
-        })
-        .catch(erro => {
-            console.log(erro);
-            return res.render("pages/login.ejs");
-        })
-    }
-
     validateJWT(req, res, next) {
-        const token = req.session.token
+        const token = req.session.token;
 
         if (!token) {
             console.log("Token não identificado");
@@ -64,11 +29,11 @@ class Authentication {
         }
 
         try {
-            const verifiedToken = jwt.verify(token, process.env.SECRET);
-            req.userEmail = verifiedToken.userId;
+            jwt.verify(token, process.env.SECRET);
 
             return next();
         } catch (erro) {
+            console.log(erro);
             return res.redirect("/login");
         }
     }

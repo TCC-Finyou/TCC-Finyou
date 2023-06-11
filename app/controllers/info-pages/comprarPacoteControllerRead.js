@@ -1,6 +1,6 @@
 class ComprarPacoteController {
     getPage(req, res) {
-        res.render("pages/comprar-pacote.ejs");
+        return res.render("pages/comprar-pacote.ejs");
     }
 }
 

@@ -1,6 +1,6 @@
 class HomePerfilController {
     getPage(req, res) {
-        res.render("pages/perfil.ejs");
+        return res.render("pages/perfil.ejs");
     }
 }
 

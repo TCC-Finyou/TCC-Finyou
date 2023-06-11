@@ -1,6 +1,6 @@
 class SobreController {
     getPage(req, res) {
-        res.render("pages/sobre.ejs")
+        return res.render("pages/sobre.ejs")
     }
 }
 

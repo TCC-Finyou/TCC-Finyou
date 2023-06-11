@@ -51,7 +51,7 @@ router.post("/cadastro", AuthenticationMiddleware.encryptPassword, CadastroContr
 // * Login
 router.get("/login", LoginControllerRead.getPage);
 
-router.post("/login", AuthenticationMiddleware.authorizeLogin, LoginControllerReadAuth.authUser);
+router.post("/login", LoginControllerReadAuth.authUser);
 
 // * Perfil
 router.get("/perfil", AuthenticationMiddleware.validateJWT, HomePerfilControllerRead.getPage);

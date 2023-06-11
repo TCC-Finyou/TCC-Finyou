@@ -22,10 +22,10 @@ class CadastroController {
                 }
             })
 
-            return res.redirect("/login")
+            return res.redirect("/login");
         } catch (erro) {
-            console.log(erro)
-            return res.render("pages/cadastro.ejs")
+            console.log(erro);
+            return res.render("pages/cadastro.ejs");
         }
     }
 }

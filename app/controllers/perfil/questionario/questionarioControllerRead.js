@@ -1,6 +1,6 @@
 class QuestionarioController {
     getPage(req, res) {
-        res.render("pages/questionario.ejs");
+        return res.render("pages/questionario.ejs");
     }
 }
 

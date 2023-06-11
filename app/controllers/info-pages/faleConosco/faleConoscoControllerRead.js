@@ -1,6 +1,6 @@
 class FaleConoscoController {
     getPage(req, res) {
-        res.render("pages/fale-conosco.ejs")
+        return res.render("pages/fale-conosco.ejs")
     }
 }
 

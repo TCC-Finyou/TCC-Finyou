@@ -1,6 +1,6 @@
 class MetasController {
     getPage(req, res) {
-        res.render("pages/metas.ejs");
+        return res.render("pages/metas.ejs");
     }
 }
 

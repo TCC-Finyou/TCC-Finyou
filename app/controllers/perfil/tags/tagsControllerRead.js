@@ -1,6 +1,6 @@
 class TagsController {
     getPage(req, res) {
-        res.render("pages/tags.ejs");
+        return res.render("pages/tags.ejs");
     }
 }
 
