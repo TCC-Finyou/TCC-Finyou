@@ -15,8 +15,13 @@
   "author": "Vinícius Gonçalves, Michele de Sousa dos Santos, Larissa Andrade Nascimento, Eric Gabriel Cerqueira Sebastião, Anna Beatriz de Castro Braga, Bianca Bernardo de Almeida",
   "license": "MIT",
   "dependencies": {
+    "@prisma/client": "^4.15.0",
+    "bcrypt": "^5.1.0",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.0",
+    "prisma": "^4.15.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",

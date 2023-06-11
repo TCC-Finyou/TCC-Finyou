@@ -1,0 +1,58 @@
+#fale-conosco-intro {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 40px clamp(30px, 9vw, 50px) 0;
+}
+
+#fale-conosco-intro h1 {
+    margin: 0 8px 16px;
+}
+
+#fale-conosco-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#fale-conosco-form label {
+    margin: 0 8px 8px;
+}
+
+#fale-conosco-form input {
+    height: 48px;
+    margin-bottom: 16px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}
+
+#fale-conosco-form textarea {
+    margin-bottom: 16px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    resize: none;
+
+    scrollbar-width: none;
+}
+
+#limite-caracteres {
+    align-self: flex-end;
+    font-size: .9rem;
+}
+
+#limite-caracteres.max {
+    color: red;
+}
+
+#limite-caracteres span {
+    font-size: .9rem;
+}
+
+#fale-conosco-form button {
+    height: 64px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--main-gradient);
+    color: white;
+}

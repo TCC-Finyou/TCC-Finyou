@@ -1,12 +1,19 @@
 require('dotenv').config();
 
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const router = require('./app/routes/router');
 const app = express();
 const port = process.env.PORT
 
 app.use(express.static(path.join(__dirname, "app", "public")));
+
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

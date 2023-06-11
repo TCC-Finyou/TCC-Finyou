@@ -16,7 +16,7 @@
 
     --main-gradient: linear-gradient(90deg, #1f547b, #23a3b4);
 
-    font-size: clamp(1.2rem, 1vw, 1.4rem);
+    font-size: clamp(1rem, 2vw, 1.4rem);
 }
 
 *,
@@ -55,12 +55,12 @@ h1 {
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: var(--text-dark-color);
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--text-dark-color);
 }
 
@@ -111,6 +111,10 @@ header nav {
 	color: white;
 }
 
+header nav.simplified {
+    justify-content: center;
+}
+
 #logo {
 	height: 35%;
 }
@@ -131,7 +135,6 @@ header nav {
 
 #menu a {
     position: relative;
-	font-size: 1.1rem;
     width: max-content;
     padding: 5px 0;
 }
@@ -213,7 +216,7 @@ header nav {
 
     #menu a {
         margin: 5px 0;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
