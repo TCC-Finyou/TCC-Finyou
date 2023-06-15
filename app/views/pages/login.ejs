@@ -7,11 +7,11 @@
     <meta name="description" content="Recusro para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <%- include('../templates/head.ejs') %>
-    <!-- STYLES -->
 
+    <!-- CSS -->
     <link rel="stylesheet" href="css/info-pages/autenticacao.css">
 
-    <title>Entrar</title>
+    <title><%- data.page_name %></title>
 </head>
 <body>
     <%- include('../templates/header.ejs') %>
@@ -21,11 +21,23 @@
             <h1>Entrar</h1>
 
             <form action="/login" method="post" id="autenticacao-form">
+                <%- data.errors && data.errors.sistema_error ? `<span class='error-message'>${data.errors.sistema_error.msg}</span>` : "" %>
+
                 <label for="email">E-mail</label>
-                <input type="email" id="email" placeholder="Email" name="email">
+                <input type="email" id="email" placeholder="Email" name="email"
+                <%- data.input_values ? `value="${data.input_values.email}"` : "" %>
+                <%- data.errors && data.errors.email_error ? `class="error"` : "" %>
+                >
+
+                <%- data.errors && data.errors.email_error ? `<span class='error-message'>${data.errors.email_error.msg}</span>` : "" %>
 
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" placeholder="Senha" name="senha">
+                <input type="password" id="senha" placeholder="Senha" name="senha"
+                <%- data.input_values ? `value="${data.input_values.senha}"` : "" %>
+                <%- data.errors && data.errors.senha_error ? `class="error"` : "" %>
+                >
+
+                <%- data.errors && data.errors.senha_error ? `<span class='error-message'>${data.errors.senha_error.msg}</span>` : "" %>
 
                 <button type="submit">Entrar</button>
             </form>

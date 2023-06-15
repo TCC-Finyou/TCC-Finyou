@@ -3,20 +3,38 @@ const jwt = require("jsonwebtoken");
 
 class Authentication {
     async encryptPassword(req, res, next) {
-        const password = req.body.senha;
+        const {
+            nome,
+            email,
+            data_nascimento,
+            senha
+        } = req.body;
         const salt = Number(process.env.SALT_ROUNDS);
 
         try {
-            const hash = await bcrypt.hash(password, salt);
+            const hash = await bcrypt.hash(senha, salt);
 
             req.encryptedPassword = hash;
 
             return next();
         } catch (erro) {
-            res.render("pages/cadastro");
-
             console.log(erro);
-            throw erro;
+            return res.render("pages/cadastro", {
+                data: {
+                    page_name: "Cadastro",
+                    input_values: {
+                        nome,
+                        email,
+                        data_nascimento,
+                        senha
+                    },
+                    errors: {
+                        sistema_error: {
+                            msg: "Erro de sistema, tente novamente mais tarde!"
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -24,7 +42,6 @@ class Authentication {
         const token = req.session.token;
 
         if (!token) {
-            console.log("Token não identificado");
             return res.redirect("/login");
         }
 
@@ -36,6 +53,16 @@ class Authentication {
             console.log(erro);
             return res.redirect("/login");
         }
+    }
+
+    verifyPremium(req, res, next) {
+        const premium = req.session.premium;
+
+        if (!premium) {
+            return res.redirect("/perfil");
+        }
+
+        return next();
     }
 }
 

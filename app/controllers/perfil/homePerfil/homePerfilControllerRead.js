@@ -1,6 +1,13 @@
 class HomePerfilController {
     getPage(req, res) {
-        return res.render("pages/perfil.ejs");
+        const premium = req.session.premium;
+
+        return res.render("pages/perfil.ejs", {
+            data: {
+                page_name: "Perfil",
+                premium
+            }
+        })
     }
 }
 

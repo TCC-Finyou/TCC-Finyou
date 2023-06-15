@@ -12,7 +12,12 @@ app.use(express.static(path.join(__dirname, "app", "public")));
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60,
+        httpOnly: true,
+        sameSite: 'strict'
+    }
 }))
 
 app.use(express.json());

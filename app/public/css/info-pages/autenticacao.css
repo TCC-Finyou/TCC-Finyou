@@ -17,15 +17,25 @@
 }
 
 #autenticacao-form label {
-    margin: 0 8px 8px;
+    margin: 8px;
 }
 
 #autenticacao-form input {
     height: 48px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     padding-inline: 8px;
     border: 2px solid #00000033;
     border-radius: 8px;
+}
+
+#autenticacao-form input.error {
+    border-color: #ff000033;
+}
+
+#autenticacao-form span.error-message {
+    margin-inline: 8px;
+    color: red;
+    font-size: .8rem;
 }
 
 #autenticacao-form button {

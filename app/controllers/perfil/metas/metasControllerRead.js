@@ -1,6 +1,13 @@
 class MetasController {
     getPage(req, res) {
-        return res.render("pages/metas.ejs");
+        const premium = req.session.premium;
+
+        return res.render("pages/metas.ejs", {
+            data: {
+                page_name: "Metas",
+                premium
+            }
+        });
     }
 }
 

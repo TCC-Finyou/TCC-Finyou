@@ -7,10 +7,11 @@
     <meta name="description" content="O site disponibilizará pacotes para os usuários, tendo opções de escolha para o que prefirir. ">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <%- include('../templates/head.ejs') %>
-    <!-- STYLES -->
 
+    <!-- CSS -->
     <link rel="stylesheet" href="css/info-pages/pacotes.css">
-    <title>Pacotes</title>
+
+    <title><%- data.page_name %></title>
 </head>
 <body>
     <%- include('../templates/header.ejs') %>
@@ -21,7 +22,8 @@
 
             <div>
                 <picture>
-                    <img src="assets/images/barraca-limao.jpg" alt="Menina vendendo suco de limão">
+                    <source srcset="assets/images/webp/barraca-limao.webp" type="image/webp">
+                    <img src="assets/images/barraca-limao.jpg" alt="Menina vendendo suco de limão" width="400" height="349">
                 </picture>
 
                 <p>Organize facilmente suas rendas.</p>
@@ -29,7 +31,8 @@
 
             <div>
                 <picture>
-                    <img src="assets/images/estudando-financas.jpg" alt="Estudando finanças">
+                    <source srcset="assets/images/webp/estudando-financas.webp" type="image/webp">
+                    <img src="assets/images/estudando-financas.jpg" alt="Estudando finanças" width="400" height="317">
                 </picture>
 
                 <p>Gráficos e textos com poucos termos técnicos.</p>
@@ -37,7 +40,8 @@
 
             <div>
                 <picture>
-                    <img src="assets/images/crianca-comprando.jpg" alt="Criança comprando ursinho">
+                    <source srcset="assets/images/webp/crianca-comprando.webp" type="image/webp">
+                    <img src="assets/images/crianca-comprando.jpg" alt="Criança comprando ursinho" width="1080" height="249">
                 </picture>
 
                 <p>Sonhe, planeje e conquiste!</p>

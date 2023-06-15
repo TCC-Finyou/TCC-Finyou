@@ -1,0 +1,24 @@
+<header>
+    <nav>
+        <a href="/perfil" id="logo">
+            <img src="assets/icons/logo.png" alt="Logo Finyou">
+        </a>
+
+        <div id="menu-hamburguer" data-menu-hamburguer>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div id="menu" data-menu>
+            <a href="/perfil">Home</a>
+            <a href="/metas">Metas</a>
+            <a href="/tags">Tags</a>
+            <a href="/relatorios">Relatórios</a>
+
+            <% if (data.premium) { %>
+                <a href="/conta-conjunta">Conta conjunta</a>
+            <% } %>
+        </div>
+    </nav>
+</header>

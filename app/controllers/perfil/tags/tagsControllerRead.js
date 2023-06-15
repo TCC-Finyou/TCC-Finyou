@@ -1,6 +1,13 @@
 class TagsController {
     getPage(req, res) {
-        return res.render("pages/tags.ejs");
+        const premium = req.session.premium;
+
+        return res.render("pages/tags.ejs", {
+            data: {
+                page_name: "Tags",
+                premium
+            }
+        });
     }
 }
 

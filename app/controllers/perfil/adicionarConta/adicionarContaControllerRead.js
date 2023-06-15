@@ -1,6 +1,13 @@
 class AdicionarContaController {
     getPage(req, res) {
-        return res.render("pages/adicionar-conta.ejs");
+        const premium = req.session.premium;
+
+        return res.render("pages/adicionar-conta.ejs", {
+            data: {
+                page_name: "Adicionar conta",
+                premium
+            }
+        });
     }
 }
 

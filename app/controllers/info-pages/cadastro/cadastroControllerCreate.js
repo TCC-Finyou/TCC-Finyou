@@ -7,10 +7,12 @@ class CadastroController {
         const {
             nome,
             email,
-            data_nascimento
+            data_nascimento,
+            senha
         } = req.body;
-        const senha = req.encryptedPassword;
-        const data_nascimento_formated = new Date(data_nascimento);
+        const senhaCriptografada = req.encryptedPassword;
+        const data_nascimento_array = data_nascimento.split('/');
+        const data_nascimento_formated = new Date(`${data_nascimento_array[2]}/${data_nascimento_array[1]}/${data_nascimento_array[0]}`);
 
         try {
             await prisma.usuario.create({
@@ -18,14 +20,29 @@ class CadastroController {
                     nome,
                     email,
                     data_nascimento: data_nascimento_formated,
-                    senha
+                    senha: senhaCriptografada
                 }
             })
 
             return res.redirect("/login");
         } catch (erro) {
             console.log(erro);
-            return res.render("pages/cadastro.ejs");
+            return res.render("pages/cadastro.ejs", {
+                data: {
+                    page_name: "Cadastro",
+                    input_values: {
+                        nome,
+                        email,
+                        data_nascimento,
+                        senha
+                    },
+                    errors: {
+                        sistema_error: {
+                            msg: "Erro de sistema, tente novamente mais tarde!"
+                        }
+                    }
+                }
+            });
         }
     }
 }

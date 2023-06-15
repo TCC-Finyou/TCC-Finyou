@@ -1,6 +1,13 @@
 class ContaConjuntaController {
     getPage(req, res) {
-        return res.render("pages/comprar-pacote.ejs");
+        const premium = req.session.premium;
+
+        return res.render("pages/comprar-pacote.ejs", {
+            data: {
+                page_name: "Comprar pacote",
+                premium
+            }
+        });
     }
 }
 

@@ -16,7 +16,7 @@
 
     --main-gradient: linear-gradient(90deg, #1f547b, #23a3b4);
 
-    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
 }
 
 *,
@@ -130,6 +130,7 @@ header nav.simplified {
 #menu {
     display: flex;
     column-gap: 15px;
+    min-width: 200px;
     margin-left: auto;
 }
 
@@ -137,6 +138,7 @@ header nav.simplified {
     position: relative;
     width: max-content;
     padding: 5px 0;
+    font-size: .9rem;
 }
 
 #menu a:active {
@@ -216,7 +218,7 @@ header nav.simplified {
 
     #menu a {
         margin: 5px 0;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 

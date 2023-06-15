@@ -1,6 +1,10 @@
 class PacoteController {
     getPage(req, res) {
-        return res.render("pages/pacotes.ejs")
+        return res.render("pages/pacotes.ejs", {
+            data: {
+                page_name: "Pacotes"
+            }
+        })
     }
 }
 

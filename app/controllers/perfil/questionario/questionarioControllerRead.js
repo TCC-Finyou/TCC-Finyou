@@ -1,6 +1,13 @@
 class QuestionarioController {
     getPage(req, res) {
-        return res.render("pages/questionario.ejs");
+        const premium = req.session.premium;
+
+        return res.render("pages/questionario.ejs", {
+            data: {
+                page_name: "Questionário",
+                premium
+            }
+        });
     }
 }
 
