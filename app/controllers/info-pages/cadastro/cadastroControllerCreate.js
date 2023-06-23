@@ -1,3 +1,4 @@
+const { PrismaClientValidationError } = require("@prisma/client/runtime/library");
 const prisma = require("../../../../server/database/prismaClient");
 
 // req.encryptedPassword
@@ -8,7 +9,8 @@ class CadastroController {
             nome,
             email,
             data_nascimento,
-            senha
+            senha,
+            confirmacao_senha
         } = req.body;
         const senhaCriptografada = req.encryptedPassword;
         const data_nascimento_array = data_nascimento.split('/');
@@ -27,6 +29,27 @@ class CadastroController {
             return res.redirect("/login");
         } catch (erro) {
             console.log(erro);
+
+            if (erro.code === "P2002") {
+                return res.render("pages/cadastro.ejs", {
+                    data: {
+                        page_name: "Cadastro",
+                        input_values: {
+                            nome,
+                            email,
+                            data_nascimento,
+                            senha,
+                            confirmacao_senha
+                        },
+                        errors: {
+                            email_error: {
+                                msg: "Email já cadastrado!"
+                            }
+                        }
+                    }
+                });
+            }
+
             return res.render("pages/cadastro.ejs", {
                 data: {
                     page_name: "Cadastro",
@@ -34,7 +57,8 @@ class CadastroController {
                         nome,
                         email,
                         data_nascimento,
-                        senha
+                        senha,
+                        confirmacao_senha
                     },
                     errors: {
                         sistema_error: {
