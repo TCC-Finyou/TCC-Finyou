@@ -28,6 +28,33 @@
     border-radius: 8px;
 }
 
+#autenticacao-form .input-container {
+    position: relative;
+    margin-bottom: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    background-color: white;
+}
+
+#autenticacao-form .input-container input {
+    width: 100%;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+#autenticacao-form .input-container img {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#autenticacao-form .input-container img.hide {
+    display: none;
+}
+
 #autenticacao-form input.error {
     border-color: #ff000033;
 }

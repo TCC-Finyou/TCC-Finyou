@@ -5,24 +5,31 @@ const { validationResult } = require("express-validator");
 
 class FormValidation {
     constructor() {
+        this.cadastroValidation = this.cadastroValidation.bind(this);
         this.loginValidation = this.loginValidation.bind(this);
     }
 
     cadastroValidation(req, res, next) {
         const errors = validationResult(req);
+        const {
+            senha,
+            confirmacao_senha
+        } = req.body;
+
+        this.#confirmacaoSenhaValidation(confirmacao_senha, senha, errors);
 
         if (!errors.isEmpty()) {
             const {
                 nome,
                 email,
-                data_nascimento,
-                senha
+                data_nascimento
             } = req.body;
 
             const nome_error = errors.errors.find(error => error.path === "nome");
             const email_error = errors.errors.find(error => error.path === "email");
             const data_nascimento_error = errors.errors.find(error => error.path === "data_nascimento");
             const senha_error = errors.errors.find(error => error.path === "senha");
+            const confirmacao_senha_error = errors.errors.find(error => error.path === "confirmacao_senha");
 
             return res.render("pages/cadastro.ejs", {
                 data: {
@@ -31,19 +38,30 @@ class FormValidation {
                         nome,
                         email,
                         data_nascimento,
-                        senha
+                        senha,
+                        confirmacao_senha
                     },
                     errors: {
                         nome_error,
                         email_error,
                         data_nascimento_error,
-                        senha_error
+                        senha_error,
+                        confirmacao_senha_error
                     }
                 }
             });
         }
 
         return next();
+    }
+
+    #confirmacaoSenhaValidation(confirmacao_senha, senha, errors) {
+        if (confirmacao_senha !== senha) {
+            errors.errors.push({
+                msg: "As senhas devem ser iguais!",
+                path: "confirmacao_senha"
+            })
+        }
     }
 
     async loginValidation(req, res, next) {

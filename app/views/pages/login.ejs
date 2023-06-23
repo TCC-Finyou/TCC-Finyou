@@ -11,6 +11,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/info-pages/autenticacao.css">
 
+    <!-- JS -->
+    <script src="js/info-pages/autenticacao.js" defer></script>
+
     <title><%- data.page_name %></title>
 </head>
 <body>
@@ -32,10 +35,15 @@
                 <%- data.errors && data.errors.email_error ? `<span class='error-message'>${data.errors.email_error.msg}</span>` : "" %>
 
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" placeholder="Senha" name="senha"
-                <%- data.input_values ? `value="${data.input_values.senha}"` : "" %>
-                <%- data.errors && data.errors.senha_error ? `class="error"` : "" %>
-                >
+                <span class="input-container">
+                    <input type="password" placeholder="Senha" id="senha" name="senha"
+                    <%- data.input_values ? `value="${data.input_values.senha}"` : "" %>
+                    <%- data.errors && data.errors.senha_error ? `class="error"` : "" %>
+                    >
+
+                    <img src="assets/icons/show.png" alt="Mostrar" data-show-password>
+                    <img src="assets/icons/hide.png" alt="Ocultar" class="hide" data-hide-password>
+                </span>
 
                 <%- data.errors && data.errors.senha_error ? `<span class='error-message'>${data.errors.senha_error.msg}</span>` : "" %>
 
