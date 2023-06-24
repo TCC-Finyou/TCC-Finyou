@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Recusro para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição." />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/info-pages/recuperar-senha.css" />
+
+        <!-- JS -->
+        <script src="/js/info-pages/autenticacao.js" defer></script>
+
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header.ejs') %>
+
+		<main>
+			<section id="recuperar-senha-intro">
+				<h1>Redefinir senha</h1>
+
+				<% if (data.token_validation === "valid_token") { %>
+                    <form action="/redefinir-senha/<%- data.token %>" method="post" id="recuperar-senha-form">
+                        <label for="senha">Nova senha</label>
+                        <span class="input-container <%- data.errors && data.errors.senha_error ? `error` : "" %>">
+                            <input type="password" placeholder="Senha" id="senha" name="senha"
+                            <%- data.input_values ? `value="${data.input_values.senha}"` : "" %>
+                            >
+
+                            <img src="/assets/icons/show.png" alt="Mostrar" data-show-password>
+                            <img src="/assets/icons/hide.png" alt="Ocultar" class="hide" data-hide-password>
+                        </span>
+
+                        <%- data.errors && data.errors.senha_error ? `<span class='error-message'>${data.errors.senha_error.msg}</span>` : "" %>
+
+                        <label for="confirmacao-senha">Confirmação de senha</label>
+                        <span class="input-container <%- data.errors && data.errors.confirmacao_senha_error ? `error` : "" %>">
+                            <input type="password" placeholder="Confirmar senha" id="confirmaca-_senha" name="confirmacao_senha"
+                            <%- data.input_values ? `value="${data.input_values.confirmacao_senha}"` : "" %>
+                            >
+
+                            <img src="/assets/icons/show.png" alt="Mostrar" data-show-password>
+                            <img src="/assets/icons/hide.png" alt="Ocultar" class="hide" data-hide-password>
+                        </span>
+
+                        <%- data.errors && data.errors.confirmacao_senha_error ? `<span class='error-message'>${data.errors.confirmacao_senha_error.msg}</span>` : "" %>
+
+                        <button type="submit">Trocar senha</button>
+                    </form>
+				<% } else if (data.token_validation === "invalid_token") { %>
+				    <p id="mensagem-centralizada">Token inválido</p>
+				<% } else if (data.token_validation === "expired_token") { %>
+				    <p id="mensagem-centralizada">Token expirado</p>
+				<% } %>
+			</section>
+		</main>
+
+		<%- include('../templates/footer.ejs') %>
+	</body>
+</html>

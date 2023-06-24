@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Recusro para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição." />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/info-pages/recuperar-senha.css" />
+
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header.ejs') %>
+
+		<main>
+			<section id="recuperar-senha-intro">
+				<h1>Recupere sua senha</h1>
+
+				<% if (data.mail_sended) { %>
+				    <p id="mensagem-centralizada">Um email foi enviado para a sua conta! Acesse o link para trocar a sua senha.</p>
+				<% } else { %>
+                    <p id="mensagem">Envie um email para sua conta cadastrada para redefinir a sua senha.</p>
+                    <form action="/recuperar-senha" method="post" id="recuperar-senha-form">
+                        <%- data.errors && data.errors.sistema_error ? `<span class='error-message'>${data.errors.sistema_error.msg}</span>` : "" %>
+
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email"
+                        <%- data.input_values ? `value="${data.input_values.email}"` : "" %>
+                        <%- data.errors && data.errors.email_error ? `class="error"` : "" %>
+                        >
+
+                        <%- data.errors && data.errors.email_error ? `<span class='error-message'>${data.errors.email_error.msg}</span>` : "" %>
+
+                        <button type="submit">Enviar email</button>
+                    </form>
+				<% } %>
+			</section>
+		</main>
+
+		<%- include('../templates/footer.ejs') %>
+	</body>
+</html>

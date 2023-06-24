@@ -47,6 +47,7 @@
     position: absolute;
     top: 50%;
     right: 8px;
+    width: 28px;
     transform: translateY(-50%);
     cursor: pointer;
 }
@@ -55,7 +56,8 @@
     display: none;
 }
 
-#autenticacao-form input.error {
+#autenticacao-form input.error,
+#autenticacao-form .input-container.error {
     border-color: #ff000033;
 }
 

@@ -9,10 +9,10 @@
     <%- include('../templates/head.ejs') %>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/info-pages/autenticacao.css">
+    <link rel="stylesheet" href="/css/info-pages/autenticacao.css">
 
     <!-- JS -->
-    <script src="js/info-pages/autenticacao.js" defer></script>
+    <script src="/js/info-pages/autenticacao.js" defer></script>
 
     <title><%- data.page_name %></title>
 </head>
@@ -41,8 +41,8 @@
                     <%- data.errors && data.errors.senha_error ? `class="error"` : "" %>
                     >
 
-                    <img src="assets/icons/show.png" alt="Mostrar" data-show-password>
-                    <img src="assets/icons/hide.png" alt="Ocultar" class="hide" data-hide-password>
+                    <img src="/assets/icons/show.png" alt="Mostrar" data-show-password>
+                    <img src="/assets/icons/hide.png" alt="Ocultar" class="hide" data-hide-password>
                 </span>
 
                 <%- data.errors && data.errors.senha_error ? `<span class='error-message'>${data.errors.senha_error.msg}</span>` : "" %>
@@ -50,17 +50,17 @@
                 <button type="submit">Entrar</button>
             </form>
 
-            <a href="">Esqueceu a senha? Clique aqui para recuperar</a>
+            <a href="/recuperar-senha">Esqueceu a senha? Clique aqui para recuperar</a>
         </section>
 
         <section id="autenticacao-social-media">
             <a href="">
-                <img src="assets/icons/facebook-blue.png">
+                <img src="/assets/icons/facebook-blue.png">
                 Cadastre-se pelo Facebook
             </a>
 
             <a href="">
-                <img src="assets/icons/google.png">
+                <img src="/assets/icons/google.png">
                 Cadastre-se pelo Google
             </a>
         </section>

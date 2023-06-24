@@ -7,6 +7,7 @@ class FormValidation {
     constructor() {
         this.cadastroValidation = this.cadastroValidation.bind(this);
         this.loginValidation = this.loginValidation.bind(this);
+        this.recuperarSenhaValidation = this.recuperarSenhaValidation.bind(this);
     }
 
     cadastroValidation(req, res, next) {
@@ -141,6 +142,40 @@ class FormValidation {
         })
 
         return user;
+    }
+
+    recuperarSenhaValidation(req, res, next) {
+        const errors = validationResult(req);
+        const {
+            senha,
+            confirmacao_senha
+        } = req.body;
+        const token = req.params.token;
+
+        this.#confirmacaoSenhaValidation(confirmacao_senha, senha, errors);
+
+        if (!errors.isEmpty()) {
+            const senha_error = errors.errors.find(error => error.path === "senha");
+            const confirmacao_senha_error = errors.errors.find(error => error.path === "confirmacao_senha");
+
+            return res.render("pages/redefinir-senha.ejs", {
+                data: {
+                    page_name: "Redefinir senha",
+                    token_validation: "valid_token",
+                    token,
+                    input_values: {
+                        senha,
+                        confirmacao_senha
+                    },
+                    errors: {
+                        senha_error,
+                        confirmacao_senha_error
+                    }
+                }
+            });
+        }
+
+        return next();
     }
 }
 

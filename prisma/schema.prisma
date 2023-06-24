@@ -16,4 +16,14 @@ model Usuario {
     premium         Int      @default(0) @db.TinyInt
     created_at      DateTime @default(now())
     updated_at      DateTime @updatedAt
+
+    tokens Token[]
+}
+
+model Token {
+    id         String   @id @default(uuid())
+    user_email String   @db.VarChar(120)
+    created_at DateTime @default(now())
+
+    email Usuario @relation(fields: [user_email], references: [email])
 }

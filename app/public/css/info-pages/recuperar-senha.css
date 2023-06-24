@@ -1,0 +1,82 @@
+#recuperar-senha-intro {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 100px clamp(30px, 9vw, 50px);
+}
+
+#recuperar-senha-intro h1 {
+    text-align: center;
+}
+
+#recuperar-senha-intro #mensagem,
+#recuperar-senha-intro #mensagem-centralizada {
+    margin: 16px 0;
+}
+
+#recuperar-senha-intro #mensagem-centralizada {
+    text-align: center;
+}
+
+#recuperar-senha-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#recuperar-senha-form label {
+    margin-bottom: 8px;
+}
+
+#recuperar-senha-form input {
+    height: 48px;
+    margin-bottom: 8px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}
+
+#recuperar-senha-form .input-container {
+    position: relative;
+    margin-bottom: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    background-color: white;
+}
+
+#recuperar-senha-form .input-container input {
+    width: 100%;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+#recuperar-senha-form .input-container img {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 28px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#recuperar-senha-form .input-container img.hide {
+    display: none;
+}
+
+#recuperar-senha-form input.error,
+#recuperar-senha-form .input-container.error {
+    border-color: #ff000033;
+}
+
+#recuperar-senha-form span.error-message {
+    margin-inline: 8px;
+    color: red;
+    font-size: .8rem;
+}
+
+#recuperar-senha-form button {
+    height: 64px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--main-gradient);
+    color: white;
+}

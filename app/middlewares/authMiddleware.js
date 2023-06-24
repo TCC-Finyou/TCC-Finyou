@@ -38,6 +38,40 @@ class Authentication {
         }
     }
 
+    async encryptRecoveredPassword(req, res, next) {
+        const {
+            senha
+        } = req.body;
+        const salt = Number(process.env.SALT_ROUNDS);
+        const token = req.params.token;
+
+        try {
+            const hash = await bcrypt.hash(senha, salt);
+
+            req.encryptedPassword = hash;
+
+            return next();
+        } catch (erro) {
+            console.log(erro);
+
+            return res.render("pages/redefinir-senha.ejs", {
+                data: {
+                    page_name: "Redefinir senha",
+                    token_validation: "valid_token",
+                    token,
+                    input_values: {
+                        senha
+                    },
+                    errors: {
+                        sistema_error: {
+                            msg: "Erro de sistema, tente novamente mais tarde!"
+                        }
+                    }
+                }
+            });
+        }
+    }
+
     validateJWT(req, res, next) {
         const token = req.session.token;
 

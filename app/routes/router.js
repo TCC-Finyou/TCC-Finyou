@@ -9,6 +9,16 @@ const PacoteControllerRead = require("../controllers/info-pages/pacoteController
 const ComprarPacoteControllerRead = require("../controllers/info-pages/comprarPacoteControllerRead");
 const FaleConoscoControllerRead = require("../controllers/info-pages/faleConosco/faleConoscoControllerRead");
 
+// * Recuperar senha
+
+const RecuperarSenhaControllerRead = require("../controllers/info-pages/recuperarSenhaControllerRead");
+const RedefinirSenhaControllerRead = require("../controllers/info-pages/redefinirSenha/RedefinirSenhaControllerRead");
+const RedefinirSenhaControllerUpdate = require("../controllers/info-pages/redefinirSenha/RedefinirSenhaControllerUpdate");
+
+// * Recuperar senha Middlware
+
+const RedefinirSenhaMiddleware = require("../middlewares/recoverPasswordMiddleware");
+
 // * Cadastro Controllers
 
 const CadastroControllerRead = require("../controllers/info-pages/cadastro/cadastroControllerRead");
@@ -19,7 +29,7 @@ const CadastroControllerCreate = require("../controllers/info-pages/cadastro/cad
 const LoginControllerRead = require("../controllers/info-pages/login/loginControllerRead");
 const LoginControllerReadAuth = require("../controllers/info-pages/login/loginControllerReadAuth");
 
-// * Info pages Middlewares
+// * Cadastro e Login Middlewares
 
 const AuthenticationMiddleware = require("../middlewares/authMiddleware");
 const validationRulesMiddleware = require("../middlewares/validationRulesMiddleware");
@@ -49,6 +59,25 @@ ComprarPacoteControllerRead.getPage);
 
 router.get("/fale-conosco",
 FaleConoscoControllerRead.getPage);
+
+// * Recuperar senha
+
+router.get("/recuperar-senha",
+RecuperarSenhaControllerRead.getPage);
+
+router.post("/recuperar-senha",
+RecuperarSenhaControllerRead.recoverPassword);
+
+router.get("/redefinir-senha/:token",
+RedefinirSenhaMiddleware.validateLink,
+RedefinirSenhaControllerRead.getPage);
+
+router.post("/redefinir-senha/:token",
+RedefinirSenhaMiddleware.validateLink,
+validationRulesMiddleware.recuperarSenhaValidationRules,
+FormValidationMiddleware.recuperarSenhaValidation,
+AuthenticationMiddleware.encryptRecoveredPassword,
+RedefinirSenhaControllerUpdate.updatePassword);
 
 // * Cadastro
 router.get("/cadastro",

@@ -1,4 +1,3 @@
-const { PrismaClientValidationError } = require("@prisma/client/runtime/library");
 const prisma = require("../../../../server/database/prismaClient");
 
 // req.encryptedPassword
