@@ -52,10 +52,9 @@
                 <%- data.errors && data.errors.data_nascimento_error ? `<span class='error-message'>${data.errors.data_nascimento_error.msg}</span>` : "" %>
 
                 <label for="senha">Senha</label>
-                <span class="input-container">
+                <span class="input-container <%- data.errors && data.errors.senha_error ? `error` : "" %>">
                     <input type="password" placeholder="Senha" id="senha" name="senha"
                     <%- data.input_values ? `value="${data.input_values.senha}"` : "" %>
-                    <%- data.errors && data.errors.senha_error ? `class="error"` : "" %>
                     >
 
                     <img src="/assets/icons/show.png" alt="Mostrar" data-show-password>
@@ -66,10 +65,9 @@
 
                 <label for="confirmacao-senha">Confirmação de senha</label>
 
-                <span class="input-container">
+                <span class="input-container <%- data.errors && data.errors.confirmacao_senha_error ? `error` : "" %>">
                     <input type="password" placeholder="Confirmação de senha" id="confirmacao-senha" name="confirmacao_senha"
                     <%- data.input_values ? `value="${data.input_values.confirmacao_senha}"` : "" %>
-                    <%- data.errors && data.errors.confirmacao_senha_error ? `class="error"` : "" %>
                     >
 
                     <img src="/assets/icons/show.png" alt="Mostrar" data-show-password>
