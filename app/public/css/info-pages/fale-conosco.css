@@ -1,7 +1,7 @@
 #fale-conosco-intro {
     max-width: 600px;
     margin-inline: auto;
-    padding: 40px clamp(30px, 9vw, 50px) 0;
+    padding: 40px clamp(30px, 9vw, 50px);
 }
 
 #fale-conosco-intro h1 {
@@ -11,7 +11,6 @@
 #fale-conosco-form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
 }
 
 #fale-conosco-form label {

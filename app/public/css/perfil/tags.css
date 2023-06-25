@@ -1,0 +1,78 @@
+/* ! PRIMEIRA SEÇÃO */
+
+#tag-banner {
+    padding: 80px clamp(30px, 9vw, 50px);
+    background: var(--main-gradient);
+    border-bottom-left-radius: 150px;
+    border-bottom-right-radius: 150px;
+}
+
+#tag-banner h1 {
+    margin-bottom: 40px;
+    color: white;
+    text-align: center;
+}
+
+#tag-banner a {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-inline: auto;
+    padding: clamp(10px, 2vw, 15px) 0;
+    border-radius: 10px;
+    background-color: var(--contrast-color);
+    color: white;
+    text-align: center;
+}
+
+#tags-container {
+    padding: 80px clamp(30px, 9vw, 50px) 40px;
+}
+
+#tags-container h2 {
+    color: var(--text-main-color);
+    text-align: center;
+}
+
+#tags {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    justify-items: center;
+    gap: 40px;
+    max-width: 900px;
+    margin: 40px auto 0;
+}
+
+#tags .tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    height: 80px;
+    padding: 15px clamp(20px, 9vw, 40px);
+    border-radius: 400px;
+    background-color: white;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+
+#tags .tag .tag-color {
+    height: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+
+#tags .tag h3 {
+    color: var(--text-main-color);
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#tags .tag button {
+    min-width: 36px;
+    background: none;
+}

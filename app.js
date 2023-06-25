@@ -26,7 +26,15 @@ app.use(express.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "app", "views"));
 
-app.use("/", router)
+app.use("/", router);
+
+app.use((req, res, next) => {
+    res.status(404).render("pages/nao-encontrado.ejs", {
+        data: {
+            page_name: "Página não encontrada"
+        }
+    })
+})
 
 app.listen(port, () => {
     console.log(`Servidor aberto em http://localhost:${port}`);

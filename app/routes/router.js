@@ -3,126 +3,137 @@ const router = Router();
 
 // * Info pages
 
-const HomeControllerRead = require("../controllers/info-pages/homeControllerRead");
-const SobreControllerRead = require("../controllers/info-pages/sobreControllerRead");
-const PacoteControllerRead = require("../controllers/info-pages/pacoteControllerRead");
-const ComprarPacoteControllerRead = require("../controllers/info-pages/comprarPacoteControllerRead");
-const FaleConoscoControllerRead = require("../controllers/info-pages/faleConosco/faleConoscoControllerRead");
+const homeControllerRead = require("../controllers/info-pages/homeControllerRead");
+const sobreControllerRead = require("../controllers/info-pages/sobreControllerRead");
+const pacoteControllerRead = require("../controllers/info-pages/pacoteControllerRead");
+const comprarPacoteControllerRead = require("../controllers/info-pages/comprarPacoteControllerRead");
+const faleConoscoControllerRead = require("../controllers/info-pages/faleConosco/faleConoscoControllerRead");
 
 // * Recuperar senha
 
-const RecuperarSenhaControllerRead = require("../controllers/info-pages/recuperarSenhaControllerRead");
-const RedefinirSenhaControllerRead = require("../controllers/info-pages/redefinirSenha/RedefinirSenhaControllerRead");
-const RedefinirSenhaControllerUpdate = require("../controllers/info-pages/redefinirSenha/RedefinirSenhaControllerUpdate");
+const recuperarSenhaControllerRead = require("../controllers/info-pages/recuperarSenhaControllerRead");
+const redefinirSenhaControllerRead = require("../controllers/info-pages/redefinirSenha/RedefinirSenhaControllerRead");
+const redefinirSenhaControllerUpdate = require("../controllers/info-pages/redefinirSenha/RedefinirSenhaControllerUpdate");
 
 // * Recuperar senha Middlware
 
-const RedefinirSenhaMiddleware = require("../middlewares/recoverPasswordMiddleware");
+const redefinirSenhaMiddleware = require("../middlewares/recoverPasswordMiddleware");
 
 // * Cadastro Controllers
 
-const CadastroControllerRead = require("../controllers/info-pages/cadastro/cadastroControllerRead");
-const CadastroControllerCreate = require("../controllers/info-pages/cadastro/cadastroControllerCreate");
+const cadastroControllerRead = require("../controllers/info-pages/cadastro/cadastroControllerRead");
+const cadastroControllerCreate = require("../controllers/info-pages/cadastro/cadastroControllerCreate");
 
 // * Login Controllers
 
-const LoginControllerRead = require("../controllers/info-pages/login/loginControllerRead");
-const LoginControllerReadAuth = require("../controllers/info-pages/login/loginControllerReadAuth");
+const loginControllerRead = require("../controllers/info-pages/login/loginControllerRead");
+const loginControllerReadAuth = require("../controllers/info-pages/login/loginControllerReadAuth");
 
 // * Cadastro e Login Middlewares
 
-const AuthenticationMiddleware = require("../middlewares/authMiddleware");
+const authenticationMiddleware = require("../middlewares/authMiddleware");
 const validationRulesMiddleware = require("../middlewares/validationRulesMiddleware");
-const FormValidationMiddleware = require("../middlewares/formValidationMiddlewares");
+const formValidationMiddleware = require("../middlewares/formValidationMiddlewares");
 
 // * Perfil
 
-const HomePerfilControllerRead = require("../controllers/perfil/homePerfil/homePerfilControllerRead");
-const AdicionarContaControllerRead = require("../controllers/perfil/adicionarConta/adicionarContaControllerRead");
-const MetasControllerRead = require("../controllers/perfil/metas/metasControllerRead");
-const TagsControllerRead = require("../controllers/perfil/tags/tagsControllerRead");
-const QuestionarioControllerRead = require("../controllers/perfil/questionario/questionarioControllerRead");
-const ContaConjuntaControllerRead = require("../controllers/perfil/contaConjunta/contaConjuntaControllerRead");
+const homePerfilControllerRead = require("../controllers/perfil/homePerfil/homePerfilControllerRead");
+
+const adicionarContaControllerRead = require("../controllers/perfil/adicionarConta/adicionarContaControllerRead");
+
+const metasControllerRead = require("../controllers/perfil/metas/metasControllerRead");
+
+const tagsControllerRead = require("../controllers/perfil/tags/tagsControllerRead");
+
+const questionarioControllerRead = require("../controllers/perfil/questionario/questionarioControllerRead");
+
+const relatorioControllerRead = require("../controllers/perfil/relatorios/relatorioControllerRead");
+
+const contaConjuntaControllerRead = require("../controllers/perfil/contaConjunta/contaConjuntaControllerRead");
 
 // * Info pages
 router.get("/",
-HomeControllerRead.getPage);
+homeControllerRead.getPage);
 
 router.get("/sobre",
-SobreControllerRead.getPage);
+sobreControllerRead.getPage);
 
 router.get("/pacotes",
-PacoteControllerRead.getPage);
+pacoteControllerRead.getPage);
 
 router.get("/comprar-pacote",
-ComprarPacoteControllerRead.getPage);
+comprarPacoteControllerRead.getPage);
 
 router.get("/fale-conosco",
-FaleConoscoControllerRead.getPage);
+faleConoscoControllerRead.getPage);
 
 // * Recuperar senha
 
 router.get("/recuperar-senha",
-RecuperarSenhaControllerRead.getPage);
+recuperarSenhaControllerRead.getPage);
 
 router.post("/recuperar-senha",
-RecuperarSenhaControllerRead.recoverPassword);
+recuperarSenhaControllerRead.recoverPassword);
 
 router.get("/redefinir-senha/:token",
-RedefinirSenhaMiddleware.validateLink,
-RedefinirSenhaControllerRead.getPage);
+redefinirSenhaMiddleware.validateLink,
+redefinirSenhaControllerRead.getPage);
 
 router.post("/redefinir-senha/:token",
-RedefinirSenhaMiddleware.validateLink,
+redefinirSenhaMiddleware.validateLink,
 validationRulesMiddleware.recuperarSenhaValidationRules,
-FormValidationMiddleware.recuperarSenhaValidation,
-AuthenticationMiddleware.encryptRecoveredPassword,
-RedefinirSenhaControllerUpdate.updatePassword);
+formValidationMiddleware.recuperarSenhaValidation,
+authenticationMiddleware.encryptRecoveredPassword,
+redefinirSenhaControllerUpdate.updatePassword);
 
 // * Cadastro
 router.get("/cadastro",
-CadastroControllerRead.getPage);
+cadastroControllerRead.getPage);
 
 router.post("/cadastro",
 validationRulesMiddleware.cadastroValidationRules,
-FormValidationMiddleware.cadastroValidation,
-AuthenticationMiddleware.encryptPassword,
-CadastroControllerCreate.createUser);
+formValidationMiddleware.cadastroValidation,
+authenticationMiddleware.encryptPassword,
+cadastroControllerCreate.createUser);
 
 // * Login
 router.get("/login",
-LoginControllerRead.getPage);
+loginControllerRead.getPage);
 
 router.post("/login",
-FormValidationMiddleware.loginValidation,
-LoginControllerReadAuth.authUser);
+formValidationMiddleware.loginValidation,
+loginControllerReadAuth.authUser);
 
 // * Perfil
 router.get("/perfil",
-AuthenticationMiddleware.validateJWT,
-HomePerfilControllerRead.getPage);
+authenticationMiddleware.validateJWT,
+homePerfilControllerRead.getPage);
 
 router.get("/adicionar-conta",
-AuthenticationMiddleware.validateJWT,
-AdicionarContaControllerRead.getPage);
+authenticationMiddleware.validateJWT,
+adicionarContaControllerRead.getPage);
 
 router.get("/metas",
-AuthenticationMiddleware.validateJWT,
-MetasControllerRead.getPage);
+authenticationMiddleware.validateJWT,
+metasControllerRead.getPage);
 
 router.get("/tags",
-AuthenticationMiddleware.validateJWT,
-TagsControllerRead.getPage);
+authenticationMiddleware.validateJWT,
+tagsControllerRead.getPage);
+
+router.get("/relatorios",
+authenticationMiddleware.validateJWT,
+relatorioControllerRead.getPage);
 
 router.get("/questionario",
-AuthenticationMiddleware.validateJWT,
-AuthenticationMiddleware.verifyPremium,
-QuestionarioControllerRead.getPage);
+authenticationMiddleware.validateJWT,
+authenticationMiddleware.verifyPremium,
+questionarioControllerRead.getPage);
 
 // * Conta conjunta
 router.get("/conta-conjunta",
-AuthenticationMiddleware.validateJWT,
-AuthenticationMiddleware.verifyPremium,
-ContaConjuntaControllerRead.getPage);
+authenticationMiddleware.validateJWT,
+authenticationMiddleware.verifyPremium,
+contaConjuntaControllerRead.getPage);
 
 module.exports = router;

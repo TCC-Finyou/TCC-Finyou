@@ -9,11 +9,76 @@
     <%- include('../templates/head.ejs') %>
 
     <!-- CSS -->
+    <link rel="stylesheet" href="/css/perfil/metas.css">
 
     <title><%- data.page_name %></title>
 </head>
 <body>
     <%- include('../templates/header-perfil.ejs') %>
+
+    <main>
+        <section id="metas-intro">
+            <h1>Suas metas</h1>
+
+            <div id="metas-container">
+                <div id="metas">
+                    <div class="meta">
+                        <img src="/assets/icons/chart-up.png" alt="Gráfico subindo">
+
+                        <h2>Nome da meta</h2>
+
+                        <p>Valor da meta: R$ 1500,00</p>
+                        <p>Valor destinado: R$ 200,00</p>
+
+                        <p class="progress-text">Meses para atingir a meta: 1</p>
+
+                        <div class="progress-bar"></div>
+                    </div>
+
+                    <div class="meta">
+                        <img src="/assets/icons/chart-up.png" alt="Gráfico subindo">
+
+                        <h2>Nome da meta</h2>
+
+                        <p>Valor da meta: R$ 1500,00</p>
+                        <p>Valor destinado: R$ 200,00</p>
+
+                        <p class="progress-text">Meses para atingir a meta: 1</p>
+
+                        <div class="progress-bar"></div>
+                    </div>
+
+                    <div class="meta">
+                        <img src="/assets/icons/chart-up.png" alt="Gráfico subindo">
+
+                        <h2>Nome da meta</h2>
+
+                        <p>Valor da meta: R$ 1500,00</p>
+                        <p>Valor destinado: R$ 200,00</p>
+
+                        <p class="progress-text">Meses para atingir a meta: 1</p>
+
+                        <div class="progress-bar"></div>
+                    </div>
+
+                    <div class="meta">
+                        <img src="/assets/icons/chart-up.png" alt="Gráfico subindo">
+
+                        <h2>Nome da meta</h2>
+
+                        <p>Valor da meta: R$ 1500,00</p>
+                        <p>Valor destinado: R$ 200,00</p>
+
+                        <p class="progress-text">Meses para atingir a meta: 1</p>
+
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <a href="/criar-meta">Definir nova meta</a>
+            </div>
+        </section>
+    </main>
 
     <%- include('../templates/footer.ejs') %>
 </body>

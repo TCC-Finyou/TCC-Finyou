@@ -1,0 +1,10 @@
+#nao-encontrado-intro {
+    max-width: 800px;
+    margin-inline: auto;
+    padding: 100px clamp(30px, 9vw, 50px);
+    text-align: center;
+}
+
+#nao-encontrado-intro span {
+    font-size: 8rem;
+}

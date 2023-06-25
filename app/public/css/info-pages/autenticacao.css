@@ -87,7 +87,7 @@
 #autenticacao-social-media {
     max-width: 600px;
     margin-inline: auto;
-    padding: 0 clamp(30px, 9vw, 50px) 8px;
+    padding: 0 clamp(30px, 9vw, 50px);
 }
 
 #autenticacao-social-media a {
@@ -95,7 +95,7 @@
     justify-content: center;
     align-items: center;
     column-gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     padding: 16px;
     border: 2px solid #00000033;
     border-radius: 8px;
