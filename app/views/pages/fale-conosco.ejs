@@ -17,7 +17,11 @@
     <title><%- data.page_name %></title>
 </head>
 <body>
-    <%- include('../templates/header.ejs') %>
+    <% if (data.user_logged) { %>
+        <%- include('../templates/header-perfil.ejs') %>
+    <% } else { %>
+        <%- include('../templates/header.ejs') %>
+    <% } %>
 
     <main>
         <section id="fale-conosco-intro">
@@ -25,7 +29,7 @@
 
             <form action="#" method="post" id="fale-conosco-form">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="E-mail">
+                <input type="email" name="email" id="email" placeholder="E-mail" <%- data.userEmail ? `value="${data.userEmail}"` : "" %>>
 
                 <label for="duvidas">Dúvidas</label>
                 <textarea name="duvidas" id="duvidas" rows="12" maxlength="500" data-duvidas-input>

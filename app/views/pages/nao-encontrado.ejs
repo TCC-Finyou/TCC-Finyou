@@ -14,7 +14,11 @@
     <title><%- data.page_name %></title>
 </head>
 <body>
-    <%- include('../templates/header.ejs') %>
+    <% if (data.user_logged) { %>
+        <%- include('../templates/header-perfil.ejs') %>
+    <% } else { %>
+        <%- include('../templates/header.ejs') %>
+    <% } %>
 
     <main>
         <section id="nao-encontrado-intro">

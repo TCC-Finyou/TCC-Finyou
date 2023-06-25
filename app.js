@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const router = require('./app/routes/router');
+const notFoundPage = require("./app/middlewares/notFoundPageMiddleware");
 const app = express();
 const port = process.env.PORT
 
@@ -28,13 +29,7 @@ app.set("views", path.join(__dirname, "app", "views"));
 
 app.use("/", router);
 
-app.use((req, res, next) => {
-    res.status(404).render("pages/nao-encontrado.ejs", {
-        data: {
-            page_name: "Página não encontrada"
-        }
-    })
-})
+app.use(notFoundPage.getNotFoundPage);
 
 app.listen(port, () => {
     console.log(`Servidor aberto em http://localhost:${port}`);
