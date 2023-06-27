@@ -39,6 +39,7 @@ const validationMiddleware = {
         .isEmail()
         .withMessage("Insira seu email completo!"),
         body("duvida")
+        .trim()
         .isString()
         .isLength({min: 1, max: 500})
         .withMessage("Insira uma mensagem até o limite de caracteres!")

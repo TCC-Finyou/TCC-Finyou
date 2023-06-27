@@ -8,7 +8,13 @@
     margin: 0 8px 16px;
 }
 
-.texto-centralizado {
+#titulo-mensagem {
+    padding-top: 60px;
+    text-align: center;
+}
+
+#conteudo-mensagem {
+    padding-bottom: 60px;
     text-align: center;
 }
 

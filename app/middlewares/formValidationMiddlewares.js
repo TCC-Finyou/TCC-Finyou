@@ -8,6 +8,7 @@ class FormValidation {
 		this.cadastroValidation = this.cadastroValidation.bind(this);
 		this.loginValidation = this.loginValidation.bind(this);
 		this.recuperarSenhaValidation = this.recuperarSenhaValidation.bind(this);
+        this.faleConoscoValidation = this.faleConoscoValidation.bind(this);
 	}
 
 	cadastroValidation(req, res, next) {
@@ -47,15 +48,6 @@ class FormValidation {
 		}
 
 		return next();
-	}
-
-	#confirmacaoSenhaValidation(confirmacao_senha, senha, errors) {
-		if (confirmacao_senha !== senha) {
-			errors.errors.push({
-				msg: "As senhas devem ser iguais!",
-				path: "confirmacao_senha",
-			});
-		}
 	}
 
 	async loginValidation(req, res, next) {
@@ -135,65 +127,28 @@ class FormValidation {
                 duvida
             } = req.body;
 
-			const email_error = errors.errors.find((error) => error.path === "email");
-			const duvida_error = errors.errors.find((error) => error.path === "duvida");
-
 			const token = req.session.token;
 
-			if (!token) {
-				return res.render("pages/fale-conosco.ejs", {
-					data: {
-						page_name: "Fale conosco",
-						user_logged: false,
-                        email_sended: false,
-                        input_values: {
-                            email,
-                            duvida
-                        },
-                        errors: {
-                            email_error,
-                            duvida_error
-                        }
-					}
-				});
-			}
+            const email_error = errors.errors.find((error) => error.path === "email");
+			const duvida_error = errors.errors.find((error) => error.path === "duvida");
 
-			try {
-				jwt.verify(token, process.env.SECRET);
+            const userLogged = this.#verifyLogin(token);
 
-				return res.render("pages/fale-conosco.ejs", {
-					data: {
-						page_name: "Fale conosco",
-						user_logged: true,
-                        email_sended: false,
-                        input_values: {
-                            email,
-                            duvida
-                        },
-                        errors: {
-                            email_error,
-                            duvida_error
-                        }
-					}
-				});
-			} catch (erro) {
-				console.log(erro);
-				return res.render("pages/fale-conosco.ejs", {
-					data: {
-						page_name: "Fale conosco",
-						user_logged: false,
-                        email_sended: false,
-                        input_values: {
-                            email,
-                            duvida
-                        },
-                        errors: {
-                            email_error,
-                            duvida_error
-                        }
-					}
-				});
-			}
+			return res.render("pages/fale-conosco.ejs", {
+                data: {
+                    page_name: "Fale conosco",
+                    user_logged: userLogged,
+                    email_sended: false,
+                    input_values: {
+                        email,
+                        duvida
+                    },
+                    errors: {
+                        email_error,
+                        duvida_error
+                    }
+                }
+            });
 		}
 
 		return next();
@@ -239,6 +194,29 @@ class FormValidation {
 
 		return user;
 	}
+
+    #confirmacaoSenhaValidation(confirmacao_senha, senha, errors) {
+		if (confirmacao_senha !== senha) {
+			errors.errors.push({
+				msg: "As senhas devem ser iguais!",
+				path: "confirmacao_senha",
+			});
+		}
+	}
+
+    #verifyLogin(token) {
+        if (!token) {
+            return false;
+        } else {
+            try {
+                jwt.verify(token, process.env.SECRET);
+
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+    }
 }
 
 const FormValidationMiddleware = new FormValidation();

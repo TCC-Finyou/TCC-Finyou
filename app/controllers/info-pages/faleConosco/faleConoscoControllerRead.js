@@ -4,6 +4,7 @@ const mailer = require("nodemailer");
 class FaleConoscoController {
     constructor() {
         this.getPage = this.getPage.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
     }
 
     async getPage(req, res) {
@@ -46,50 +47,18 @@ class FaleConoscoController {
         }
     }
 
-    async sendMail(req, res) {
+    async sendMessage(req, res) {
         const {
             email,
             duvida
         } = req.body;
+
         const token = req.session.token;
-        let userLogged;
 
-        const transporter = mailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: "tcc.finyou@gmail.com",
-                pass: "zltzhzgahdxvkbsu"
-            }
-        })
-
-        const mailOptions = {
-            from: "tcc.finyou@gmail.com",
-            to: "tcc.finyou@gmail.com",
-            subject: "Contato de clientes Finyou",
-            html: `
-            <h1>Email de contato</h1>
-            <p>
-                Cliente: ${email}
-                <br>
-                Dúvida: ${duvida}
-            </p>
-            `
-        }
-
-        if (!token) {
-            userLogged = false;
-        } else {
-            try {
-                jwt.verify(token, process.env.SECRET);
-
-                userLogged = true;
-            } catch (error) {
-                userLogged = false;
-            }
-        }
+        const userLogged = this.#verifyLogin(token);
 
         try {
-            await transporter.sendMail(mailOptions);
+            await this.#sendMail(email, duvida);
 
             return res.render("pages/fale-conosco.ejs", {
                 data: {
@@ -126,6 +95,46 @@ class FaleConoscoController {
         });
 
         return user.email;
+    }
+
+    #verifyLogin(token) {
+        if (!token) {
+            return false;
+        } else {
+            try {
+                jwt.verify(token, process.env.SECRET);
+
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+    }
+
+    async #sendMail(email, duvida) {
+        const transporter = mailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "tcc.finyou@gmail.com",
+                pass: "zltzhzgahdxvkbsu"
+            }
+        })
+
+        const mailOptions = {
+            from: "tcc.finyou@gmail.com",
+            to: "tcc.finyou@gmail.com",
+            subject: "Contato de clientes Finyou",
+            html: `
+            <h1>Email de contato</h1>
+            <p>
+                Cliente: ${email}
+                <br>
+                Dúvida: ${duvida}
+            </p>
+            `
+        }
+
+        await transporter.sendMail(mailOptions);
     }
 }
 

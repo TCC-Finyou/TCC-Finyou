@@ -18,7 +18,7 @@ class RedefinirSenhaController {
         const user_email = user_token.user_email;
 
         try {
-            this.#sendMail(user_email);
+            await this.#sendMail(user_email);
 
             await prisma.usuario.update({
                 where: {

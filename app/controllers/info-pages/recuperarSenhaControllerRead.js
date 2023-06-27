@@ -48,7 +48,7 @@ class RecuperarSenhaController {
         });
 
         try {
-            this.#sendMail(email, token.id);
+            await this.#sendMail(email, token.id);
 
             return res.render("pages/recuperar-senha.ejs", {
                 data: {

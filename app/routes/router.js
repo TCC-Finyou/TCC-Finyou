@@ -70,7 +70,7 @@ faleConoscoControllerRead.getPage);
 router.post("/fale-conosco",
 validationRulesMiddleware.faleConoscoValidationRules,
 formValidationMiddleware.faleConoscoValidation,
-faleConoscoControllerRead.sendMail);
+faleConoscoControllerRead.sendMessage);
 
 // * Recuperar senha
 
