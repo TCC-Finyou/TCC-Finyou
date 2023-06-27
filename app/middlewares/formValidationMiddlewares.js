@@ -79,9 +79,7 @@ class FormValidation {
 
 					req.session.token = token;
 
-					const premium = user.premium;
-
-					req.session.premium = premium;
+					req.session.premium = user.premium;
 
 					return next();
 				}
