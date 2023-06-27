@@ -1,14 +1,23 @@
-const duvidasInput = document.querySelector("[data-duvidas-input]");
-const chacterLimitContainer = document.querySelector("[data-character-limit]");
-const actualCharacterNumberContainer = document.querySelector("[data-actual-character-number]");
+function loadInitialPage() {
+    if (document.querySelector("[data-duvidas-input]")) {
+        const duvidaInput = document.querySelector("[data-duvidas-input]");
+        const chacterLimitContainer = document.querySelector("[data-character-limit]");
+        const actualCharacterNumberContainer = document.querySelector("[data-actual-character-number]");
 
-duvidasInput.addEventListener("keyup", () => {
-    let actualCharacterNumber = duvidasInput.value.length;
-    actualCharacterNumberContainer.innerText = actualCharacterNumber;
+        const duvidaInputInitial = duvidaInput.value.length;
+        actualCharacterNumberContainer.innerText = duvidaInputInitial;
 
-    if (actualCharacterNumber === 500) {
-        chacterLimitContainer.classList.add("max");
-    } else if (actualCharacterNumber < 500 && chacterLimitContainer.classList.contains("max")) {
-        chacterLimitContainer.classList.remove("max");
+        duvidaInput.addEventListener("keyup", () => {
+            let actualCharacterNumber = duvidaInput.value.length;
+            actualCharacterNumberContainer.innerText = actualCharacterNumber;
+
+            if (actualCharacterNumber === 500) {
+                chacterLimitContainer.classList.add("max");
+            } else if (actualCharacterNumber < 500 && chacterLimitContainer.classList.contains("max")) {
+                chacterLimitContainer.classList.remove("max");
+            }
+        })
     }
-})
+}
+
+window.addEventListener("load", loadInitialPage);

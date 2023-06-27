@@ -67,6 +67,11 @@ comprarPacoteControllerRead.getPage);
 router.get("/fale-conosco",
 faleConoscoControllerRead.getPage);
 
+router.post("/fale-conosco",
+validationRulesMiddleware.faleConoscoValidationRules,
+formValidationMiddleware.faleConoscoValidation,
+faleConoscoControllerRead.sendMail);
+
 // * Recuperar senha
 
 router.get("/recuperar-senha",

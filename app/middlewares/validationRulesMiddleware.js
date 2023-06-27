@@ -33,6 +33,15 @@ const validationMiddleware = {
             minSymbols: 1
         })
         .withMessage("A senha deve conter no mínimo 8 caracteres, 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caractere especial!")
+    ],
+    faleConoscoValidationRules: [
+        body("email")
+        .isEmail()
+        .withMessage("Insira seu email completo!"),
+        body("duvida")
+        .isString()
+        .isLength({min: 1, max: 500})
+        .withMessage("Insira uma mensagem até o limite de caracteres!")
     ]
 }
 

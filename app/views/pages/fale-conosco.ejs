@@ -25,23 +25,38 @@
 
     <main>
         <section id="fale-conosco-intro">
-            <h1>Fale Conosco</h1>
+            <% if (data.email_sended) { %>
+                <h1 class="texto-centralizado">Email enviado!</h1>
+                <p class="texto-centralizado">Agradecemos o contato</p>
+            <% } else { %>
+                <h1>Fale Conosco</h1>
 
-            <form action="#" method="post" id="fale-conosco-form">
-                <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="E-mail" <%- data.userEmail ? `value="${data.userEmail}"` : "" %>>
+                <form action="/fale-conosco" method="post" id="fale-conosco-form">
+                    <%- data.errors && data.errors.sistema_error ? `<span class='error-message'>${data.errors.sistema_error.msg}</span>` : "" %>
 
-                <label for="duvidas">Dúvidas</label>
-                <textarea name="duvidas" id="duvidas" rows="12" maxlength="500" data-duvidas-input>
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email" placeholder="E-mail"
+                    <%- data.userEmail ? `value="${data.userEmail}"` : "" %>
+                    <%- data.input_values ? `value="${data.input_values.email}"` : "" %>
+                    <%- data.errors && data.errors.email_error ? `class="error"` : "" %>
+                    >
 
-                </textarea>
+                    <%- data.errors && data.errors.email_error ? `<span class='error-message'>${data.errors.email_error.msg}</span>` : "" %>
 
-                <div id="limite-caracteres" data-character-limit>
-                    <span data-actual-character-number>0</span> de 500 caracteres
-                </div>
+                    <label for="duvidas">Dúvidas</label>
+                    <textarea name="duvida" id="duvidas" rows="12" maxlength="500" data-duvidas-input
+                    <%- data.errors && data.errors.duvida_error ? `class="error"` : "" %>
+                    ><%- data.input_values ? data.input_values.duvida : "" %></textarea>
 
-                <button type="submit">Enviar</button>
-            </form>
+                    <%- data.errors && data.errors.duvida_error ? `<span class='error-message'>${data.errors.duvida_error.msg}</span>` : "" %>
+
+                    <div id="limite-caracteres" data-character-limit>
+                        <span data-actual-character-number>0</span> de 500 caracteres
+                    </div>
+
+                    <button type="submit">Enviar</button>
+                </form>
+            <% } %>
         </section>
     </main>
 

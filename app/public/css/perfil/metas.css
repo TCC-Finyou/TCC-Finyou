@@ -11,8 +11,20 @@
 }
 
 #metas-container {
-    padding: 80px clamp(30px, 9vw, 50px) 40px;
+    padding: 40px clamp(30px, 9vw, 50px);
     background-color: var(--background-darker-color);
+}
+
+#metas-intro a {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 80px;
+    padding: clamp(10px, 2vw, 15px) 0;
+    border-radius: 10px;
+    background-color: var(--contrast-color);
+    color: white;
+    text-align: center;
 }
 
 #metas {
@@ -80,16 +92,4 @@
     height: 100%;
     border-radius: 400px;
     background-color: var(--main-dark-color);
-}
-
-#metas-intro a {
-    display: block;
-    width: 100%;
-    max-width: 320px;
-    margin-inline: auto;
-    padding: clamp(10px, 2vw, 15px) 0;
-    border-radius: 10px;
-    background-color: var(--contrast-color);
-    color: white;
-    text-align: center;
 }
