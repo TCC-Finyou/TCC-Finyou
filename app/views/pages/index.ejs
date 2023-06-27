@@ -8,8 +8,11 @@
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <%- include('../templates/head.ejs') %>
 
+    <!-- LCP e FCP -->
+    <link rel="preload" as="image" href="assets/images/webp/conversando-cartao.webp" type="image/webp">
+
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/info-pages/home.css">
+    <link rel="stylesheet" href="/css/info-pages/home.min.css">
 
     <title><%- data.page_name %></title>
 </head>
@@ -79,7 +82,7 @@
 
                 <picture>
                     <source srcset="assets/images/webp/guardando-dinheiro-cofre.webp" type="image/webp">
-                    <img src="/assets/images/guardando-dinheiro-cofre.jpg" alt="Mulher poupando dinheiro" width="400" height="286">
+                    <img src="/assets/images/guardando-dinheiro-cofre.jpg" alt="Mulher poupando dinheiro" width="400" height="286" loading="lazy">
                 </picture>
 
                 <p>Uma visão geral e simplificada da sua vida financeira, para que você possa decidir o que fazer.</p>
@@ -89,7 +92,7 @@
                 <div>
                     <picture>
                         <source srcset="assets/images/webp/calculando-gastos.webp" type="image/webp">
-                        <img src="/assets/images/calculando-gastos.jpg" alt="Calculando gastos com um amigo" width="400" height="317">
+                        <img src="/assets/images/calculando-gastos.jpg" alt="Calculando gastos com um amigo" width="400" height="317" loading="lazy">
                     </picture>
 
                     <h3>Conta conjunta</h3>
@@ -100,7 +103,7 @@
                 <div>
                     <picture>
                         <source srcset="assets/images/webp/conversando-financas.webp" type="image/webp">
-                        <img src="/assets/images/conversando-financas.jpg" alt="Amigas estudando finanças juntas" width="400" height="411">
+                        <img src="/assets/images/conversando-financas.jpg" alt="Amigas estudando finanças juntas" width="400" height="411" loading="lazy">
                     </picture>
 
                     <h3>Relatório mensal</h3>
@@ -111,7 +114,7 @@
                 <div>
                     <picture>
                         <source srcset="assets/images/webp/conversando-grafico.webp" type="image/webp">
-                        <img src="/assets/images/conversando-grafico.jpg" alt="Conversando sobre gráficos financeiros" width="400" height="273">
+                        <img src="/assets/images/conversando-grafico.jpg" alt="Conversando sobre gráficos financeiros" width="400" height="273" loading="lazy">
                     </picture>
 
                     <h3>Informações gráficas</h3>
@@ -122,7 +125,7 @@
                 <div>
                     <picture>
                         <source srcset="assets/images/webp/cofre-porco.webp" type="image/webp">
-                        <img src="/assets/images/cofre-porco.jpg" alt="Mulher orgulhosa com seu cofre de porquinho cheio" width="400" height="306">
+                        <img src="/assets/images/cofre-porco.jpg" alt="Mulher orgulhosa com seu cofre de porquinho cheio" width="400" height="306" loading="lazy">
                     </picture>
 
                     <h3>Metas</h3>
@@ -133,7 +136,7 @@
                 <div>
                     <picture>
                         <source srcset="assets/images/webp/pagando-contas.webp" type="image/webp">
-                        <img src="/assets/images/pagando-contas.jpg" alt="Mulher pagando suas contas" width="400" height="353">
+                        <img src="/assets/images/pagando-contas.jpg" alt="Mulher pagando suas contas" width="400" height="353" loading="lazy">
                     </picture>
 
                     <h3>Categorizar finanças</h3>
@@ -144,7 +147,7 @@
                 <div>
                     <picture>
                         <source srcset="assets/images/webp/transacao-completa.webp" type="image/webp">
-                        <img src="/assets/images/transacao-completa.jpg" alt="Mulher pagando suas contas" width="400" height="365">
+                        <img src="/assets/images/transacao-completa.jpg" alt="Mulher pagando suas contas" width="400" height="365" loading="lazy">
                     </picture>
 
                     <h3>Finanças estruturadas</h3>

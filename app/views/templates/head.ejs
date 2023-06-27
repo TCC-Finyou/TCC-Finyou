@@ -7,10 +7,11 @@
 <!-- FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="preload" as="font">
 
 <!-- CSS -->
-<link rel="stylesheet" href="/css/global.css">
+<link rel="preload" href="/css/global.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/global.min.css"></noscript>
 
 <!-- SCRIPTS -->
 <script src="/js/main.js" defer></script>
