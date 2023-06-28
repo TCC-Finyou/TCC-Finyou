@@ -18,12 +18,11 @@
 #principais-gastos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 40px;
-    max-width: 900px;
-    min-height: 500px;
+    max-width: 800px;
     margin-inline: auto;
-    padding: 48px clamp(30px, 9vw, 50px);
+    padding: 48px 20px;
     border-radius: 24px;
     background: var(--main-gradient);
     color: white;
@@ -34,23 +33,35 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    height: 400px;
 }
 
 #principais-gastos .coluna-gasto .valor {
+    font-size: .9rem;
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #principais-gastos .coluna-gasto .grafico {
-    height: 50%;
+    position: relative;
+    height: 200px;
     width: 60px;
-    margin-top: auto;
+}
+
+#principais-gastos .coluna-gasto .grafico::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
     border-radius: 16px;
     background-color: white;
 }
 
 #principais-gastos .coluna-gasto .nome-gasto {
-    font-size: .9rem;
+    font-size: .8rem;
 }
 
 #principais-gastos .coluna-gasto .imagem-gasto {
@@ -68,7 +79,6 @@
 #relatorios-container h2 {
     margin-bottom: 40px;
     color: var(--text-main-color);
-    font-size: 2rem;
     text-align: center;
 }
 
@@ -82,7 +92,7 @@
 
 #meses-header h3 {
     color: var(--text-main-color);
-    font-size: 1.8rem;
+    font-size: 1.7rem;
 }
 
 #month-selector {
@@ -115,10 +125,6 @@
     padding: 12px 40px;
     border-radius: 400px;
     box-shadow: 0 0 3px rgba(0, 0, 0, .3);
-}
-
-#relatorios .relatorio div {
-
 }
 
 #relatorios .relatorio div h4 {
