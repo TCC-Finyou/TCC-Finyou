@@ -1,24 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recusro para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição.">
-    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
-    <%- include('../templates/head.ejs') %>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Recusro para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição." />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
 
-    <!-- CSS -->
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/perfil/relatorios.css" />
 
-    <title><%- data.page_name %></title>
-</head>
-<body>
-    <%- include('../templates/header-perfil.ejs') %>
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header-perfil.ejs') %>
 
-    <main>
-        
-    </main>
+		<main>
+			<section id="relatorios-intro">
+				<h1>Gastos mensais</h1>
 
-    <%- include('../templates/footer.ejs') %>
-</body>
+				<div id="principais-gastos-container">
+					<div id="principais-gastos">
+						<div class="coluna-gasto">
+							<span class="valor">R$3.340,00</span>
+							<div class="grafico"></div>
+							<p class="nome-gasto">Fixo</p>
+							<img src="/assets/icons/home.png" alt="Casa" class="imagem-gasto" />
+						</div>
+
+						<div class="coluna-gasto">
+							<span class="valor">R$3.340,00</span>
+							<div class="grafico"></div>
+							<p class="nome-gasto">Fixo</p>
+							<img src="/assets/icons/home.png" alt="Casa" class="imagem-gasto" />
+						</div>
+
+						<div class="coluna-gasto">
+							<span class="valor">R$3.340,00</span>
+							<div class="grafico"></div>
+							<p class="nome-gasto">Fixo</p>
+							<img src="/assets/icons/home.png" alt="Casa" class="imagem-gasto" />
+						</div>
+
+						<div class="coluna-gasto">
+							<span class="valor">R$3.340,00</span>
+							<div class="grafico"></div>
+							<p class="nome-gasto">Fixo</p>
+							<img src="/assets/icons/home.png" alt="Casa" class="imagem-gasto" />
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="relatorios-container">
+				<h2>Relatórios mensais</h2>
+
+				<div id="relatorios-meses">
+					<div id="meses-header">
+						<h3>Meses</h3>
+
+						<div id="month-selector">
+							Meses anteriores
+
+							<img src="/assets/icons/arrow-down.png" alt="Seta para baixo" />
+						</div>
+					</div>
+
+					<div id="relatorios">
+						<div class="relatorio">
+							<div>
+								<h4>Junho</h4>
+								<span>2022</span>
+							</div>
+
+							<a href="#" download>
+								<img src="/assets/icons/download.png" alt="Baixar" />
+							</a>
+						</div>
+
+						<div class="relatorio">
+							<div>
+								<h4>Julho</h4>
+								<span>2022</span>
+							</div>
+
+							<a href="#" download>
+								<img src="/assets/icons/download.png" alt="Baixar" />
+							</a>
+						</div>
+
+						<div class="relatorio">
+							<div>
+								<h4>Agosto</h4>
+								<span>2022</span>
+							</div>
+
+							<a href="#" download>
+								<img src="/assets/icons/download.png" alt="Baixar" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<%- include('../templates/footer.ejs') %>
+	</body>
 </html>
