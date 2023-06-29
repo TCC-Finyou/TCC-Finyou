@@ -1,7 +1,5 @@
 const prisma = require("../../../../server/database/prismaClient");
 
-// req.encryptedPassword
-
 class CadastroController {
     async createUser(req, res) {
         const {
