@@ -45,6 +45,7 @@
 
 #principais-gastos .coluna-gasto .grafico {
     position: relative;
+    margin-top: auto;
     height: 200px;
     width: 60px;
 }
@@ -55,7 +56,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%;
+    height: 100%;
     border-radius: 16px;
     background-color: white;
 }
@@ -99,7 +100,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
     margin-bottom: 32px;
     padding: 10px 20px;
     border-radius: 8px;
