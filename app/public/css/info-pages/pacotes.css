@@ -83,6 +83,7 @@
 #pacotes-cards {
     display: flex;
     flex-direction: column;
+    gap: 32px;
     align-items: center;
     width: 100%;
     padding: 40px clamp(30px, 9vw, 50px);
