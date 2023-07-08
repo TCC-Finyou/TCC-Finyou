@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const prisma = require("../../../../server/database/prismaClient");
 const mailer = require("nodemailer");
+const usuarioModel = require("../../../models/Usuario");
 class FaleConoscoController {
     constructor() {
         this.getPage = this.getPage.bind(this);
@@ -25,14 +25,14 @@ class FaleConoscoController {
 
             const {userId} = jwt.decode(token);
 
-            const userEmail = await this.#getUserEmail(userId);
+            const user = await usuarioModel.findUserById(userId);
 
             return res.render("pages/fale-conosco.ejs", {
                 data: {
                     page_name: "Fale conosco",
                     user_logged: true,
                     email_sended: false,
-                    userEmail
+                    userEmail: user.email
                 }
             })
         } catch (erro) {
@@ -85,16 +85,6 @@ class FaleConoscoController {
                 }
             });
         }
-    }
-
-    async #getUserEmail(userId) {
-        const user = await prisma.usuario.findUnique({
-            where: {
-                id: userId
-            }
-        });
-
-        return user.email;
     }
 
     #verifyLogin(token) {

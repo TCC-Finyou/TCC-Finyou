@@ -1,6 +1,6 @@
-const prisma = require("../../server/database/prismaClient");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const usuarioModel = require("../models/Usuario");
 const { validationResult } = require("express-validator");
 
 class FormValidation {
@@ -53,7 +53,7 @@ class FormValidation {
 	async loginValidation(req, res, next) {
 		const { email, senha } = req.body;
 
-		const user = await this.#getUser(email);
+		const user = await usuarioModel.findUserByEmail(email);
 
 		if (!user) {
 			return res.render("pages/login.ejs", {
@@ -181,16 +181,6 @@ class FormValidation {
 		}
 
 		return next();
-	}
-
-	async #getUser(email) {
-		const user = await prisma.usuario.findUnique({
-			where: {
-				email,
-			},
-		});
-
-		return user;
 	}
 
     #confirmacaoSenhaValidation(confirmacao_senha, senha, errors) {

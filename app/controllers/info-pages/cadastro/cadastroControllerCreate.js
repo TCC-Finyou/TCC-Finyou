@@ -1,6 +1,10 @@
-const prisma = require("../../../../server/database/prismaClient");
+const usuarioModel = require("../../../models/Usuario");
 
 class CadastroController {
+    constructor() {
+        this.createUser = this.createUser.bind(this);
+    }
+
     async createUser(req, res) {
         const {
             nome,
@@ -9,19 +13,19 @@ class CadastroController {
             senha,
             confirmacao_senha
         } = req.body;
+
         const senhaCriptografada = req.encryptedPassword;
-        const data_nascimento_array = data_nascimento.split('/');
-        const data_nascimento_formated = new Date(`${data_nascimento_array[2]}/${data_nascimento_array[1]}/${data_nascimento_array[0]}`);
+        const data_nascimento_formated = this.#formatDataNascimento(data_nascimento);
+
+        const data = {
+            nome,
+            email,
+            data_nascimento: data_nascimento_formated,
+            senha: senhaCriptografada
+        }
 
         try {
-            await prisma.usuario.create({
-                data: {
-                    nome,
-                    email,
-                    data_nascimento: data_nascimento_formated,
-                    senha: senhaCriptografada
-                }
-            })
+            await usuarioModel.createUser(data)
 
             return res.redirect("/login");
         } catch (erro) {
@@ -65,6 +69,13 @@ class CadastroController {
                 }
             });
         }
+    }
+
+    #formatDataNascimento(dataNascimento) {
+        const dataNascimentoArray = dataNascimento.split('/');
+        const dataNascimentoFormated = new Date(`${dataNascimentoArray[2]}/${dataNascimentoArray[1]}/${dataNascimentoArray[0]}`);
+
+        return dataNascimentoFormated;
     }
 }
 

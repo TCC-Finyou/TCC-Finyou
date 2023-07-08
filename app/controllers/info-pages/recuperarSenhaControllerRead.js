@@ -1,5 +1,6 @@
 const mailer = require("nodemailer");
-const prisma = require("../../../server/database/prismaClient");
+const usuarioModel = require("../../models/Usuario");
+const tokenModel = require("../../models/Token");
 
 class RecuperarSenhaController {
     constructor() {
@@ -18,11 +19,7 @@ class RecuperarSenhaController {
     async recoverPassword(req, res) {
         const { email } = req.body;
 
-        const user = await prisma.usuario.findUnique({
-            where: {
-                email
-            }
-        })
+        const user = await usuarioModel.findUserByEmail(email);
 
         if (!user) {
             console.log("Usuário não encontrado!");
@@ -41,11 +38,7 @@ class RecuperarSenhaController {
             });
         }
 
-        const token = await prisma.token.create({
-            data: {
-                user_email: email
-            }
-        });
+        const token = await tokenModel.createToken(email);
 
         try {
             await this.#sendMail(email, token.id);
