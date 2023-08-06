@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
+
+		<!-- CSS -->
+
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header.ejs') %>
+
+		<main>
+			<!-- Verificar plano -->
+			<form action="/criar-portal-assinatura" method="POST">
+				<input type="hidden" id="session-id" name="session_id" value="" />
+				<button id="checkout-and-portal-button" type="submit">Conferir plano</button>
+			</form>
+		</main>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", async () => {
+				if (searchParams.has("session_id")) {
+				let searchParams = new URLSearchParams(window.location.search);
+					const session_id = searchParams.get("session_id");
+					document.getElementById("session-id").setAttribute("value", session_id);
+				}
+			});
+
+			// O session_id na url deve ser comparado com o armazenado no banco de dados para garantir a integridade
+		</script>
+
+		<%- include('../templates/footer.ejs') %>
+	</body>
+</html>

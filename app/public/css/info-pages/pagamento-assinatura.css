@@ -1,0 +1,29 @@
+/* ! FORMULÁRIO */
+
+#pagamento-assinatura-intro {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 40px clamp(30px, 9vw, 50px) 0;
+}
+
+#pagamento-assinatura-intro h1 {
+    margin: 0 8px 16px;
+}
+
+#assinatura-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#assinatura-form label {
+    margin: 8px;
+}
+
+#assinatura-form input {
+    height: 48px;
+    margin-bottom: 8px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}

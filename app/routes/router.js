@@ -1,12 +1,12 @@
-const {Router} = require("express");
+const { Router } = require("express");
 const router = Router();
+const express = require("express");
 
 // * Info pages
 
 const homeControllerRead = require("../controllers/info-pages/homeControllerRead");
 const sobreControllerRead = require("../controllers/info-pages/sobreControllerRead");
 const pacoteControllerRead = require("../controllers/info-pages/pacoteControllerRead");
-const comprarPacoteControllerRead = require("../controllers/info-pages/comprarPacoteControllerRead");
 const faleConoscoControllerRead = require("../controllers/info-pages/faleConosco/faleConoscoControllerRead");
 
 // * Recuperar senha
@@ -51,6 +51,21 @@ const relatorioControllerRead = require("../controllers/perfil/relatorios/relato
 
 const contaConjuntaControllerRead = require("../controllers/perfil/contaConjunta/contaConjuntaControllerRead");
 
+// * Plano de assinatura Finyou+
+
+const pagamentoAssinaturaControllerRead = require("../controllers/info-pages/assinatura/pagamentoAssinaturaControllerRead");
+
+const pagamentoAssinaturaControllerCreate = require("../controllers/info-pages/assinatura/pagamentoAssinaturaControllerCreate")
+
+const assinaturaControllerCreate = require("../controllers/info-pages/assinatura/assinaturaControllerCreate");
+
+const assinaturaPortalControllerCreate = require("../controllers/info-pages/assinatura/assinaturaPortalControllerCreate");
+
+const stripeWebhookController = require("../controllers/webhook/stripeWebhook");
+
+const sucessoControllerRead = require("../controllers/info-pages/assinatura/sucessoControllerRead");
+const cancelamentoControllerRead = require("../controllers/info-pages/assinatura/cancelamentoControllerRead");
+
 // * Info pages
 router.get("/",
 homeControllerRead.getPage);
@@ -60,9 +75,6 @@ sobreControllerRead.getPage);
 
 router.get("/pacotes",
 pacoteControllerRead.getPage);
-
-router.get("/comprar-pacote",
-comprarPacoteControllerRead.getPage);
 
 router.get("/fale-conosco",
 faleConoscoControllerRead.getPage);
@@ -140,5 +152,30 @@ router.get("/conta-conjunta",
 authenticationMiddleware.validateJWT,
 authenticationMiddleware.verifyPremium,
 contaConjuntaControllerRead.getPage);
+
+// * Plano de assinatura Finyou+
+
+router.get("/pagamento-assinatura",
+authenticationMiddleware.validateJWT,
+pagamentoAssinaturaControllerRead.getPage);
+
+router.post("/pagamento-assinatura",
+pagamentoAssinaturaControllerCreate.createCustomerSubscription);
+
+router.post("/criar-assinatura",
+assinaturaControllerCreate.criarAssinatura);
+
+router.post("/criar-portal-assinatura",
+assinaturaPortalControllerCreate.criarPortalAssinatura);
+
+router.post("/webhook",
+express.raw({ type: "application/json" }),
+stripeWebhookController.realTimeUpdate);
+
+router.get("/compra-efetuada",
+sucessoControllerRead.getPage);
+
+router.get("/compra-cancelada",
+cancelamentoControllerRead.getPage);
 
 module.exports = router;

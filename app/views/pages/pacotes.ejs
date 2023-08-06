@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="O site disponibilizará pacotes para os usuários, tendo opções de escolha para o que prefirir. ">
+    <meta name="description" content="O site disponibilizará pacotes para os usuários, tendo opções de escolha para o que preferir.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <%- include('../templates/head.ejs') %>
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/info-pages/pacotes.css">
 
+    <!-- SCRIPT -->
+    <script src="https://js.stripe.com/v3/"></script>
+
     <title><%- data.page_name %></title>
 </head>
 <body>
-    <%- include('../templates/header.ejs') %>
+    <% if (data.user_logged) { %>
+        <%- include('../templates/header-perfil.ejs') %>
+    <% } else { %>
+        <%- include('../templates/header.ejs') %>
+    <% } %>
 
     <main>
         <section id="pacotes-intro">
@@ -99,7 +106,7 @@
                         </li>
                     </ul>
 
-                    <a href="/comprar-pacote">Comprar pacote</a>
+                    <a href="/pagamento-assinatura">Assinar plano</a>
 
                     <span>Primeiro mês gratuito!</span>
                 </div>
@@ -135,7 +142,7 @@
                         </li>
                     </ul>
 
-                    <a href="/comprar-pacote">Comprar pacote</a>
+                    <a href="/pagamento-assinatura">Assinar plano</a>
 
                     <span>Pague menos!</span>
                 </div>

@@ -37,6 +37,17 @@ class Usuario {
             }
         });
     }
+
+    async uppdateUserCustomerId(userId, customerId) {
+        await prisma.usuario.update({
+            where: {
+                id: userId
+            },
+            data: {
+                customer_id: customerId
+            }
+        })
+    }
 }
 
 const usuarioModel = new Usuario();
