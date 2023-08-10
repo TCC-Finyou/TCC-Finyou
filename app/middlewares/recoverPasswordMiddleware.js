@@ -6,8 +6,6 @@ class RecoverPassword {
 
         const tokenDatabase = await tokenModel.findTokenById(token);
 
-        console.log(tokenDatabase);
-
         if (!tokenDatabase) {
             return res.render("pages/redefinir-senha.ejs", {
                 data: {

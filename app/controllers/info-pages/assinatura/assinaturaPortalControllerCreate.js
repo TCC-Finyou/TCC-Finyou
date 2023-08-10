@@ -1,18 +1,19 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
-
+const userModel = require("../../../models/Usuario");
+const jwt = require("jsonwebtoken");
 class AssinaturaPortalController {
 	async criarPortalAssinatura(req, res) {
-		const { session_id } = req.body;
-		const checkoutSession = await stripe.checkout.sessions.retrieve(session_id);
+        const token = req.session.token;
+        const {userId} = jwt.decode(token, process.env.secret);
 
-		const returnUrl = process.env.DOMAIN;
+        const user = await userModel.findUserById(userId);
 
-		const portalSession = await stripe.billingPortal.sessions.create({
-			customer: checkoutSession.customer,
-			return_url: returnUrl,
-		});
+        const session = await stripe.billingPortal.sessions.create({
+            customer: user.customer_id,
+            return_url: "https://finyou.up.railway.app/pacotes",
+        });
 
-		res.redirect(303, portalSession.url);
+        res.redirect(session.url);
 	}
 }
 

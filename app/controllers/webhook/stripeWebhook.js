@@ -41,7 +41,7 @@ class StripeWebhook {
 				console.log(`Unhandled event type ${event.type}.`);
 		}
 
-		res.send("atualizado");
+		res.send(200);
 	}
 
 	#handleSubscriptionTrialEnding() {

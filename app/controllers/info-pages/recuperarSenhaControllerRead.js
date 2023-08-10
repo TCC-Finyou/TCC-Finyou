@@ -22,7 +22,6 @@ class RecuperarSenhaController {
         const user = await usuarioModel.findUserByEmail(email);
 
         if (!user) {
-            console.log("Usuário não encontrado!");
             return res.render("pages/recuperar-senha.ejs", {
                 data: {
                     page_name: "Recuperar senha",

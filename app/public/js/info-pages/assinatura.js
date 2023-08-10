@@ -7,8 +7,18 @@ function setMessage(message) {
 	messageDiv.innerHTML = message;
 }
 
+const url = new URL(window.location.href);
+const searchParams = new URLSearchParams(url.search);
+const productId = searchParams.get("product_id");
+
 fetch("/pagamento-assinatura", {
 	method: "POST",
+	headers: {
+		"Content-Type": "application/json",
+	},
+	body: JSON.stringify({
+		product_id: productId,
+	}),
 }).then(async (res) => {
 	const jsonRes = await res.json();
 
@@ -19,7 +29,7 @@ fetch("/pagamento-assinatura", {
 
 	const clientSecret = jsonRes.clientSecret;
 	const elements = stripe.elements({
-		clientSecret
+		clientSecret,
 	});
 
 	const paymentElement = elements.create("payment", {
@@ -40,7 +50,7 @@ fetch("/pagamento-assinatura", {
 			.confirmPayment({
 				elements,
 				confirmParams: {
-					return_url: "https://finyou.up.railway.app/perfil",
+					return_url: "https://finyou.up.railway.app/compra-efetuada",
 				},
 			})
 			.then(function (result) {

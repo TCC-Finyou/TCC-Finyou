@@ -8,6 +8,7 @@ class PagamentoAssinaturaController {
 			const token = req.session.token;
 			const { userId } = jwt.decode(token, process.env.SECRET);
 			const user = await usuarioModel.findUserById(userId);
+            const productSelected = req.body.product_id;
 
 			const customer = await stripe.customers.create({
 				email: user.email,
@@ -17,7 +18,7 @@ class PagamentoAssinaturaController {
 				customer: customer.id,
 				items: [
 					{
-						price: "price_1NSmmlEclZEWH4rDH0sovCIa",
+						price: productSelected
 					},
 				],
 				payment_behavior: "default_incomplete",
@@ -26,7 +27,9 @@ class PagamentoAssinaturaController {
 
 			usuarioModel.uppdateUserCustomerId(userId, customer.id);
 
-			return res.send({ clientSecret: subscription.latest_invoice.payment_intent.client_secret });
+			return res.send({
+                clientSecret: subscription.latest_invoice.payment_intent.client_secret
+            });
 		} catch (erro) {
 			console.log(erro);
 			return res.send({ erro });
