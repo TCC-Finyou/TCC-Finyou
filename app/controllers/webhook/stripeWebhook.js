@@ -19,6 +19,8 @@ class StripeWebhook {
 		// 	}
 		// }
 
+        console.log(event)
+
 		switch (event.type) {
 			case "customer.subscription.trial_will_end":
 				this.#handleSubscriptionTrialEnding();
@@ -30,13 +32,17 @@ class StripeWebhook {
 				break;
 			case "customer.subscription.created":
 				this.#handleSubscriptionCreated();
-                console.log("criado")
 
 				break;
 			case "customer.subscription.updated":
 				this.#handleSubscriptionUpdated();
 
 				break;
+
+            case "invoice.payment_succeeded":
+                this.#handleInvoicePaid(event);
+
+                break;
 			default:
 				console.log(`Unhandled event type ${event.type}.`);
 		}
@@ -58,6 +64,10 @@ class StripeWebhook {
 
 	#handleSubscriptionUpdated() {
         console.log("O seu plano foi atualizado")
+    }
+
+    #handleInvoicePaid(event) {
+        console.log(`Você agora é um usuário premium: ${event.data.customer_email}`)
     }
 }
 
