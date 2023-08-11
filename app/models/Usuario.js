@@ -21,16 +21,6 @@ class Usuario {
         return user;
     }
 
-    async findUserByCustomerId(customerId) {
-        const user = await prisma.usuario.findFirst({
-            where: {
-                customer_id: customerId
-            }
-        })
-
-        return user;
-    }
-
     async createUser(data) {
         await prisma.usuario.create({
             data
@@ -57,6 +47,19 @@ class Usuario {
                 customer_id: customerId
             }
         })
+    }
+
+    async updateUserPremiumByCustomerId(customerId) {
+        const user = await prisma.usuario.update({
+            where: {
+                customer_id: customerId
+            },
+            data: {
+                premium: 1
+            }
+        })
+
+        return user;
     }
 }
 

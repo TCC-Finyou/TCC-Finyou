@@ -8,7 +8,21 @@ class PagamentoAssinaturaController {
 			const token = req.session.token;
 			const { userId } = jwt.decode(token, process.env.SECRET);
 			const user = await usuarioModel.findUserById(userId);
-            const productSelected = req.body.product_id;
+            const product = req.body.product;
+            let productSelected;
+
+            switch(product) {
+                case "anual":
+                    productSelected = "price_1NdNjrEclZEWH4rDiOJt5aG3";
+                break;
+
+                case "teste":
+                    productSelected = "price_1NdNjrEclZEWH4rDiOJt5aG3";
+                break;
+
+                default:
+                    productSelected = "price_1NSmmlEclZEWH4rDH0sovCIa";
+            }
 
 			const customer = await stripe.customers.create({
 				email: user.email,

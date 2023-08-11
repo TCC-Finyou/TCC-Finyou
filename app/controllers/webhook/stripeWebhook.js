@@ -21,6 +21,10 @@ class StripeWebhook {
 		// 	}
 		// }
 
+        console.log("----------------------------------------------------------------");
+        console.log(`O evento disparado foi: ${event.type}`);
+        console.log("----------------------------------------------------------------");
+
 		switch (event.type) {
 			case "customer.subscription.trial_will_end":
 				this.#handleSubscriptionTrialEnding();
@@ -59,18 +63,16 @@ class StripeWebhook {
 	}
 
 	#handleSubscriptionCreated() {
-        console.log("O seu plano foi criado")
+        console.log("O seu plano foi criado");
     }
 
 	#handleSubscriptionUpdated() {
-        console.log("O seu plano foi atualizado")
+        console.log("O seu plano foi atualizado");
     }
 
     async #handleInvoicePaid(event) {
         const customerId = event.customer;
-        const user = await userModel.findUserByCustomerId(customerId);
-
-        console.log(`Você agora é um usuário premium: ${user.email}`);
+        userModel.updateUserPremiumByCustomerId(customerId);
     }
 }
 

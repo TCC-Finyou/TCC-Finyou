@@ -9,7 +9,7 @@ function setMessage(message) {
 
 const url = new URL(window.location.href);
 const searchParams = new URLSearchParams(url.search);
-const productId = searchParams.get("product_id");
+const product = searchParams.get("product");
 
 fetch("/pagamento-assinatura", {
 	method: "POST",
@@ -17,7 +17,7 @@ fetch("/pagamento-assinatura", {
 		"Content-Type": "application/json",
 	},
 	body: JSON.stringify({
-		product_id: productId,
+		product
 	}),
 }).then(async (res) => {
 	const jsonRes = await res.json();
