@@ -72,7 +72,7 @@ class StripeWebhook {
 
     async #handleInvoicePaid(event) {
         const customerId = event.customer;
-        userModel.updateUserPremiumByCustomerId(customerId);
+        await userModel.updateUserPremiumByCustomerId(customerId);
     }
 }
 
