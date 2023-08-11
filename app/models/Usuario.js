@@ -50,7 +50,6 @@ class Usuario {
     }
 
     async updateUserPremiumByCustomerId(customerId) {
-        console.log(customerId)
         await prisma.usuario.update({
             where: {
                 customer_id: customerId
