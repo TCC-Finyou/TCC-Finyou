@@ -1,3 +1,5 @@
+const userModel = require("../../models/Usuario");
+
 class StripeWebhook {
 	constructor() {
 		this.realTimeUpdate = this.realTimeUpdate.bind(this);
@@ -18,8 +20,6 @@ class StripeWebhook {
 		// 		return res.sendStatus(400);
 		// 	}
 		// }
-
-        console.log(event)
 
 		switch (event.type) {
 			case "customer.subscription.trial_will_end":
@@ -66,8 +66,11 @@ class StripeWebhook {
         console.log("O seu plano foi atualizado")
     }
 
-    #handleInvoicePaid(event) {
-        console.log(`Você agora é um usuário premium: ${event.data.customer_email}`)
+    async #handleInvoicePaid(event) {
+        const customerId = event.customer;
+        const user = await userModel.findUserByCustomerId(customerId);
+
+        console.log(`Você agora é um usuário premium: ${user.email}`);
     }
 }
 

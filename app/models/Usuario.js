@@ -21,6 +21,16 @@ class Usuario {
         return user;
     }
 
+    async findUserByCustomerId(customerId) {
+        const user = await prisma.usuario.findFirst({
+            where: {
+                customer_id: customerId
+            }
+        })
+
+        return user;
+    }
+
     async createUser(data) {
         await prisma.usuario.create({
             data
