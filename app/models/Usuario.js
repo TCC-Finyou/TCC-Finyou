@@ -50,9 +50,18 @@ class Usuario {
     }
 
     async updateUserPremiumByCustomerId(customerId) {
-        const user = await prisma.usuario.update({
+        const userId = await prisma.usuario.findFirst({
             where: {
                 customer_id: customerId
+            },
+            select: {
+                id
+            }
+        })
+
+        await prisma.usuario.update({
+            where: {
+                id: userId
             },
             data: {
                 premium: 1
