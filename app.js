@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const router = require('./app/routes/router');
+const stripeWebhookController = require("./app/controllers/webhook/stripeWebhook");
 const notFoundPageController = require("./app/middlewares/notFoundPageMiddleware");
 const app = express();
 const port = process.env.PORT

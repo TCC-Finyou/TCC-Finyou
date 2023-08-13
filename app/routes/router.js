@@ -59,8 +59,6 @@ const pagamentoAssinaturaControllerCreate = require("../controllers/info-pages/a
 
 const assinaturaPortalControllerCreate = require("../controllers/info-pages/assinatura/assinaturaPortalControllerCreate");
 
-const stripeWebhookController = require("../controllers/webhook/stripeWebhook");
-
 const sucessoControllerRead = require("../controllers/info-pages/assinatura/sucessoControllerRead");
 const cancelamentoControllerRead = require("../controllers/info-pages/assinatura/cancelamentoControllerRead");
 
