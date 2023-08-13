@@ -21,6 +21,10 @@ app.use(session({
     }
 }))
 
+router.post("/webhook",
+express.raw({ type: "application/json" }),
+stripeWebhookController.realTimeUpdate);
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
