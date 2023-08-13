@@ -1,3 +1,4 @@
+const stripe = require('../../../server/payments/stripe');
 const userModel = require("../../models/Usuario");
 
 class StripeWebhook {
@@ -7,7 +8,6 @@ class StripeWebhook {
 
 	realTimeUpdate(req, res) {
 		let event = req.body;
-        // Quando eu subir para produção basta adicionar a rota /webhook na stripe, por enquanto, em desenvolvimento basta usar a stripe CLI para ouvir as requisições
 
 		const endpointSecret = process.env.WEBHOOK_SECRET;
 

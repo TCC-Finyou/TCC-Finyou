@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const stripe = require("../../../../server/payments/stripe")
 const userModel = require("../../../models/Usuario");
 const jwt = require("jsonwebtoken");
 class AssinaturaPortalController {
