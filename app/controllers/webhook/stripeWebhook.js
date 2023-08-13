@@ -14,8 +14,11 @@ class StripeWebhook {
 		if (endpointSecret) {
 			const signature = req.headers["stripe-signature"];
             console.log(signature);
-            console.log(req.headers)
+            console.log(req.headers);
 			try {
+                console.log(req.body);
+                console.log(signature);
+                console.log(endpointSecret);
 				event = stripe.webhooks.constructEvent(req.body, signature, endpointSecret);
 			} catch (err) {
 				console.log(`⚠️  Webhook signature verification failed.`, err.message);
