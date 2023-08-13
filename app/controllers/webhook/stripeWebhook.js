@@ -11,15 +11,15 @@ class StripeWebhook {
 
 		const endpointSecret = process.env.WEBHOOK_SECRET;
 
-		// if (endpointSecret) {
-		// 	const signature = req.headers["stripe-signature"];
-		// 	try {
-		// 		event = stripe.webhooks.constructEvent(req.body, signature, endpointSecret);
-		// 	} catch (err) {
-		// 		console.log(`⚠️  Webhook signature verification failed.`, err.message);
-		// 		return res.sendStatus(400);
-		// 	}
-		// }
+		if (endpointSecret) {
+			const signature = req.headers["stripe-signature"];
+			try {
+				event = stripe.webhooks.constructEvent(req.body, signature, endpointSecret);
+			} catch (err) {
+				console.log(`⚠️  Webhook signature verification failed.`, err.message);
+				return res.sendStatus(400);
+			}
+		}
 
         console.log("----------------------------------------------------------------");
         console.log(`O evento disparado foi: ${event.type}`);

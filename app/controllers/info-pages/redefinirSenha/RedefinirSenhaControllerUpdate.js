@@ -57,7 +57,7 @@ class RedefinirSenhaController {
             html: `
             <h1 style="font-size: 4rem; color: #095a72">Finyou</h1>
             <p style="font-size: 1.5rem; line-height: 1.5; color: #404040">A senha da sua conta Finyou foi alterada!</p>
-            <a href="https://tcc-finyou-production.up.railway.app"><img src="https://tcc-finyou-production.up.railway.app/assets/images/assinatura-email.jpg" alt="Assinatura Finyou" style="width: 600px;"></a>
+            <a href="${process.env.domain}"><img src="${process.env.domain}/assets/images/assinatura-email.jpg" alt="Assinatura Finyou" style="width: 600px;"></a>
             `
         }
 

@@ -1,4 +1,4 @@
-const stripe = Stripe("pk_test_51NHVbnEclZEWH4rDTDPJNTD7az32dnieSDClqIecEHZCABqCekO3TtWYmLqxuYNEdFbQMOgo6THkUqKeXeLFrkaO006OReYrQ4");
+const stripe = Stripe("pk_live_51NHVbnEclZEWH4rDokITBkLzAOVV4dTPXDPbc4rpvzJpGwMrCdjGUPsM6sdxw8IooWXeYy5x2RfWw1tSHamO2NHk007K3VvAOm");
 
 const form = document.querySelector("#assinatura-form");
 
@@ -50,7 +50,7 @@ fetch("/pagamento-assinatura", {
 			.confirmPayment({
 				elements,
 				confirmParams: {
-					return_url: "https://finyou.up.railway.app/compra-efetuada",
+					return_url: `${process.env.domain}/compra-efetuada`,
 				},
 			})
 			.then(function (result) {

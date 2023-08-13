@@ -9,20 +9,20 @@ class PagamentoAssinaturaController {
 			const { userId } = jwt.decode(token, process.env.SECRET);
 			const user = await usuarioModel.findUserById(userId);
             const product = req.body.product;
-            let productSelected;
+            let productSelected = "price_1NemYBEclZEWH4rDy38nZKJ3";
 
-            switch(product) {
-                case "anual":
-                    productSelected = "price_1NdNjrEclZEWH4rDiOJt5aG3";
-                break;
+            // switch(product) {
+            //     case "anual":
+            //         productSelected = "price_1NdNjrEclZEWH4rDiOJt5aG3";
+            //     break;
 
-                case "teste":
-                    productSelected = "price_1NdNjrEclZEWH4rDiOJt5aG3";
-                break;
+            //     case "teste":
+            //         productSelected = "price_1NdNjrEclZEWH4rDiOJt5aG3";
+            //     break;
 
-                default:
-                    productSelected = "price_1NSmmlEclZEWH4rDH0sovCIa";
-            }
+            //     default:
+            //         productSelected = "price_1NSmmlEclZEWH4rDH0sovCIa";
+            // }
 
 			const customer = await stripe.customers.create({
 				email: user.email,

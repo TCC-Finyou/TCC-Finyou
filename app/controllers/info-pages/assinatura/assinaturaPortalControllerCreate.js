@@ -10,7 +10,7 @@ class AssinaturaPortalController {
 
         const session = await stripe.billingPortal.sessions.create({
             customer: user.customer_id,
-            return_url: "https://finyou.up.railway.app/perfil",
+            return_url: `${process.env.domain}/perfil`,
         });
 
         res.redirect(session.url);
