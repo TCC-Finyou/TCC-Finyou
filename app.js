@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const router = require('./app/routes/router');
+const stripeWebhookController = require("./app/controllers/webhook/stripeWebhook");
 const notFoundPageController = require("./app/middlewares/notFoundPageMiddleware");
 const app = express();
 const port = process.env.PORT
@@ -23,6 +24,10 @@ app.use(session({
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+app.post("/webhook",
+express.raw({ type: "application/json" }),
+stripeWebhookController.realTimeUpdate);
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "app", "views"));

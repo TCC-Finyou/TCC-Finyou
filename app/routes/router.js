@@ -58,8 +58,6 @@ const pagamentoAssinaturaControllerCreate = require("../controllers/info-pages/a
 
 const assinaturaPortalControllerCreate = require("../controllers/info-pages/assinatura/assinaturaPortalControllerCreate");
 
-const stripeWebhookController = require("../controllers/webhook/stripeWebhook");
-
 const sucessoControllerRead = require("../controllers/info-pages/assinatura/sucessoControllerRead");
 const cancelamentoControllerRead = require("../controllers/info-pages/assinatura/cancelamentoControllerRead");
 
@@ -163,10 +161,6 @@ pagamentoAssinaturaControllerCreate.createCustomerSubscription);
 router.post("/criar-portal-assinatura",
 authenticationMiddleware.validateJWT,
 assinaturaPortalControllerCreate.criarPortalAssinatura);
-
-router.post("/webhook",
-express.raw({type: "application/json"}),
-stripeWebhookController.realTimeUpdate);
 
 router.get("/compra-efetuada",
 authenticationMiddleware.validateJWT,
