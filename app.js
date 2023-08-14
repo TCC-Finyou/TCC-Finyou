@@ -28,6 +28,8 @@ app.post("/webhook",
 express.raw({ type: "application/json" }),
 stripeWebhookController.realTimeUpdate);
 
+app.use(express.json());
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "app", "views"));
 
