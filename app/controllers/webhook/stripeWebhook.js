@@ -13,9 +13,7 @@ class StripeWebhook {
 
 		if (webhookSecret) {
 			const webhookStripeSignatureHeader = req.headers["stripe-signature"];
-            const webhookRawBody = req.body;
-            console.log("Corpo cru:", req.rawBody);
-            console.log("Corpo:", req.body)
+            const webhookRawBody = req.rawBody;
 
 			try {
 				event = stripe.webhooks.constructEvent(

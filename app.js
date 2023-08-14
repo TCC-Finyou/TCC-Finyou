@@ -24,6 +24,19 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.use((req, res, next) => {
+    // Capturando o corpo bruto
+    let rawData = '';
+    req.setEncoding('utf8');
+    req.on('data', (chunk) => {
+      rawData += chunk;
+    });
+    req.on('end', () => {
+      req.rawBody = rawData;
+      next();
+    });
+  });
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "app", "views"));
 
