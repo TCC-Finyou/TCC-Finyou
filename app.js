@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const bodyParser = require("body-parser");
 const router = require('./app/routes/router');
 const notFoundPageController = require("./app/middlewares/notFoundPageMiddleware");
 const app = express();
@@ -24,18 +25,11 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use((req, res, next) => {
-    // Capturando o corpo bruto
-    let rawData = '';
-    req.setEncoding('utf8');
-    req.on('data', (chunk) => {
-      rawData += chunk;
-    });
-    req.on('end', () => {
-      req.rawBody = rawData;
-      next();
-    });
-  });
+app.use(bodyParser.json({
+    verify: (req, res, buf) => {
+        req.rawBody = buf
+    }
+}))
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "app", "views"));
