@@ -9,14 +9,20 @@ class StripeWebhook {
 	realTimeUpdate(req, res) {
 		let event = req.body;
 
-		const endpointSecret = process.env.WEBHOOK_SECRET;
+		const webhookSecret = process.env.WEBHOOK_SECRET;
 
-		if (endpointSecret) {
-			const signature = req.headers["stripe-signature"];
-            const rawBody = req.body;
+		if (webhookSecret) {
+			const webhookStripeSignatureHeader = req.headers["stripe-signature"];
+            const webhookRawBody = req.body;
+            console.log("Corpo cru:", req.rawBody);
+            console.log("Corpo:", req.body)
 
 			try {
-				event = stripe.webhooks.constructEvent(rawBody, signature, endpointSecret);
+				event = stripe.webhooks.constructEvent(
+                    webhookRawBody,
+                    webhookStripeSignatureHeader,
+                    webhookSecret
+                );
 			} catch (err) {
 				console.log(`⚠️  Webhook signature verification failed.`, err.message);
 				return res.sendStatus(400);
