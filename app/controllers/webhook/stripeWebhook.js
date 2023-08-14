@@ -12,13 +12,13 @@ class StripeWebhook {
 		const webhookSecret = process.env.WEBHOOK_SECRET;
 
 		if (webhookSecret) {
-			const webhookStripeSignatureHeader = req.headers["stripe-signature"];
-            const webhookRawBody = req.body;
+			const signature = req.headers["stripe-signature"];
+            const rawBody = req.body;
 
 			try {
 				event = stripe.webhooks.constructEvent(
-                    webhookRawBody,
-                    webhookStripeSignatureHeader,
+                    rawBody,
+                    signature,
                     webhookSecret
                 );
 			} catch (err) {

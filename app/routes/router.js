@@ -165,6 +165,7 @@ authenticationMiddleware.validateJWT,
 assinaturaPortalControllerCreate.criarPortalAssinatura);
 
 router.post("/webhook",
+express.raw({type: "application/json"}),
 stripeWebhookController.realTimeUpdate);
 
 router.get("/compra-efetuada",
