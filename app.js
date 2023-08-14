@@ -4,12 +4,10 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const router = require('./app/routes/router');
-const stripeWebhookController = require("./app/controllers/webhook/stripeWebhook");
-const notFoundPageController = require("./app/middlewares/notFoundPageMiddleware");
-const app = express();
-const port = process.env.PORT
+const notFoundPageController = require('./app/middlewares/notFoundPageMiddleware');
 
-app.use(express.static(path.join(__dirname, "app", "public")));
+const app = express();
+const port = process.env.PORT || 3000; // Fallback to 3000 if PORT is not defined
 
 app.use(session({
     secret: process.env.SECRET,
@@ -20,23 +18,23 @@ app.use(session({
         httpOnly: true,
         sameSite: 'strict'
     }
-}))
+}));
 
-app.use(express.urlencoded({extended: true}));
+// ! CRIAR UM MIDDLEWARE PARA FAZER O PARSE DO JSON, PORQUE NÃO ESTOU MAIS USANDO:
+// ! app.use(express.json());
 
-app.post("/webhook",
-express.raw({ type: "application/json" }),
-stripeWebhookController.realTimeUpdate);
+app.use(express.raw({ type: "application/json" }));
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json());
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'app', 'views'));
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "app", "views"));
+app.use(express.static(path.join(__dirname, 'app', 'public')));
 
-app.use("/", router);
+app.use('/', router);
 
 app.use(notFoundPageController.getNotFoundPage);
 
 app.listen(port, () => {
     console.log(`Servidor aberto em http://localhost:${port}`);
-})
+});
