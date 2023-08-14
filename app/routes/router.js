@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require("body-parser");
 
 // * Info pages
 
@@ -165,7 +166,7 @@ authenticationMiddleware.validateJWT,
 assinaturaPortalControllerCreate.criarPortalAssinatura);
 
 router.post("/webhook",
-express.raw({ type: "application/json" }),
+bodyParser.raw({ type: "application/json" }),
 stripeWebhookController.realTimeUpdate);
 
 router.get("/compra-efetuada",
