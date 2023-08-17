@@ -79,6 +79,8 @@ class StripeWebhook {
     async #handleInvoicePaid(event) {
         const customerId = event.data.object.customer;
         await userModel.updateUserPremiumByCustomerId(customerId);
+
+        console.log(`O usuário de customer_id: ${customerId} acabou de pagar o plano`);
     }
 }
 
