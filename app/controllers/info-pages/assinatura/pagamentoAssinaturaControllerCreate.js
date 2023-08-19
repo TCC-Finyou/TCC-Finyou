@@ -35,6 +35,7 @@ class PagamentoAssinaturaController {
 						price: productSelected
 					},
 				],
+                trial_end: 86400000,
 				payment_behavior: "default_incomplete",
 				expand: ["latest_invoice.payment_intent"],
 			});
