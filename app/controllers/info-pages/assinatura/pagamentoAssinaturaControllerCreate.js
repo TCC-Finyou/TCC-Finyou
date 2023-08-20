@@ -30,6 +30,8 @@ class PagamentoAssinaturaController {
 
             const actualDate = new Date();
             const subscriptionTrialEndDate = actualDate.setHours(actualDate.getHours() + 1);
+            console.log(subscriptionTrialEndDate);
+            console.log(new Date(subscriptionTrialEndDate))
 
 			const subscription = await stripe.subscriptions.create({
 				customer: customer.id,
