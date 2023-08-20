@@ -35,7 +35,7 @@ class PagamentoAssinaturaController {
 						price: productSelected
 					},
 				],
-                trial_period_days: 1,
+                // trial_period_days: 1,
 				payment_behavior: "default_incomplete",
 				expand: ["latest_invoice.payment_intent"],
 			});
@@ -43,7 +43,7 @@ class PagamentoAssinaturaController {
 			usuarioModel.uppdateUserCustomerId(userId, customer.id);
 
             console.log(subscription);
-            console.log(subscription.pending_setup_intent)
+            console.log(subscription.latest_invoice.payment_intent.client_secret)
 
 			return res.send({
                 clientSecret: subscription.latest_invoice.payment_intent.client_secret
