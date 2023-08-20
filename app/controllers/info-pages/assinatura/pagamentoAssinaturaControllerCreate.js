@@ -43,7 +43,7 @@ class PagamentoAssinaturaController {
 			usuarioModel.uppdateUserCustomerId(userId, customer.id);
 
 			return res.send({
-                clientSecret: subscription.payment_intent.client_secret
+                clientSecret: subscription.pending_setup_intent.client_secret
             });
 		} catch (erro) {
 			console.log(erro);
