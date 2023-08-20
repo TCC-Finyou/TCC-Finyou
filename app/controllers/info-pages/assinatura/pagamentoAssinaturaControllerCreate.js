@@ -28,6 +28,9 @@ class PagamentoAssinaturaController {
 				email: user.email,
 			});
 
+            const actualDate = new Date();
+            const subscriptionTrialEndDate = actualDate.setHours(date.getHours() + 1);
+
 			const subscription = await stripe.subscriptions.create({
 				customer: customer.id,
 				items: [
@@ -35,7 +38,7 @@ class PagamentoAssinaturaController {
 						price: productSelected
 					},
 				],
-                trial_end: 86400000,
+                trial_end: subscriptionTrialEndDate,
 				payment_behavior: "default_incomplete",
 				expand: ["latest_invoice.payment_intent"],
 			});
