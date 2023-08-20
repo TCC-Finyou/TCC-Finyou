@@ -42,6 +42,9 @@ class PagamentoAssinaturaController {
 
 			usuarioModel.uppdateUserCustomerId(userId, customer.id);
 
+            console.log(subscription);
+            console.log(subscription.pending_setup_intent)
+
 			return res.send({
                 clientSecret: subscription.latest_invoice.payment_intent.client_secret
             });
