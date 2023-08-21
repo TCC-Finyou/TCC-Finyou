@@ -7,7 +7,7 @@ class StripeWebhook {
 	}
 
 	realTimeUpdate(req, res) {
-		let event = req.body;
+		let event;
 
 		const webhookSecret = process.env.WEBHOOK_SECRET;
 

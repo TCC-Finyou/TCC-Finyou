@@ -7,7 +7,7 @@ const router = require('./app/routes/router');
 const notFoundPageController = require('./app/middlewares/notFoundPageMiddleware');
 
 const app = express();
-const port = process.env.PORT || 3000; // Fallback to 3000 if PORT is not defined
+const port = process.env.PORT || 3000;
 
 app.use(session({
     secret: process.env.SECRET,
