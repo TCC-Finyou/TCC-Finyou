@@ -16,7 +16,8 @@ class AssinaturaPortalController {
 
             res.redirect(session.url);
         } catch (error) {
-            res.redirect("/pacotes")
+            console.log(error);
+            res.redirect("/pacotes");
         }
 	}
 }
