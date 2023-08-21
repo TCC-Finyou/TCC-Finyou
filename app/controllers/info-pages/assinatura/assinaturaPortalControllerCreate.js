@@ -11,10 +11,10 @@ class AssinaturaPortalController {
         try {
             console.log("id do usuário: ", user.customer_id);
 
-            console.log("link de retorno: ",`${process.env.domain}perfil`);
+            console.log("link de retorno: ",`${DOMAIN}perfil`);
             const session = await stripe.billingPortal.sessions.create({
                 customer: user.customer_id,
-                return_url: `${process.env.domain}perfil`,
+                return_url: `${DOMAIN}perfil`,
             });
 
             res.redirect(session.url);

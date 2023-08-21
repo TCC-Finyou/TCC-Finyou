@@ -84,9 +84,9 @@ class RecuperarSenhaController {
             html: `
             <h1 style="font-size: 4rem; color: #095a72">Finyou</h1>
             <p style="font-size: 1.5rem; line-height: 1.5; color: #404040">Para recuperar a sua conta na finyou acesse o link abaixo e digite uma nova senha para se conectar a sua conta!</p>
-            <a href="${process.env.domain}redefinir-senha/${token}" style="font-size: 1.5rem; line-height: 1.5;">Trocar minha senha da Finyou</a>
+            <a href="${DOMAIN}redefinir-senha/${token}" style="font-size: 1.5rem; line-height: 1.5;">Trocar minha senha da Finyou</a>
             <br><br>
-            <a href="${process.env.domain}" style="font-size: 1.5rem; line-height: 1.5;"><img src="${process.env.domain}assets/images/assinatura-email.jpg" alt="Assinatura Finyou" style="width: 600px;"></a>
+            <a href="${DOMAIN}" style="font-size: 1.5rem; line-height: 1.5;"><img src="${DOMAIN}assets/images/assinatura-email.jpg" alt="Assinatura Finyou" style="width: 600px;"></a>
             `
         }
 
