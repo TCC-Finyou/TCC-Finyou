@@ -50,7 +50,7 @@ fetch("/pagamento-assinatura", {
 			.confirmPayment({
 				elements,
 				confirmParams: {
-					return_url: `${DOMAIN}compra-efetuada`,
+					return_url: `${process.env.DOMAIN}compra-efetuada`,
 				},
 			})
 			.then(function (result) {
