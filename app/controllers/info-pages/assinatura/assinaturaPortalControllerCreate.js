@@ -11,7 +11,7 @@ class AssinaturaPortalController {
         try {
             const session = await stripe.billingPortal.sessions.create({
                 customer: user.customer_id,
-                return_url: `${process.env.domain}/perfil`,
+                return_url: `${process.env.domain}perfil`,
             });
 
             res.redirect(session.url);

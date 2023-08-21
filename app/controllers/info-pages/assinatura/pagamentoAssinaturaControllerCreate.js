@@ -21,6 +21,7 @@ class PagamentoAssinaturaController {
             //     break;
 
             //     default:
+            //         ! Aqui eu vou fazer uma verificação, se o usuário já tiver assinado esse plano ele não pode ter o primeiro mês gratuito, então eu vou gravar no banco um valor de verdadeiro ou falso para isso
             //         productSelected = "price_1NSmmlEclZEWH4rDH0sovCIa";
             // }
 
