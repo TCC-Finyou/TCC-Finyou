@@ -49,13 +49,24 @@ class Usuario {
         })
     }
 
-    async updateUserPremiumByCustomerId(customerId) {
+    async addUserPremiumByCustomerId(customerId) {
         await prisma.usuario.update({
             where: {
                 customer_id: customerId
             },
             data: {
                 premium: 1
+            }
+        })
+    }
+
+    async removeUserPremiumByCustomerId(customerId) {
+        await prisma.usuario.update({
+            where: {
+                customer_id: customerId
+            },
+            data: {
+                premium: 0
             }
         })
     }

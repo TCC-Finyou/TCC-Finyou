@@ -9,9 +9,6 @@ class AssinaturaPortalController {
         const user = await userModel.findUserById(userId);
 
         try {
-            console.log("id do usuário: ", user.customer_id);
-
-            console.log("link de retorno: ",`${process.env.DOMAIN}perfil`);
             const session = await stripe.billingPortal.sessions.create({
                 customer: user.customer_id,
                 return_url: `${process.env.DOMAIN}perfil`,

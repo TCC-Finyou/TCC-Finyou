@@ -53,6 +53,12 @@ class StripeWebhook {
                 this.#handleInvoicePaid(event);
 
                 break;
+
+            case "invoice.payment_failed":
+                this.#handleInvoicePaymentFailed(event);
+
+                break;
+
 			default:
 				console.log(`Unhandled event type ${event.type}.`);
 		}
@@ -78,9 +84,16 @@ class StripeWebhook {
 
     async #handleInvoicePaid(event) {
         const customerId = event.data.object.customer;
-        await userModel.updateUserPremiumByCustomerId(customerId);
+        await userModel.addUserPremiumByCustomerId(customerId);
 
         console.log(`O usuário de customer_id: ${customerId} acabou de pagar o plano`);
+    }
+
+    async #handleInvoicePaymentFailed(event) {
+        const customerId = event.data.object.customer;
+        await userModel.removeUserPremiumByCustomerId(customerId);
+
+        console.log(`O usuário de customer_id: ${customerId} não pagou o plano`);
     }
 }
 
