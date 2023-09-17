@@ -11,7 +11,6 @@ const notFoundPageController = require('./app/middlewares/notFoundPageMiddleware
 
 const app = express();
 const port = process.env.PORT || 3000;
-const portAddress = process.env.PORT_ADDRESS || '127.0.0.1';
 
 const redisClient = redis.createClient({
     host: process.env.REDISHOST,
@@ -58,6 +57,6 @@ app.use('/', router);
 
 app.use(notFoundPageController.getNotFoundPage);
 
-app.listen(`${portAddress}:${port}`, () => {
+app.listen(port, () => {
     console.log(`Servidor aberto em http://localhost:${port}`);
 });
