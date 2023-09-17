@@ -57,6 +57,6 @@ app.use('/', router);
 
 app.use(notFoundPageController.getNotFoundPage);
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Servidor aberto em http://localhost:${port}`);
 });
