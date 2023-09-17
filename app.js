@@ -12,9 +12,11 @@ const notFoundPageController = require('./app/middlewares/notFoundPageMiddleware
 const app = express();
 const port = process.env.PORT || 3000;
 
+console.log("REDIS SENHA", process.env.REDISPASSWORD)
+console.log("REDIS URL", process.env.REDIS_URL)
+
 const redisClient = redis.createClient({
-    host: process.env.REDISHOST,
-    port: process.env.REDISPORT,
+    url: process.env.REDIS_URL,
     password: process.env.REDISPASSWORD
 });
 redisClient.connect();
