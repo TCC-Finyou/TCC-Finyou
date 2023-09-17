@@ -1,21 +1,22 @@
 const { PrismaClient } = require("@prisma/client");
 const { createPrismaRedisCache } = require("prisma-redis-middleware");
+const { redisClient } = require("./redis");
 
 const prisma = new PrismaClient();
 
 const cacheMiddleware = createPrismaRedisCache({
     models: [
-        { model: "Usuario", cacheTime: 180, cacheKey: "usuario" },
-        { model: "Token", cacheTime: 180, cacheKey: "token" },
-        { model: "Meta", cacheTime: 180, cacheKey: "meta" }
+        { model: "Usuario", cacheKey: "usuario" },
+        { model: "Meta", cacheKey: "meta" }
     ],
     storage: {
-        type: "memory",
+        type: "redis",
         options: {
+            client: redisClient,
             invalidation: true,
         }
     },
-    cacheTime: 300,
+    excludeModels: ["Token"],
     excludeMethods: ["aggregate", "aggregateRaw", "count", "findFirst", "findFirstOrThrow", "findRaw", "groupBy", "queryRaw", "runCommandRaw"],
     onError: (key) => {
         console.log("error", key);

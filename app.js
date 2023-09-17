@@ -2,8 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
-const redis = require('redis');
-const RedisStore = require('connect-redis').default;
+const { redisStore } = require("./server/database/redis");
 
 const path = require('path');
 const router = require('./app/routes/router');
@@ -11,26 +10,6 @@ const notFoundPageController = require('./app/middlewares/notFoundPageMiddleware
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-const redisClient = redis.createClient({
-    url: process.env.REDIS_URL,
-    password: process.env.REDISPASSWORD
-});
-redisClient.connect();
-
-redisClient.on('error', function (err) {
-    console.log('Erro ao conectar com o Redis: ' + err);
-});
-
-redisClient.on('connect', function (err) {
-    console.log('Conectado com sucesso ao Redis');
-});
-
-const redisStore = new RedisStore({
-    client: redisClient,
-    prefix: "myapp:",
-    ttl: 60 * 60 * 3,
-  })
 
 app.use(session({
     store: redisStore,

@@ -20,6 +20,9 @@ class Meta {
                 valor_meta: true,
                 valor_destinado: true,
                 periodo_deposito: true
+            },
+            orderBy: {
+                created_at: "desc"
             }
         });
 

@@ -1,5 +1,6 @@
 const metaModel = require("../../../models/Meta");
 const jwt = require("jsonwebtoken");
+const Bull = require("bull");
 
 class CriarMetasController {
 	constructor() {
@@ -33,7 +34,17 @@ class CriarMetasController {
 	async #createMetaHistorico(metaId) {}
 
 	#scheduleHistoricoUpdate(userId, metaId) {
-		
+		const queue = new Bull("teste1", {
+            redis: {
+                password: process.env.REDISPASSWORD
+            }
+        });
+
+        queue.add({}, { repeat: { cron: "*/2 * * * *" } });
+
+        queue.process(() => {
+            console.log(`Testando: ${metaId}`);
+        })
 	}
 }
 
