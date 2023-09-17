@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 // * Info pages
 
 const homeControllerRead = require("../controllers/info-pages/homeControllerRead");
@@ -42,6 +46,10 @@ const adicionarContaControllerRead = require("../controllers/perfil/adicionarCon
 
 const metasControllerRead = require("../controllers/perfil/metas/metasControllerRead");
 
+const criarMetasControllerRead = require("../controllers/perfil/metas/criarMetasControllerRead");
+
+const criarMetasControllerCreate = require("../controllers/perfil/metas/criarMetasControllerCreate");
+
 const tagsControllerRead = require("../controllers/perfil/tags/tagsControllerRead");
 
 const questionarioControllerRead = require("../controllers/perfil/questionario/questionarioControllerRead");
@@ -49,6 +57,10 @@ const questionarioControllerRead = require("../controllers/perfil/questionario/q
 const relatorioControllerRead = require("../controllers/perfil/relatorios/relatorioControllerRead");
 
 const contaConjuntaControllerRead = require("../controllers/perfil/contaConjunta/contaConjuntaControllerRead");
+
+// * Imagens perfil
+
+const metaImageControllerRead = require("../controllers/perfil/metas/metaImageControllerRead");
 
 // * Plano de assinatura Finyou+
 
@@ -131,6 +143,15 @@ router.get("/metas",
 authenticationMiddleware.validateJWT,
 metasControllerRead.getPage);
 
+router.get("/criar-meta",
+authenticationMiddleware.validateJWT,
+criarMetasControllerRead.getPage);
+
+router.post("/criar-meta",
+authenticationMiddleware.validateJWT,
+upload.single("imagem_meta"),
+criarMetasControllerCreate.createMeta);
+
 router.get("/tags",
 authenticationMiddleware.validateJWT,
 tagsControllerRead.getPage);
@@ -149,6 +170,11 @@ router.get("/conta-conjunta",
 authenticationMiddleware.validateJWT,
 authenticationMiddleware.verifyPremium,
 contaConjuntaControllerRead.getPage);
+
+// * Imagens perfil
+
+router.get("/assets/images/metas/:metaId",
+metaImageControllerRead.getImage);
 
 // * Plano de assinatura Finyou+
 

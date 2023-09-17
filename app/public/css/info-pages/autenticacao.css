@@ -39,6 +39,7 @@
 #autenticacao-form .input-container input {
     width: 100%;
     margin: 0;
+    padding-right: 48px;
     border: none;
     background: none;
 }

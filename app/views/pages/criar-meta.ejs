@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Recusro para o usuário e cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas para sua disposição." />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/perfil/criar-metas.css" />
+
+		<!-- JS -->
+
+		<script src="/js/perfil/criar-metas.js" defer></script>
+
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header-perfil.ejs') %>
+
+		<main>
+			<section id="criar-metas-intro">
+				<h1>Criar metas</h1>
+
+				<form action="/criar-meta" method="post" id="criar-metas-form" enctype="multipart/form-data">
+					<label for="imagem-meta">Escolha uma imagem para a sua meta (opcional)</label>
+					<input type="file" name="imagem_meta" id="imagem-meta" data-imagem-meta-input />
+
+					<div id="imagem-meta-preview" data-imagem-meta-preview></div>
+					<label for="imagem-meta" id="imagem-selector"></label>
+
+					<label for="nome-meta">Defina o nome da sua meta</label>
+					<input type="text" name="nome_meta" id="nome-meta" placeholder="Nome da sua meta" />
+
+					<label for="valor-meta">Defina o valor da sua meta</label>
+					<div class="input-container">
+						<span>R$</span>
+
+						<input type="number" name="valor_meta" id="valor-meta" placeholder="00,00" step="0.01" min="0" />
+					</div>
+
+					<label for="valor-destinado">Defina o valor destinado a sua meta</label>
+					<div class="input-container">
+						<span>R$</span>
+
+						<input type="number" name="valor_destinado" id="valor-destinado" placeholder="00,00" step="0.01" min="0" />
+					</div>
+
+					<label>Defina o quando essa meta irá receber dinheiro</label>
+					<button type="button" data-periodo-deposito-dropdown-button>
+						<span data-periodo-deposito-selected>Escolha o período</span>
+
+						<img src="/assets/icons/arrow-down-blue.png" alt="Seta para baixo" />
+
+						<div id="periodo-deposito-dropdown-container">
+							<div id="periodo-deposito-dropdown">
+								<label for="periodo-deposito-diariamente">
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-diariamente" value="diariamente" data-periodo-deposito-input />
+									Diariamente
+								</label>
+
+								<label for="periodo-deposito-semanalmente">
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-semanalmente" value="semanalmente" data-periodo-deposito-input />
+									Semanalmente
+								</label>
+
+								<label for="periodo-deposito-quinzenalmente">
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-quinzenalmente" value="quinzenalmente" data-periodo-deposito-input />
+									Quinzenalmente
+								</label>
+
+								<label for="periodo-deposito-mensalmente">
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-mensalmente" value="mensalmente" data-periodo-deposito-input />
+									Mensalmente
+								</label>
+
+								<label for="periodo-deposito-anualmente">
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-anualmente" value="anualmente" data-periodo-deposito-input />
+									Anualmente
+								</label>
+							</div>
+						</div>
+					</button>
+
+					<p>Para atingir a meta: <b>Viajar nas férias com a família</b>, destinando <b>R$ 90,00</b> <b>mensalmente</b>, levará cerca de <b>12 meses</b></p>
+
+					<button type="submit">Criar meta</button>
+				</form>
+			</section>
+			<!-- Campos para criar uma meta:
+            ! Foto da meta
+            ! Nome da meta
+            ! Valor da meta
+            ! Dinheiro destinado
+            ! Quando o dinheiro será destinado:
+                ? Diariamente
+                ? Semanalmente
+                ? Quinzenalmente
+                ? Mensalmente
+                ? Anualmente -->
+
+			<!-- ? Talvez adicionar "bolinhas" de pergunta do lado dos campos, para maiores explicações -->
+
+			<!-- ? Cada meta deve ter um botão para concluír a meta, descartar a meta, editar a meta, e dizer se não destinou o dinheiro a meta -->
+		</main>
+
+		<%- include('../templates/footer.ejs') %>
+	</body>
+</html>

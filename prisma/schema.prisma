@@ -19,6 +19,7 @@ model Usuario {
     updated_at      DateTime @updatedAt
 
     tokens Token[]
+    metas Meta[]
 }
 
 model Token {
@@ -27,4 +28,19 @@ model Token {
     created_at DateTime @default(now())
 
     email Usuario @relation(fields: [user_email], references: [email])
+}
+
+model Meta {
+    id String @id @default(uuid())
+    user_id String
+    imagem_meta Bytes?
+    tipo_imagem String?
+    nome_meta String @db.VarChar(120)
+    valor_meta Float
+    valor_destinado Float
+    periodo_deposito String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    user Usuario @relation(fields: [user_id], references: [id])
 }

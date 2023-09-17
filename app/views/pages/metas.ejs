@@ -1,59 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content=" O usuário vai poder criar metas com nomes para que assim consiga concluir seus planos.">
-    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
-    <%- include('../templates/head.ejs') %>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content=" O usuário vai poder criar metas com nomes para que assim consiga concluir seus planos." />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/perfil/metas.css">
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/perfil/metas.css" />
 
-    <title><%- data.page_name %></title>
-</head>
-<body>
-    <%- include('../templates/header-perfil.ejs') %>
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header-perfil.ejs') %>
 
-    <main>
-        <section id="metas-intro">
-            <h1>Suas metas</h1>
+		<main>
+			<section id="metas-intro">
+				<h1>Suas metas</h1>
 
-            <div id="metas-container">
-                <a href="/criar-meta">Definir nova meta</a>
+				<div id="metas-container">
+					<a href="/criar-meta">Definir nova meta</a>
 
-                <div id="metas">
-                    <div class="meta">
-                        <img src="/assets/icons/chart-up.png" alt="Gráfico subindo">
+					<div id="metas">
+						<% data.metas.forEach(meta => { %>
+                            <div class="meta">
+                                <img src="/assets/images/metas/<%- meta.id %>" />
 
-                        <h2>Celular novo</h2>
+                                <h2><%- meta.nome_meta %></h2>
 
-                        <p>Valor da meta: R$ 1500,00</p>
-                        <p>Valor destinado: R$ 200,00</p>
+                                <p>Valor da meta: R$ <%- meta.valor_meta %></p>
+                                <p>Valor destinado: R$ <%- meta.valor_destinado %></p>
 
-                        <p class="progress-text">Meses para atingir a meta: 1</p>
+                                <p class="progress-text">Meses para atingir a meta: 1</p>
 
-                        <div class="progress-bar"></div>
-                    </div>
+                                <div class="progress-bar"></div>
+                            </div>
+						<% }) %>
+					</div>
+				</div>
+			</section>
+		</main>
 
-                    <div class="meta">
-                        <img src="/assets/icons/chart-up.png" alt="Gráfico subindo">
-
-                        <h2>Eurotrip</h2>
-
-                        <p>Valor da meta: R$ 25.000,00</p>
-                        <p>Valor destinado: R$ 500,00</p>
-
-                        <p class="progress-text">Meses para atingir a meta: 2</p>
-
-                        <div class="progress-bar"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <%- include('../templates/footer.ejs') %>
-</body>
+		<%- include('../templates/footer.ejs') %>
+	</body>
 </html>

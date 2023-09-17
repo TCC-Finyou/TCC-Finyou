@@ -11,10 +11,6 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="/css/info-pages/pagamento-assinatura.css" />
 
-		<!-- JS -->
-		<script src="https://js.stripe.com/v3/" defer></script>
-		<script src="/js/info-pages/assinatura.js" defer></script>
-
 		<title><%- data.page_name %></title>
 	</head>
 	<body>
@@ -24,12 +20,8 @@
 			<section id="pagamento-assinatura-intro">
                 <h1>Plano Finyou+</h1>
 
-				<form id="assinatura-form">
-					<div id="cartao-elemento"></div>
-
-					<button type="submit">Assinar</button>
-
-					<div id="mensagens"></div>
+				<form action="/pagamento-assinatura" method="POST">
+					<button>assinar</button>
 				</form>
 			</section>
 		</main>
