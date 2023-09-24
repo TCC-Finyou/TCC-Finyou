@@ -1,56 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
-    <%- include('../templates/head.ejs') %>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/perfil/tags.css">
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/perfil/tags.css" />
 
-    <title><%- data.page_name %></title>
-</head>
-<body>
-    <%- include('../templates/header-perfil.ejs') %>
+		<!-- JS -->
+		<script src="/js/perfil/tags.js" defer></script>
 
-    <main>
-        <section id="tags-intro">
-            <div id="tag-banner">
-                <h1>Gerenciar tags</h1>
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header-perfil.ejs') %>
 
-                <a href="/criar-tag">Criar nova tag</a>
-            </div>
+		<main>
+			<section id="tags-intro">
+				<div id="tag-banner">
+					<h1>Gerenciar tags</h1>
 
-            <div id="tags-container">
-                <h2>Suas tags</h2>
+					<a href="/criar-tag">Criar nova tag</a>
+				</div>
 
-                <div id="tags">
-                    <div class="tag">
-                        <div class="tag-color" style="background-color: #23a3b4;"></div>
+				<div id="tags-container">
+					<h2>Suas tags</h2>
 
-                        <h3>Gastos fixos</h3>
+					<div id="tags">
+						<% data.tags.forEach(tag => { %>
+						<div class="tag">
+							<div class="tag-color" style="background-color: <%- tag.cor_tag %>"></div>
 
-                        <button>
-                            <img src="/assets/icons/delete-x.png" alt="Deletar tag">
-                        </button>
-                    </div>
+							<h3><%- tag.nome_tag %></h3>
 
-                    <div class="tag">
-                        <div class="tag-color" style="background-color: blueviolet;"></div>
+							<button data-open-delete-tag-pop-up="<%- tag.id %>">
+								<img src="/assets/icons/delete-x.png" alt="Deletar tag" />
+							</button>
+						</div>
+						<% }) %>
+					</div>
+				</div>
 
-                        <h3>Alimentação</h3>
+				<div id="delete-tag-pop-up-container" data-delete-tag-pop-up-container tabindex="-1">
+					<div id="delete-tag-pop-up">
+						<h2>Tem certeza que deseja excluir essa tag?</h2>
 
-                        <button>
-                            <img src="/assets/icons/delete-x.png" alt="Deletar tag">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+						<button data-close-delete-tag-pop-up>Não</button>
 
-    <%- include('../templates/footer.ejs') %>
-</body>
+						<button data-delete-tag-button>Sim</button>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<%- include('../templates/footer.ejs') %>
+	</body>
 </html>

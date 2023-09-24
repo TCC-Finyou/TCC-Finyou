@@ -1,4 +1,4 @@
-class CriarMetasController {
+class CriarMetaController {
     getPage(req, res) {
         const premium = req.session.premium;
 
@@ -11,6 +11,6 @@ class CriarMetasController {
     }
 }
 
-const CriarMetasControllerRead = new CriarMetasController();
+const CriarMetaControllerRead = new CriarMetaController();
 
-module.exports = CriarMetasControllerRead;
+module.exports = CriarMetaControllerRead;

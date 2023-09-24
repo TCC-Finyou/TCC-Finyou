@@ -1,16 +1,8 @@
 const prisma = require("../../server/database/prismaClient");
 
 class Meta {
-    async getMetaById(metaId) {
-        return await prisma.meta.findUnique({
-            where: {
-                id: metaId
-            }
-        });
-    }
-
     async getAllMetasFromUser(userId) {
-        const metas = await prisma.meta.findMany({
+        return await prisma.meta.findMany({
             where: {
                 user_id: userId
             },
@@ -25,22 +17,6 @@ class Meta {
                 created_at: "desc"
             }
         });
-
-        return metas;
-    }
-
-    async getImageMeta(metaId) {
-        const meta = await prisma.meta.findUnique({
-            where: {
-                id: metaId
-            },
-            select: {
-                imagem_meta: true,
-                tipo_imagem: true
-            }
-        })
-
-        return meta;
     }
 
     async createMeta(data) {
@@ -49,10 +25,10 @@ class Meta {
         });
     }
 
-    async updateMeta(userId, data) {
+    async updateMeta(metaId, data) {
         await prisma.meta.update({
             where: {
-                id: userId,
+                id: metaId,
             },
             data
         })

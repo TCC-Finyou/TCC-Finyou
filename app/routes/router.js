@@ -46,21 +46,25 @@ const adicionarContaControllerRead = require("../controllers/perfil/adicionarCon
 
 const metasControllerRead = require("../controllers/perfil/metas/metasControllerRead");
 
-const criarMetasControllerRead = require("../controllers/perfil/metas/criarMetasControllerRead");
+const criarMetaControllerRead = require("../controllers/perfil/metas/criarMetaControllerRead");
 
-const criarMetasControllerCreate = require("../controllers/perfil/metas/criarMetasControllerCreate");
+const criarMetaControllerCreate = require("../controllers/perfil/metas/criarMetaControllerCreate");
+
+const metaHistoricoControllerRead = require("../controllers/perfil/metas/metaHistorico/metaHistoricoControllerRead");
 
 const tagsControllerRead = require("../controllers/perfil/tags/tagsControllerRead");
+
+const criarTagControllerRead = require("../controllers/perfil/tags/criarTagControllerRead");
+
+const criarTagControllerCreate = require("../controllers/perfil/tags/criarTagControllerCreate");
+
+const deletarTagControllerDelete = require("../controllers/perfil/tags/deletarTagControllerDelete");
 
 const questionarioControllerRead = require("../controllers/perfil/questionario/questionarioControllerRead");
 
 const relatorioControllerRead = require("../controllers/perfil/relatorios/relatorioControllerRead");
 
 const contaConjuntaControllerRead = require("../controllers/perfil/contaConjunta/contaConjuntaControllerRead");
-
-// * Imagens perfil
-
-const metaImageControllerRead = require("../controllers/perfil/metas/metaImageControllerRead");
 
 // * Plano de assinatura Finyou+
 
@@ -145,16 +149,35 @@ metasControllerRead.getPage);
 
 router.get("/criar-meta",
 authenticationMiddleware.validateJWT,
-criarMetasControllerRead.getPage);
+criarMetaControllerRead.getPage);
 
 router.post("/criar-meta",
 authenticationMiddleware.validateJWT,
-upload.single("imagem_meta"),
-criarMetasControllerCreate.createMeta);
+validationRulesMiddleware.metaValidationRules,
+formValidationMiddleware.metaValidation,
+criarMetaControllerCreate.createMeta);
+
+router.get("/historico-meta/:metaId",
+authenticationMiddleware.validateJWT,
+metaHistoricoControllerRead.getPage)
 
 router.get("/tags",
 authenticationMiddleware.validateJWT,
 tagsControllerRead.getPage);
+
+router.get("/criar-tag",
+authenticationMiddleware.validateJWT,
+criarTagControllerRead.getPage);
+
+router.post("/criar-tag",
+authenticationMiddleware.validateJWT,
+validationRulesMiddleware.tagValidationRules,
+formValidationMiddleware.tagValidation,
+criarTagControllerCreate.createTag);
+
+router.post("/deletar-tag/:tagId",
+authenticationMiddleware.validateJWT,
+deletarTagControllerDelete.deleteTag);
 
 router.get("/relatorios",
 authenticationMiddleware.validateJWT,
@@ -170,11 +193,6 @@ router.get("/conta-conjunta",
 authenticationMiddleware.validateJWT,
 authenticationMiddleware.verifyPremium,
 contaConjuntaControllerRead.getPage);
-
-// * Imagens perfil
-
-router.get("/assets/images/metas/:metaId",
-metaImageControllerRead.getImage);
 
 // * Plano de assinatura Finyou+
 

@@ -7,7 +7,8 @@ const prisma = new PrismaClient();
 const cacheMiddleware = createPrismaRedisCache({
     models: [
         { model: "Usuario", cacheKey: "usuario" },
-        { model: "Meta", cacheKey: "meta" }
+        { model: "Meta", cacheKey: "meta" },
+        { model: "Historico_Meta", cacheKey: "historico_meta"}
     ],
     storage: {
         type: "redis",

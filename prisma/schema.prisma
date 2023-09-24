@@ -19,7 +19,8 @@ model Usuario {
     updated_at      DateTime @updatedAt
 
     tokens Token[]
-    metas Meta[]
+    metas  Meta[]
+    tags   Tag[]
 }
 
 model Token {
@@ -27,20 +28,42 @@ model Token {
     user_email String   @db.VarChar(120)
     created_at DateTime @default(now())
 
-    email Usuario @relation(fields: [user_email], references: [email])
+    email Usuario @relation(fields: [user_email], references: [email], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Meta {
-    id String @id @default(uuid())
-    user_id String
-    imagem_meta Bytes?
-    tipo_imagem String?
-    nome_meta String @db.VarChar(120)
-    valor_meta Float
-    valor_destinado Float
+    id               String   @id @default(uuid())
+    user_id          String
+    nome_meta        String   @db.VarChar(120)
+    valor_meta       Float
+    valor_destinado  Float
     periodo_deposito String
+    created_at       DateTime @default(now())
+    updated_at       DateTime @updatedAt
+
+    user           Usuario          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    historico_meta Historico_Meta[]
+}
+
+model Historico_Meta {
+    id               String   @id @default(uuid())
+    meta_id          String
+    valor_depositado Float
+    periodo_cumprido Int      @default(1) @db.TinyInt
+    created_at       DateTime @default(now())
+    updated_at       DateTime @updatedAt
+
+    meta Meta @relation(fields: [meta_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model Tag {
+    id         String   @id @default(uuid())
+    user_id    String
+    nome_tag   String   @db.VarChar(120)
+    cor_tag   String   @db.Char(7)
+    tag_global Int      @db.TinyInt @default(0)
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 
-    user Usuario @relation(fields: [user_id], references: [id])
+    user Usuario @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }

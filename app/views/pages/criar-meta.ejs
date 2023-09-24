@@ -9,11 +9,11 @@
 		<%- include('../templates/head.ejs') %>
 
 		<!-- CSS -->
-		<link rel="stylesheet" href="/css/perfil/criar-metas.css" />
+		<link rel="stylesheet" href="/css/perfil/criar-meta.css" />
 
 		<!-- JS -->
 
-		<script src="/js/perfil/criar-metas.js" defer></script>
+		<script src="/js/perfil/criar-meta.js" defer></script>
 
 		<title><%- data.page_name %></title>
 	</head>
@@ -21,86 +21,90 @@
 		<%- include('../templates/header-perfil.ejs') %>
 
 		<main>
-			<section id="criar-metas-intro">
-				<h1>Criar metas</h1>
+			<section id="criar-meta-intro">
+				<h1>Criar meta</h1>
 
-				<form action="/criar-meta" method="post" id="criar-metas-form" enctype="multipart/form-data">
-					<label for="imagem-meta">Escolha uma imagem para a sua meta (opcional)</label>
-					<input type="file" name="imagem_meta" id="imagem-meta" data-imagem-meta-input />
-
-					<div id="imagem-meta-preview" data-imagem-meta-preview></div>
-					<label for="imagem-meta" id="imagem-selector"></label>
+				<form action="/criar-meta" method="post" id="criar-meta-form">
+					<%- data.errors && data.errors.sistema_error ? `<span class="error-message">${data.errors.sistema_error.msg}</span>` : "" %>
 
 					<label for="nome-meta">Defina o nome da sua meta</label>
-					<input type="text" name="nome_meta" id="nome-meta" placeholder="Nome da sua meta" />
+					<input type="text" name="nome_meta" id="nome-meta" placeholder="Nome da sua meta" data-input-meta="nome-meta"
+                    <%- data.input_values ? `value="${data.input_values.nome_meta}"` : "" %>
+                    <%- data.errors && data.errors.nome_meta_error ? `class="error"` : "" %>
+                    />
+
+                    <%- data.errors && data.errors.nome_meta_error ? `<span class='error-message'>${data.errors.nome_meta_error.msg}</span>` : "" %>
 
 					<label for="valor-meta">Defina o valor da sua meta</label>
-					<div class="input-container">
+					<div class="input-container <%- data.errors && data.errors.valor_meta_error ? `error` : "" %>">
 						<span>R$</span>
 
-						<input type="number" name="valor_meta" id="valor-meta" placeholder="00,00" step="0.01" min="0" />
+						<input type="number" name="valor_meta" id="valor-meta" placeholder="00,00" step="0.01" min="0" data-input-meta="valor-meta"
+                        <%- data.input_values ? `value="${data.input_values.valor_meta}"` : "" %>
+                        />
 					</div>
+
+                    <%- data.errors && data.errors.valor_meta_error ? `<span class='error-message'>${data.errors.valor_meta_error.msg}</span>` : "" %>
 
 					<label for="valor-destinado">Defina o valor destinado a sua meta</label>
-					<div class="input-container">
+					<div class="input-container <%- data.errors && data.errors.valor_destinado_error ? `error` : "" %>">
 						<span>R$</span>
 
-						<input type="number" name="valor_destinado" id="valor-destinado" placeholder="00,00" step="0.01" min="0" />
+						<input type="number" name="valor_destinado" id="valor-destinado" placeholder="00,00" step="0.01" min="0" data-input-meta="valor-destinado"
+                        <%- data.input_values ? `value="${data.input_values.valor_destinado}"` : "" %>
+                        />
 					</div>
 
+                    <%- data.errors && data.errors.valor_destinado_error ? `<span class='error-message'>${data.errors.valor_destinado_error.msg}</span>` : "" %>
+
 					<label>Defina o quando essa meta irá receber dinheiro</label>
-					<button type="button" data-periodo-deposito-dropdown-button>
-						<span data-periodo-deposito-selected>Escolha o período</span>
+					<button type="button" data-periodo-deposito-dropdown-button
+                    <%- data.errors && data.errors.periodo_deposito_error ? `class="error"` : "" %>
+                    >
+						<span data-periodo-deposito-selected><%- data.input_values && data.input_values.periodo_deposito ? data.input_values.periodo_deposito : "Escolha o período" %></span>
 
 						<img src="/assets/icons/arrow-down-blue.png" alt="Seta para baixo" />
 
 						<div id="periodo-deposito-dropdown-container">
 							<div id="periodo-deposito-dropdown">
-								<label for="periodo-deposito-diariamente">
-									<input type="radio" name="periodo_deposito" id="periodo-deposito-diariamente" value="diariamente" data-periodo-deposito-input />
+								<label for="periodo-deposito-diariamente" <%- data.input_values && data.input_values.periodo_deposito === "Diariamente" ? "class='ativo'"  : "" %>>
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-diariamente" value="Diariamente" data-periodo-deposito-input
+                                    <%- data.input_values && data.input_values.periodo_deposito === "Diariamente" ? "checked"  : "" %>
+                                    />
 									Diariamente
 								</label>
 
-								<label for="periodo-deposito-semanalmente">
-									<input type="radio" name="periodo_deposito" id="periodo-deposito-semanalmente" value="semanalmente" data-periodo-deposito-input />
+								<label for="periodo-deposito-semanalmente" <%- data.input_values && data.input_values.periodo_deposito === "Semanalmente" ? "class='ativo'"  : "" %>>
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-semanalmente" value="Semanalmente" data-periodo-deposito-input
+                                    <%- data.input_values && data.input_values.periodo_deposito === "Semanalmente" ? "checked"  : "" %>
+                                    />
 									Semanalmente
 								</label>
 
-								<label for="periodo-deposito-quinzenalmente">
-									<input type="radio" name="periodo_deposito" id="periodo-deposito-quinzenalmente" value="quinzenalmente" data-periodo-deposito-input />
+								<label for="periodo-deposito-quinzenalmente" <%- data.input_values && data.input_values.periodo_deposito === "Quinzenalmente" ? "class='ativo'"  : "" %>>
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-quinzenalmente" value="Quinzenalmente" data-periodo-deposito-input
+                                    <%- data.input_values && data.input_values.periodo_deposito === "Quinzenalmente" ? "checked"  : "" %>
+                                    />
 									Quinzenalmente
 								</label>
 
-								<label for="periodo-deposito-mensalmente">
-									<input type="radio" name="periodo_deposito" id="periodo-deposito-mensalmente" value="mensalmente" data-periodo-deposito-input />
+								<label for="periodo-deposito-mensalmente" <%- data.input_values && data.input_values.periodo_deposito === "Mensalmente" ? "class='ativo'"  : "" %>>
+									<input type="radio" name="periodo_deposito" id="periodo-deposito-mensalmente" value="Mensalmente" data-periodo-deposito-input
+                                    <%- data.input_values && data.input_values.periodo_deposito === "Mensalmente" ? "checked"  : "" %>
+                                    />
 									Mensalmente
-								</label>
-
-								<label for="periodo-deposito-anualmente">
-									<input type="radio" name="periodo_deposito" id="periodo-deposito-anualmente" value="anualmente" data-periodo-deposito-input />
-									Anualmente
 								</label>
 							</div>
 						</div>
 					</button>
 
-					<p>Para atingir a meta: <b>Viajar nas férias com a família</b>, destinando <b>R$ 90,00</b> <b>mensalmente</b>, levará cerca de <b>12 meses</b></p>
+                    <%- data.errors && data.errors.periodo_deposito_error ? `<span class='error-message'>${data.errors.periodo_deposito_error.msg}</span>` : "" %>
+
+					<p>Para atingir a meta: <b data-input-meta-preview="nome-meta"><%- data.input_values && data.input_values.nome_meta ? data.input_values.nome_meta : "------------" %></b> de valor R$ <b data-input-meta-preview="valor-meta"><%- data.input_values && data.input_values.valor_meta ? data.input_values.valor_meta : "------------" %></b>, destinando R$ <b data-input-meta-preview="valor-destinado"><%- data.input_values && data.input_values.valor_destinado ? data.input_values.valor_destinado : "------------" %></b>, levará cerca de <b data-input-meta-preview="periodo-deposito"><%- data.preview_values && data.preview_values.data_alcancar_meta ? data.preview_values.data_alcancar_meta : "------------" %></b>!</p>
 
 					<button type="submit">Criar meta</button>
 				</form>
 			</section>
-			<!-- Campos para criar uma meta:
-            ! Foto da meta
-            ! Nome da meta
-            ! Valor da meta
-            ! Dinheiro destinado
-            ! Quando o dinheiro será destinado:
-                ? Diariamente
-                ? Semanalmente
-                ? Quinzenalmente
-                ? Mensalmente
-                ? Anualmente -->
-
 			<!-- ? Talvez adicionar "bolinhas" de pergunta do lado dos campos, para maiores explicações -->
 
 			<!-- ? Cada meta deve ter um botão para concluír a meta, descartar a meta, editar a meta, e dizer se não destinou o dinheiro a meta -->

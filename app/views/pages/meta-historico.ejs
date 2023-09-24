@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="O site vai entregar um relatório de tudo o que o usuário efetuou para assim ter um controle melhor." />
+		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+		<%- include('../templates/head.ejs') %>
+
+		<!-- CSS -->
+        <link rel="stylesheet" href="/css/perfil/metas-historico.css">
+
+		<title><%- data.page_name %></title>
+	</head>
+	<body>
+		<%- include('../templates/header-perfil.ejs') %>
+
+		<main>
+			<section id="metas-historico-intro" class=<%- data.errors ? "error-intro" : "" %>>
+				<% if (!data.errors) { %>
+				<h1>Histórico da meta: <%- data.historicoMeta[0].meta.nome_meta %></h1>
+
+				<!-- ! Histórico aqui -->
+
+				<% data.historicoMeta.forEach(itemHistorico => { %>
+				<div>
+					<p>R$ <%- itemHistorico.valor_depositado %></p>
+
+					<p>Período cumprido: <%- itemHistorico.periodo_cumprido ? "Sim" : "Não" %></p>
+
+					<% let data = new Date(itemHistorico.created_at) %>
+					<p><%- data.getDate() %>/<%- String(data.getMonth() + 1).padStart(2, "0") %>/<%- data.getFullYear() %></p>
+				</div>
+				<% }) %>
+                <% } else { %>
+                    <h1>Meta não encontrada!</h1>
+
+                    <p><%- data.errors.historico_meta_error.msg %></p>
+                <% } %> 
+
+				<!-- ? Essa página é temporária -->
+			</section>
+		</main>
+
+		<%- include('../templates/footer.ejs') %>
+	</body>
+</html>

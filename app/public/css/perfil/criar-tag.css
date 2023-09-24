@@ -1,0 +1,48 @@
+/* ! PRIMEIRA SEÇÃO */
+
+#criar-tag-intro {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 40px clamp(30px, 9vw, 50px) 0;
+}
+
+#criar-tag-intro h1 {
+    margin: 0 8px 16px;
+    text-align: center;
+}
+
+#criar-tag-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#criar-tag-form label {
+    margin: 8px;
+}
+
+#criar-tag-form input {
+    height: 48px;
+    margin-bottom: 8px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}
+
+#criar-tag-form input.error {
+    border-color: #ff000033;
+}
+
+#criar-tag-form span.error-message {
+    margin-inline: 8px;
+    color: red;
+    font-size: .8rem;
+}
+
+#criar-tag-form button[type=submit] {
+    height: 64px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--main-gradient);
+    color: white;
+}

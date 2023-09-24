@@ -26,7 +26,11 @@
 					<div id="metas">
 						<% data.metas.forEach(meta => { %>
                             <div class="meta">
-                                <img src="/assets/images/metas/<%- meta.id %>" />
+                                <a href="/historico-meta/<%- meta.id %>" class="historico-meta">
+                                    <img src="/assets/icons/historico-meta.png" alt="Histórico da meta">
+                                </a>
+
+                                <img src="/assets/icons/chart.png" alt="Crescimento"/>
 
                                 <h2><%- meta.nome_meta %></h2>
 

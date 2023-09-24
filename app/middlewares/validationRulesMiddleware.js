@@ -41,8 +41,45 @@ const validationMiddleware = {
         body("duvida")
         .trim()
         .isString()
-        .isLength({min: 1, max: 500})
+        .isLength({min: 1, max: 120})
         .withMessage("Insira uma mensagem até o limite de caracteres!")
+    ],
+    metaValidationRules: [
+        body("nome_meta")
+        .trim()
+        .isString()
+        .isLength({min: 1})
+        .withMessage("Insira um nome para a sua meta!")
+        .isLength({max: 120})
+        .withMessage("Sua meta não pode ultrapassar 120 caracteres!"),
+        body("valor_meta")
+        .isFloat({min: 1})
+        .withMessage("Você não pode criar uma meta com valor menor que R$ 1!")
+        .isFloat({max: 99999999})
+        .withMessage("Você não pode criar uma com valor maior que R$ 99.999.999!"),
+        body("valor_destinado")
+        .isFloat({min: 1})
+        .withMessage("Você deve destinar pelo menos 1 real para a sua meta!")
+        .isFloat({max: 99999999})
+        .withMessage("Você não pode destinar mais de R$ 99.999.999 para a sua meta!"),
+        body("periodo_deposito")
+        .notEmpty()
+        .withMessage("Escolha de quanto em quanto tempo você gostaria que o dinheiro fosse direcionado para essa meta!")
+    ],
+    tagValidationRules: [
+        body("nome_tag")
+        .trim()
+        .isString()
+        .isLength({min: 1})
+        .withMessage("Insira um nome para a sua tag!")
+        .isLength({max: 120})
+        .withMessage("Sua tag não pode ultrapassar 120 caracteres!"),
+        body("cor_tag")
+        .trim()
+        .isString()
+        .withMessage("Selecione uma cor para a sua tag!")
+        .isLength({min: 7, max: 7})
+        .withMessage("Selecione uma cor válida para a sua tag!")
     ]
 }
 

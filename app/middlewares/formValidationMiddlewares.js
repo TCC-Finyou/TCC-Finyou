@@ -8,7 +8,9 @@ class FormValidation {
 		this.cadastroValidation = this.cadastroValidation.bind(this);
 		this.loginValidation = this.loginValidation.bind(this);
 		this.recuperarSenhaValidation = this.recuperarSenhaValidation.bind(this);
-        this.faleConoscoValidation = this.faleConoscoValidation.bind(this);
+		this.faleConoscoValidation = this.faleConoscoValidation.bind(this);
+		this.metaValidation = this.metaValidation.bind(this);
+		this.tagValidation = this.tagValidation.bind(this);
 	}
 
 	cadastroValidation(req, res, next) {
@@ -120,33 +122,30 @@ class FormValidation {
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
-            const {
-                email,
-                duvida
-            } = req.body;
+			const { email, duvida } = req.body;
 
 			const token = req.session.token;
 
-            const email_error = errors.errors.find((error) => error.path === "email");
+			const email_error = errors.errors.find((error) => error.path === "email");
 			const duvida_error = errors.errors.find((error) => error.path === "duvida");
 
-            const userLogged = this.#verifyLogin(token);
+			const userLogged = this.#verifyLogin(token);
 
 			return res.render("pages/fale-conosco.ejs", {
-                data: {
-                    page_name: "Fale conosco",
-                    user_logged: userLogged,
-                    email_sended: false,
-                    input_values: {
-                        email,
-                        duvida
-                    },
-                    errors: {
-                        email_error,
-                        duvida_error
-                    }
-                }
-            });
+				data: {
+					page_name: "Fale conosco",
+					user_logged: userLogged,
+					email_sended: false,
+					input_values: {
+						email,
+						duvida,
+					},
+					errors: {
+						email_error,
+						duvida_error,
+					},
+				},
+			});
 		}
 
 		return next();
@@ -183,7 +182,83 @@ class FormValidation {
 		return next();
 	}
 
-    #confirmacaoSenhaValidation(confirmacao_senha, senha, errors) {
+	metaValidation(req, res, next) {
+		const errors = validationResult(req);
+        const valor_destinado = Number(req.body.valor_destinado);
+        const valor_meta = Number(req.body.valor_meta);
+
+		this.#verifyValorMeta(valor_meta, valor_destinado, errors);
+
+		if (!errors.isEmpty()) {
+			const { nome_meta, periodo_deposito } = req.body;
+			const premium = req.session.premium;
+
+			const nome_meta_error = errors.errors.find((error) => error.path === "nome_meta");
+			const valor_meta_error = errors.errors.find((error) => error.path === "valor_meta");
+			const valor_destinado_error = errors.errors.find((error) => error.path === "valor_destinado");
+			const periodo_deposito_error = errors.errors.find((error) => error.path === "periodo_deposito");
+			let data_alcancar_meta;
+
+			if ((valor_meta && valor_meta > 0) && (valor_destinado && valor_destinado > 0) && periodo_deposito) {
+				data_alcancar_meta = this.#savePreviewValue(valor_meta, valor_destinado, periodo_deposito);
+			}
+
+			return res.render("pages/criar-meta.ejs", {
+				data: {
+					page_name: "Cadastro meta",
+					premium,
+					input_values: {
+						nome_meta,
+						valor_meta,
+						valor_destinado,
+						periodo_deposito,
+					},
+					errors: {
+						nome_meta_error,
+						valor_meta_error,
+						valor_destinado_error,
+						periodo_deposito_error,
+					},
+					preview_values: {
+						data_alcancar_meta,
+					},
+				},
+			});
+		}
+
+		return next();
+	}
+
+	tagValidation(req, res, next) {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			const { nome_tag, cor_tag } = req.body;
+			const premium = req.session.premium;
+
+			const nome_tag_error = errors.errors.find((error) => error.path === "nome_tag");
+			const cor_tag_error = errors.errors.find((error) => error.path === "cor_tag");
+
+			return res.render("pages/criar-tag.ejs", {
+				data: {
+					page_name: "Criar tag",
+					premium,
+					input_values: {
+						nome_tag,
+						cor_tag,
+					},
+					errors: {
+						nome_tag_error,
+						cor_tag_error,
+					},
+				},
+			});
+		}
+
+		return next();
+	}
+
+	#confirmacaoSenhaValidation(confirmacao_senha, senha, errors) {
 		if (confirmacao_senha !== senha) {
 			errors.errors.push({
 				msg: "As senhas devem ser iguais!",
@@ -192,19 +267,60 @@ class FormValidation {
 		}
 	}
 
-    #verifyLogin(token) {
-        if (!token) {
-            return false;
-        } else {
-            try {
-                jwt.verify(token, process.env.SECRET);
+	#verifyLogin(token) {
+		if (!token) {
+			return false;
+		} else {
+			try {
+				jwt.verify(token, process.env.SECRET);
 
-                return true;
-            } catch (error) {
-                return false;
-            }
-        }
-    }
+				return true;
+			} catch (error) {
+				return false;
+			}
+		}
+	}
+
+	#verifyValorMeta(valor_meta, valor_destinado, errors) {
+		if (valor_meta < valor_destinado) {
+			errors.errors.push(
+				{
+					msg: "Não é possível destinar um valor maior que o valor total da meta!",
+					path: "valor_meta",
+				},
+				{
+					msg: "Não é possível destinar um valor maior que o valor total da meta!",
+					path: "valor_destinado",
+				}
+			);
+		}
+	}
+
+	#savePreviewValue(valor_meta, valor_destinado, periodo_deposito) {
+		let tempoAlcancarMeta = Math.ceil(valor_meta / valor_destinado);
+
+		switch (periodo_deposito) {
+			case "Diariamente":
+				{
+					return tempoAlcancarMeta === 1 ? `${tempoAlcancarMeta} dia` : `${tempoAlcancarMeta} dias`;
+				}
+
+			case "Semanalmente":
+				{
+					return tempoAlcancarMeta === 1 ? `${tempoAlcancarMeta} semana` : `${tempoAlcancarMeta} semanas`;
+				}
+
+			case "Quinzenalmente":
+				{
+					return tempoAlcancarMeta === 1 ? `${tempoAlcancarMeta} quinzena` : `${tempoAlcancarMeta} quinzenas`;
+				}
+
+			case "Mensalmente":
+				{
+					return tempoAlcancarMeta === 1 ? `${tempoAlcancarMeta} mês` : `${tempoAlcancarMeta} meses`;
+				}
+		}
+	}
 }
 
 const FormValidationMiddleware = new FormValidation();

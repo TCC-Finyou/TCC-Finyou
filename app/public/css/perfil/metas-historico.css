@@ -1,0 +1,13 @@
+.error-intro {
+    padding: 80px clamp(30px, 9vw, 50px);
+}
+
+.error-intro h1 {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.error-intro p {
+    font-size: 1.1rem;
+    text-align: center;
+}

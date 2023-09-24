@@ -15,7 +15,7 @@
     background-color: var(--background-darker-color);
 }
 
-#metas-intro a {
+#metas-container > a {
     display: block;
     width: 100%;
     max-width: 320px;
@@ -48,7 +48,13 @@
     box-shadow: 0 0 3px rgba(0, 0, 0, .3);
 }
 
-#metas .meta img {
+#metas .meta a.historico-meta {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#metas .meta > img {
     position: absolute;
     top: 0;
     left: 50%;

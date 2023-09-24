@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" O usuário vai poder criar tags com nomes para que assim sempre que concluir algo ou se quiser lembrar-se, é soó criar a tag.">
+    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
+    <%- include('../templates/head.ejs') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/perfil/criar-tag.css">
+
+    <title><%- data.page_name %></title>
+</head>
+<body>
+    <%- include('../templates/header-perfil.ejs') %>
+
+    <main>
+        <section id="criar-tag-intro">
+            <h1>Criar tag</h1>
+
+            <form action="/criar-tag" method="post" id="criar-tag-form">
+                <%- data.errors && data.errors.sistema_error ? `<span class="error-message">${data.errors.sistema_error.msg}</span>` : "" %>
+
+                <label for="nome-tag">Defina o nome da sua tag</label>
+                <input type="text" name="nome_tag" id="nome-tag" placeholder="Nome da sua tag"
+                <%- data.input_values ? `value="${data.input_values.nome_tag}"` : "" %>
+                <%- data.errors && data.errors.nome_tag_error ? `class="error"` : "" %>
+                />
+
+                <%- data.errors && data.errors.nome_tag_error ? `<span class='error-message'>${data.errors.nome_tag_error.msg}</span>` : "" %>
+
+                <label for="cor-tag">Defina o quando essa meta irá receber dinheiro</label>
+                <input type="color" name="cor_tag" id="cor-tag"
+                value="<%- data.input_values ? data.input_values.cor_tag : `#${Math.floor(Math.random()*16777215).toString(16)}` %>"
+                <%- data.errors && data.errors.cor_tag_error ? `class="error"` : "" %>
+                >
+
+                <%- data.errors && data.errors.cor_tag_error ? `<span class='error-message'>${data.errors.cor_tag_error.msg}</span>` : "" %>
+
+                <button type="submit">Criar tag</button>
+            </form>
+        </section>
+    </main>
+
+    <%- include('../templates/footer.ejs') %>
+</body>
+</html>

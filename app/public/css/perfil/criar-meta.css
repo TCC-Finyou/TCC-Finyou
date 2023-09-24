@@ -1,27 +1,27 @@
 /* ! PRIMEIRA SEÇÃO */
 
-#criar-metas-intro {
+#criar-meta-intro {
     max-width: 600px;
     margin-inline: auto;
     padding: 40px clamp(30px, 9vw, 50px) 0;
 }
 
-#criar-metas-intro h1 {
+#criar-meta-intro h1 {
     margin: 0 8px 16px;
     text-align: center;
 }
 
-#criar-metas-form {
+#criar-meta-form {
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
 }
 
-#criar-metas-form label {
+#criar-meta-form label {
     margin: 8px;
 }
 
-#criar-metas-form input {
+#criar-meta-form input {
     height: 48px;
     margin-bottom: 8px;
     padding-inline: 8px;
@@ -29,31 +29,7 @@
     border-radius: 8px;
 }
 
-#criar-metas-form input[type=file] {
-    display: none;
-}
-
-label#imagem-selector {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    margin: 8px 0;
-    padding-inline: 8px;
-    border: 2px solid #00000033;
-    border-radius: 8px;
-    background-color: white;
-    cursor: pointer;
-}
-
-#imagem-meta-preview {
-    
-}
-
-#imagem-meta-preview.ativo {
-
-}
-
-#criar-metas-form button[type=button] {
+#criar-meta-form button[type=button] {
     position: relative;
     display: flex;
     align-items: center;
@@ -67,15 +43,15 @@ label#imagem-selector {
     transition: border-radius 350ms ease;
 }
 
-#criar-metas-form button[type=button].ativo {
+#criar-meta-form button[type=button].ativo {
     border-radius: 8px 8px 0 0;
 }
 
-#criar-metas-form button[type=button] img {
+#criar-meta-form button[type=button] img {
     transition: transform 350ms ease;
 }
 
-#criar-metas-form button[type=button].ativo img {
+#criar-meta-form button[type=button].ativo img {
     transform: rotate(-180deg);
 }
 
@@ -103,7 +79,7 @@ label#imagem-selector {
     z-index: 3;
 }
 
-#criar-metas-form button[type=button].ativo #periodo-deposito-dropdown {
+#criar-meta-form button[type=button].ativo #periodo-deposito-dropdown {
     transform: translateY(0);
 }
 
@@ -127,7 +103,7 @@ label#imagem-selector {
     display: none;
 }
 
-#criar-metas-form .input-container {
+#criar-meta-form .input-container {
     position: relative;
     margin-bottom: 8px;
     border: 2px solid #00000033;
@@ -135,15 +111,15 @@ label#imagem-selector {
     background-color: white;
 }
 
-#criar-metas-form .input-container input {
+#criar-meta-form .input-container input {
     width: 100%;
     margin: 0;
-    padding-left: 40px;
+    padding-left: 45px;
     border: none;
     background: none;
 }
 
-#criar-metas-form .input-container span {
+#criar-meta-form .input-container span {
     position: absolute;
     top: 50%;
     left: 8px;
@@ -151,23 +127,24 @@ label#imagem-selector {
     cursor: pointer;
 }
 
-#criar-metas-form input.error,
-#criar-metas-form .input-container.error {
+#criar-meta-form input.error,
+#criar-meta-form .input-container.error,
+#criar-meta-form button.error {
     border-color: #ff000033;
 }
 
-#criar-metas-form span.error-message {
+#criar-meta-form span.error-message {
     margin-inline: 8px;
     color: red;
     font-size: .8rem;
 }
 
-#criar-metas-form p {
+#criar-meta-form p {
     margin-top: 8px;
     font-size: .9rem;
 }
 
-#criar-metas-form button[type=submit] {
+#criar-meta-form button[type=submit] {
     height: 64px;
     margin-top: 24px;
     border-radius: 8px;
