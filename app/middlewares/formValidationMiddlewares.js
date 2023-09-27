@@ -15,9 +15,10 @@ class FormValidation {
 
 	cadastroValidation(req, res, next) {
 		const errors = validationResult(req);
-		const { senha, confirmacao_senha } = req.body;
+		const { senha, confirmacao_senha, termos_condicoes } = req.body;
 
 		this.#confirmacaoSenhaValidation(confirmacao_senha, senha, errors);
+        this.#confirmacaoTermosCondicoes(termos_condicoes, errors);
 
 		if (!errors.isEmpty()) {
 			const { nome, email, data_nascimento } = req.body;
@@ -27,6 +28,7 @@ class FormValidation {
 			const data_nascimento_error = errors.errors.find((error) => error.path === "data_nascimento");
 			const senha_error = errors.errors.find((error) => error.path === "senha");
 			const confirmacao_senha_error = errors.errors.find((error) => error.path === "confirmacao_senha");
+            const termos_condicoes_error = errors.errors.find((error) => error.path === "termos_condicoes");
 
 			return res.render("pages/cadastro.ejs", {
 				data: {
@@ -37,6 +39,7 @@ class FormValidation {
 						data_nascimento,
 						senha,
 						confirmacao_senha,
+                        termos_condicoes
 					},
 					errors: {
 						nome_error,
@@ -44,6 +47,7 @@ class FormValidation {
 						data_nascimento_error,
 						senha_error,
 						confirmacao_senha_error,
+                        termos_condicoes_error
 					},
 				},
 			});
@@ -266,6 +270,15 @@ class FormValidation {
 			});
 		}
 	}
+
+    #confirmacaoTermosCondicoes(termos_condicoes, errors) {
+        if (termos_condicoes !== "on") {
+            errors.errors.push({
+                msg: "Você deve aceitar os termos e condições para criar uma conta!",
+                path: "termos_condicoes"
+            })
+        }
+    }
 
 	#verifyLogin(token) {
 		if (!token) {

@@ -20,7 +20,11 @@
     margin: 8px;
 }
 
-#autenticacao-form input {
+#autenticacao-form label.error {
+    color: red;
+}
+
+#autenticacao-form input:not([type=checkbox]) {
     height: 48px;
     margin-bottom: 8px;
     padding-inline: 8px;
@@ -68,6 +72,11 @@
     font-size: .8rem;
 }
 
+#autenticacao-form label a {
+    color: var(--text-light-color);
+    text-decoration: underline;
+}
+
 #autenticacao-form button {
     height: 64px;
     margin-top: 24px;
@@ -76,7 +85,7 @@
     color: white;
 }
 
-#autenticacao-intro a {
+#autenticacao-intro > a {
     display: block;
     color: var(--text-light-color);
     text-align: center;

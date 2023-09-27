@@ -8,15 +8,16 @@ datasource db {
 }
 
 model Usuario {
-    id              String   @id @default(uuid())
-    customer_id     String?  @unique
-    nome            String   @db.VarChar(255)
-    email           String   @unique @db.VarChar(120)
-    senha           String   @db.Char(60)
-    data_nascimento DateTime @db.Date
-    premium         Int      @default(0) @db.TinyInt
-    created_at      DateTime @default(now())
-    updated_at      DateTime @updatedAt
+    id               String   @id @default(uuid())
+    customer_id      String?  @unique
+    nome             String   @db.VarChar(255)
+    email            String   @unique @db.VarChar(120)
+    senha            String   @db.Char(60)
+    data_nascimento  DateTime @db.Date
+    premium          Int      @default(0) @db.TinyInt
+    termos_condicoes Int      @db.TinyInt
+    created_at       DateTime @default(now())
+    updated_at       DateTime @updatedAt
 
     tokens Token[]
     metas  Meta[]
@@ -60,8 +61,8 @@ model Tag {
     id         String   @id @default(uuid())
     user_id    String
     nome_tag   String   @db.VarChar(120)
-    cor_tag   String   @db.Char(7)
-    tag_global Int      @db.TinyInt @default(0)
+    cor_tag    String   @db.Char(7)
+    tag_global Int      @default(0) @db.TinyInt
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 

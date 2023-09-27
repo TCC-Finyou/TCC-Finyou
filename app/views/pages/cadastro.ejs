@@ -52,6 +52,7 @@
                 <%- data.errors && data.errors.data_nascimento_error ? `<span class='error-message'>${data.errors.data_nascimento_error.msg}</span>` : "" %>
 
                 <label for="senha">Senha</label>
+
                 <div class="input-container <%- data.errors && data.errors.senha_error ? `error` : "" %>">
                     <input type="password" placeholder="Senha" id="senha" name="senha"
                     <%- data.input_values ? `value="${data.input_values.senha}"` : "" %>
@@ -75,6 +76,15 @@
                 </div>
 
                 <%- data.errors && data.errors.confirmacao_senha_error ? `<span class='error-message'>${data.errors.confirmacao_senha_error.msg}</span>` : "" %>
+
+                <label for="termos-condicoes" <%- data.errors && data.errors.termos_condicoes_error ? `class="error"` : "" %>>
+                    <input type="checkbox" name="termos_condicoes" id="termos-condicoes"
+                    <%- data.input_values && data.input_values.termos_condicoes === "on" ? "checked" : "" %>
+                    >
+                    Li e aceito os <a href="/politicas-privacidade">termos e condições</a>!
+                </label>
+
+                <%- data.errors && data.errors.termos_condicoes_error ? `<span class='error-message'>${data.errors.termos_condicoes_error.msg}</span>` : "" %>
 
                 <button type="submit">Cadastre-se</button>
             </form>

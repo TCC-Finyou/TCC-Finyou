@@ -1,82 +1,82 @@
 const usuarioModel = require("../../../models/Usuario");
 
 class CadastroController {
-    constructor() {
-        this.createUser = this.createUser.bind(this);
-    }
+	constructor() {
+		this.createUser = this.createUser.bind(this);
+	}
 
-    async createUser(req, res) {
-        const {
-            nome,
-            email,
-            data_nascimento,
-            senha,
-            confirmacao_senha
-        } = req.body;
+	async createUser(req, res) {
+		const { nome, email, data_nascimento, senha, confirmacao_senha, termos_condicoes } = req.body;
+        let termos_condicoes_banco_dados;
 
-        const senhaCriptografada = req.encryptedPassword;
-        const data_nascimento_formated = this.#formatDataNascimento(data_nascimento);
-
-        const data = {
-            nome,
-            email,
-            data_nascimento: data_nascimento_formated,
-            senha: senhaCriptografada
+        if (termos_condicoes === "on") {
+            termos_condicoes_banco_dados = 1;
         }
 
-        try {
-            await usuarioModel.createUser(data)
+		const senhaCriptografada = req.encryptedPassword;
+		const data_nascimento_formated = this.#formatDataNascimento(data_nascimento);
 
-            return res.redirect("/login");
-        } catch (erro) {
-            console.log(erro);
+		try {
+			await usuarioModel.createUser({
+				nome,
+				email,
+				data_nascimento: data_nascimento_formated,
+				senha: senhaCriptografada,
+                termos_condicoes: termos_condicoes_banco_dados
+			});
 
-            if (erro.code === "P2002") {
-                return res.render("pages/cadastro.ejs", {
-                    data: {
-                        page_name: "Cadastro",
-                        input_values: {
-                            nome,
-                            email,
-                            data_nascimento,
-                            senha,
-                            confirmacao_senha
-                        },
-                        errors: {
-                            email_error: {
-                                msg: "Email já cadastrado!"
-                            }
-                        }
-                    }
-                });
-            }
+			return res.redirect("/login");
+		} catch (erro) {
+			console.log(erro);
 
-            return res.render("pages/cadastro.ejs", {
-                data: {
-                    page_name: "Cadastro",
-                    input_values: {
-                        nome,
-                        email,
-                        data_nascimento,
-                        senha,
-                        confirmacao_senha
-                    },
-                    errors: {
-                        sistema_error: {
-                            msg: "Erro de sistema, tente novamente mais tarde!"
-                        }
-                    }
-                }
-            });
-        }
-    }
+			if (erro.code === "P2002") {
+				return res.render("pages/cadastro.ejs", {
+					data: {
+						page_name: "Cadastro",
+						input_values: {
+							nome,
+							email,
+							data_nascimento,
+							senha,
+							confirmacao_senha,
+							termos_condicoes,
+						},
+						errors: {
+							email_error: {
+								msg: "Email já cadastrado!",
+							},
+						},
+					},
+				});
+			}
 
-    #formatDataNascimento(dataNascimento) {
-        const dataNascimentoArray = dataNascimento.split('/');
-        const dataNascimentoFormated = new Date(`${dataNascimentoArray[2]}/${dataNascimentoArray[1]}/${dataNascimentoArray[0]}`);
+			return res.render("pages/cadastro.ejs", {
+				data: {
+					page_name: "Cadastro",
+					input_values: {
+						nome,
+						email,
+						data_nascimento,
+						senha,
+						confirmacao_senha,
+						termos_condicoes,
+					},
+					errors: {
+						sistema_error: {
+							msg: "Erro de sistema, tente novamente mais tarde!",
+						},
+					},
+				},
+			});
+		}
+	}
 
-        return dataNascimentoFormated;
-    }
+	#formatDataNascimento(dataNascimento) {
+		const dataNascimentoArray = dataNascimento.split("/");
+		const dataNascimentoFormated = new Date(`${dataNascimentoArray[2]}/${dataNascimentoArray[1]}/${dataNascimentoArray[0]}`);
+
+		return dataNascimentoFormated;
+	}
 }
 
 const CadastroControllerCreate = new CadastroController();

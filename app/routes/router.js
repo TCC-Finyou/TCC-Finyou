@@ -10,6 +10,7 @@ const upload = multer({ storage });
 const homeControllerRead = require("../controllers/info-pages/homeControllerRead");
 const sobreControllerRead = require("../controllers/info-pages/sobreControllerRead");
 const pacoteControllerRead = require("../controllers/info-pages/pacoteControllerRead");
+const politicasPrivacidadeControllerRead = require("../controllers/info-pages/politicasPrivacidadeControllerRead");
 const faleConoscoControllerRead = require("../controllers/info-pages/faleConosco/faleConoscoControllerRead");
 
 // * Recuperar senha
@@ -88,6 +89,9 @@ sobreControllerRead.getPage);
 
 router.get("/pacotes",
 pacoteControllerRead.getPage);
+
+router.get("/politicas-privacidade",
+politicasPrivacidadeControllerRead.getPage);
 
 router.get("/fale-conosco",
 faleConoscoControllerRead.getPage);
