@@ -9,7 +9,8 @@ class HistoricoMeta {
             include: {
                 meta: {
                     select: {
-                        nome_meta: true
+                        nome_meta: true,
+                        valor_meta: true,
                     }
                 }
             }

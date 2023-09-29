@@ -26,8 +26,9 @@
 					<div id="metas">
 						<% data.metas.forEach(meta => { %>
                             <div class="meta">
-                                <a href="/historico-meta/<%- meta.id %>" class="historico-meta">
-                                    <img src="/assets/icons/historico-meta.png" alt="Histórico da meta">
+                                <a href="/editar-meta/<%- meta.id %>" class="editar-meta">
+                                    <img src="/assets/icons/editar-meta.png" alt="Editar meta">
+                                    Editar
                                 </a>
 
                                 <img src="/assets/icons/chart.png" alt="Crescimento"/>
@@ -40,6 +41,10 @@
                                 <p class="progress-text">Meses para atingir a meta: 1</p>
 
                                 <div class="progress-bar"></div>
+
+                                <a href="/historico-meta/<%- meta.id %>" class="historico-meta">
+                                    Verificar histórico
+                                </a>
                             </div>
 						<% }) %>
 					</div>

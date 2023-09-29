@@ -113,7 +113,7 @@ class CriarMetaController {
 					valor_depositado: meta.valor_destinado,
 				});
 			},
-			{ connection: { password: process.env.REDISPASSWORD }, concurrency: 10 }
+			{ connection: { password: process.env.REDISPASSWORD } }
 		);
 	}
 }

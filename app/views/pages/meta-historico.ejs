@@ -1,48 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content="O site vai entregar um relatório de tudo o que o usuário efetuou para assim ter um controle melhor." />
-		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
-		<%- include('../templates/head.ejs') %>
 
-		<!-- CSS -->
-        <link rel="stylesheet" href="/css/perfil/metas-historico.css">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="O site vai entregar um relatório de tudo o que o usuário efetuou para assim ter um controle melhor." />
+    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+    <%- include('../templates/head.ejs') %>
 
-		<title><%- data.page_name %></title>
-	</head>
-	<body>
-		<%- include('../templates/header-perfil.ejs') %>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/perfil/metas-historico.css">
 
-		<main>
-			<section id="metas-historico-intro" class=<%- data.errors ? "error-intro" : "" %>>
-				<% if (!data.errors) { %>
-				<h1>Histórico da meta: <%- data.historicoMeta[0].meta.nome_meta %></h1>
+    <title><%- data.page_name %></title>
+</head>
 
-				<!-- ! Histórico aqui -->
+<body>
+    <%- include('../templates/header-perfil.ejs') %>
 
-				<% data.historicoMeta.forEach(itemHistorico => { %>
-				<div>
-					<p>R$ <%- itemHistorico.valor_depositado %></p>
+    <main>
+        <section id="metas-historico-intro" class=<%- data.errors ? "error-intro" : "" %>>
+            <% if (!data.errors) { %>
+            <h1>Histórico da meta</h1>
 
-					<p>Período cumprido: <%- itemHistorico.periodo_cumprido ? "Sim" : "Não" %></p>
+            <h2><%- data.historicoMeta[0].meta.nome_meta %></h2>
 
-					<% let data = new Date(itemHistorico.created_at) %>
-					<p><%- data.getDate() %>/<%- String(data.getMonth() + 1).padStart(2, "0") %>/<%- data.getFullYear() %></p>
-				</div>
-				<% }) %>
-                <% } else { %>
-                    <h1>Meta não encontrada!</h1>
+            <div id="progress-bar">
+                <div id ="inner-progress-bar">
+                    <span>758,20</span>
+                </div>
 
-                    <p><%- data.errors.historico_meta_error.msg %></p>
-                <% } %> 
+                <span><%- data.historicoMeta[0].meta.valor_meta %></span>
+            </div>
 
-				<!-- ? Essa página é temporária -->
-			</section>
-		</main>
+            <div id="historico-meta">
+                <% data.historicoMeta.forEach(itemHistorico => { %>
+                <div>
+                    <button class="botao-periodo-cumprido">
+                        <img src="/assets/icons/periodo-cumprido-meta.png" alt="Período cumprido">
+                    </button>
 
-		<%- include('../templates/footer.ejs') %>
-	</body>
+                    <div>
+                        <% let data = new Date(itemHistorico.created_at) %>
+                        <p class="data-reserva"><%- data.getDate() %>/<%- String(data.getMonth() + 1).padStart(2, "0") %>/<%- data.getFullYear() %></p>
+
+                        <p class="periodo-cumprido"><%- itemHistorico.periodo_cumprido ? "Período cumprido" : "Período não cumprido" %></p>
+                    </div>
+
+                    <p class="valor-depositado">R$ <%- itemHistorico.valor_depositado %></p>
+                </div>
+                <% }) %>
+            </div>
+
+            <% } else { %>
+            <h1>Meta não encontrada!</h1>
+
+            <p><%- data.errors.historico_meta_error.msg %></p>
+            <% } %>
+
+            <!-- ? Essa página é temporária -->
+        </section>
+    </main>
+
+    <%- include('../templates/footer.ejs') %>
+</body>
+
 </html>

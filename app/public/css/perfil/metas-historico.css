@@ -1,13 +1,70 @@
-.error-intro {
+/* ! PRIMEIRA SEÇÃO */
+
+#metas-historico-intro.error-intro {
     padding: 80px clamp(30px, 9vw, 50px);
 }
 
-.error-intro h1 {
+#metas-historico-intro.error-intro h1 {
     margin-bottom: 16px;
     text-align: center;
 }
 
-.error-intro p {
+#metas-historico-intro.error-intro p {
     font-size: 1.1rem;
     text-align: center;
+}
+
+#metas-historico-intro {
+    padding-top: 80px;
+}
+
+#metas-historico-intro h1 {
+    text-align: center;
+}
+
+#metas-historico-intro h2 {
+    margin-top: 48px;
+    color: var(--text-main-color);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+#progress-bar {
+    position: relative;
+    max-width: 400px;
+    height: 40px;
+    margin: 16px auto 40px;
+    border-radius: 24px;
+    background-color: var(--main-color);
+}
+
+#progress-bar > span {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    color: white;
+    font-weight: 700;
+    transform: translateY(-50%);
+}
+
+#inner-progress-bar {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    border-radius: 24px;
+    outline: 1px solid white;
+    background-color: var(--main-dark-color);
+}
+
+#inner-progress-bar > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    font-weight: 700;
+    transform: translate(-50%, -50%);
+}
+
+#historico-meta {
+
 }
