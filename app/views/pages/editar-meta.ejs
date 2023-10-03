@@ -22,8 +22,9 @@
     <%- include('../templates/header-perfil.ejs') %>
 
     <main>
-        <section id="configurar-meta-intro" <%- data.errors ? "class='error-intro'" : "" %>>
+        <section id="configurar-meta-intro" <%- data.errors && data.errors.editar_meta_error ? "class='error-intro'" : "" %>>
             <% if (!data.errors || (data.errors && !data.errors.editar_meta_error)) { %>
+
             <h1>Editar meta: <%- data.input_values.nome_meta %></h1>
 
             <form action="<%- `/editar-meta/${data.input_values.id}` %>" method="post" id="configurar-meta-form">
@@ -87,7 +88,7 @@
 
                 <p>Para atingir a meta: <b data-input-meta-preview="nome-meta"><%- data.input_values && data.input_values.nome_meta ? data.input_values.nome_meta : "------------" %></b> de valor R$ <b data-input-meta-preview="valor-meta"><%- data.input_values && data.input_values.valor_meta ? data.input_values.valor_meta : "------------" %></b>, destinando R$ <b data-input-meta-preview="valor-destinado"><%- data.input_values && data.input_values.valor_destinado ? data.input_values.valor_destinado : "------------" %></b>, levará cerca de <b data-input-meta-preview="periodo-deposito"><%- data.preview_values && data.preview_values.data_alcancar_meta ? data.preview_values.data_alcancar_meta : "------------" %></b>!</p>
 
-                <button type="submit">Criar meta</button>
+                <button type="submit">Editar meta</button>
             </form>
             <% } else { %>
             <h1>Meta não encontrada!</h1>

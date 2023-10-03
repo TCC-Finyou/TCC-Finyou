@@ -32,7 +32,11 @@
 					<div id="tags">
 						<% data.tags.forEach(tag => { %>
 						<div class="tag">
-							<div class="tag-color" style="background-color: <%- tag.cor_tag %>"></div>
+                            <a href="/editar-tag/<%- tag.id %>" class="editar-tag">
+                                <img src="/assets/icons/editar.png" alt="Editar tag">
+                            </a>
+
+							<div class="tag-color" <%- `style="background-color: ${tag.cor_tag}"` %>></div>
 
 							<h3><%- tag.nome_tag %></h3>
 

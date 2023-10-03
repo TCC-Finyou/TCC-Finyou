@@ -107,29 +107,25 @@ class EditarMetaController {
 		switch (meta.periodo_deposito) {
 			case "Diariamente":
 				{
-					periodoDeposito = 20000;
-					// periodoDeposito = "0 0 * * *"
+					periodoDeposito = "0 0 * * *"
 				}
 				break;
 
 			case "Semanalmente":
 				{
-					periodoDeposito = 30000;
-					// periodoDeposito = "0 0 * * 0"
+					periodoDeposito = "0 0 * * 0"
 				}
 				break;
 
 			case "Quinzenalmente":
 				{
-					periodoDeposito = 40000;
-					// periodoDeposito = "0 0 1,16 * *"
+					periodoDeposito = "0 0 1,16 * *"
 				}
 				break;
 
 			case "Mensalmente":
 				{
-					periodoDeposito = 60000;
-					// periodoDeposito = "0 0 1 * *"
+					periodoDeposito = "0 0 1 * *"
 				}
 				break;
 		}

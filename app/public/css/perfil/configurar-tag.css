@@ -1,27 +1,44 @@
 /* ! PRIMEIRA SEÇÃO */
 
-#criar-tag-intro {
+#configurar-tag-intro.error-intro {
+    padding: 80px clamp(30px, 9vw, 50px);
+}
+
+#configurar-tag-intro.error-intro h1 {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+#configurar-tag-intro.error-intro p {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+#configurar-tag-intro {
     max-width: 600px;
     margin-inline: auto;
     padding: 40px clamp(30px, 9vw, 50px) 0;
 }
 
-#criar-tag-intro h1 {
+#configurar-tag-intro h1 {
     margin: 0 8px 16px;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-#criar-tag-form {
+#configurar-tag-form {
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
 }
 
-#criar-tag-form label {
+#configurar-tag-form label {
     margin: 8px;
 }
 
-#criar-tag-form input {
+#configurar-tag-form input {
     height: 48px;
     margin-bottom: 8px;
     padding-inline: 8px;
@@ -29,17 +46,17 @@
     border-radius: 8px;
 }
 
-#criar-tag-form input.error {
+#configurar-tag-form input.error {
     border-color: #ff000033;
 }
 
-#criar-tag-form span.error-message {
+#configurar-tag-form span.error-message {
     margin-inline: 8px;
     color: red;
     font-size: .8rem;
 }
 
-#criar-tag-form button[type=submit] {
+#configurar-tag-form button[type=submit] {
     height: 64px;
     margin-top: 24px;
     border-radius: 8px;

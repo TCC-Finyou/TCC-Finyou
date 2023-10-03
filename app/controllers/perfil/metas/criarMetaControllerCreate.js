@@ -103,37 +103,30 @@ class CriarMetaController {
 		switch (meta.periodo_deposito) {
 			case "Diariamente":
 				{
-					periodoDeposito = 20000;
-					// periodoDeposito = "0 0 * * *"
+					periodoDeposito = "0 0 * * *"
 				}
 				break;
 
 			case "Semanalmente":
 				{
-					periodoDeposito = 30000;
-					// periodoDeposito = "0 0 * * 0"
+					periodoDeposito = 20000
 				}
 				break;
 
 			case "Quinzenalmente":
 				{
-					periodoDeposito = 40000;
-					// periodoDeposito = "0 0 1,16 * *"
+					periodoDeposito = "0 0 1,16 * *"
 				}
 				break;
 
 			case "Mensalmente":
 				{
-					periodoDeposito = 60000;
-					// periodoDeposito = "0 0 1 * *"
+					periodoDeposito = "0 0 1 * *"
 				}
 				break;
 		}
 
 		await this.queue.add("metaJob", {}, { attempts: 3, backoff: { type: "exponential", delay: 10000 }, repeat: { every: periodoDeposito, tz: "America/Sao_Paulo" }, jobId: meta.id });
-
-		// await this.queue.removeRepeatableByKey();
-		// ! Para atualizar um job, quando eu alterar uma meta, eu devo deletar o job que está atualizando o histórico e criar um novo com os novos dados que se alteraram
 
 		new Worker(
 			"meta",

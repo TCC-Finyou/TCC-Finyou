@@ -44,6 +44,7 @@
 }
 
 #tags .tag {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,10 +52,17 @@
     width: 100%;
     max-width: 400px;
     height: 80px;
-    padding: 15px clamp(20px, 9vw, 40px);
+    padding: 15px clamp(20px, 9vw, 40px) 15px 60px;
     border-radius: 400px;
     background-color: white;
     box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+
+#tags .tag .editar-tag {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
 }
 
 #tags .tag .tag-color {

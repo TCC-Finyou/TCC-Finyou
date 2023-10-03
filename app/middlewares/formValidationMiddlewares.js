@@ -11,7 +11,8 @@ class FormValidation {
 		this.faleConoscoValidation = this.faleConoscoValidation.bind(this);
 		this.metaCreateValidation = this.metaCreateValidation.bind(this);
         this.metaUpdateValidation = this.metaUpdateValidation.bind(this);
-		this.tagValidation = this.tagValidation.bind(this);
+		this.tagCreateValidation = this.tagCreateValidation.bind(this);
+        this.tagUpdateValidation = this.tagUpdateValidation.bind(this);
 	}
 
 	cadastroValidation(req, res, next) {
@@ -283,7 +284,7 @@ class FormValidation {
 		return next();
 	}
 
-	tagValidation(req, res, next) {
+	tagCreateValidation(req, res, next) {
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
@@ -298,6 +299,37 @@ class FormValidation {
 					page_name: "Criar tag",
 					premium,
 					input_values: {
+						nome_tag,
+						cor_tag,
+					},
+					errors: {
+						nome_tag_error,
+						cor_tag_error,
+					},
+				},
+			});
+		}
+
+		return next();
+	}
+
+    tagUpdateValidation(req, res, next) {
+		const errors = validationResult(req);
+        const { tagId } = req.params;
+
+		if (!errors.isEmpty()) {
+			const { nome_tag, cor_tag } = req.body;
+			const premium = req.session.premium;
+
+			const nome_tag_error = errors.errors.find((error) => error.path === "nome_tag");
+			const cor_tag_error = errors.errors.find((error) => error.path === "cor_tag");
+
+			return res.render("pages/editar-tag.ejs", {
+				data: {
+					page_name: `Editar tag: ${nome_tag}`,
+					premium,
+					input_values: {
+                        id: tagId,
 						nome_tag,
 						cor_tag,
 					},

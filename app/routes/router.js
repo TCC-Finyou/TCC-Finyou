@@ -63,6 +63,10 @@ const criarTagControllerRead = require("../controllers/perfil/tags/criarTagContr
 
 const criarTagControllerCreate = require("../controllers/perfil/tags/criarTagControllerCreate");
 
+const editarTagControllerRead = require("../controllers/perfil/tags/editarTagControllerRead");
+
+const editarTagControllerUpdate = require("../controllers/perfil/tags/editarTagControllerUpdate");
+
 const deletarTagControllerDelete = require("../controllers/perfil/tags/deletarTagControllerDelete");
 
 const questionarioControllerRead = require("../controllers/perfil/questionario/questionarioControllerRead");
@@ -190,8 +194,18 @@ criarTagControllerRead.getPage);
 router.post("/criar-tag",
 authenticationMiddleware.validateJWT,
 validationRulesMiddleware.tagValidationRules,
-formValidationMiddleware.tagValidation,
+formValidationMiddleware.tagCreateValidation,
 criarTagControllerCreate.createTag);
+
+router.get("/editar-tag/:tagId",
+authenticationMiddleware.validateJWT,
+editarTagControllerRead.getPage);
+
+router.post("/editar-tag/:tagId",
+authenticationMiddleware.validateJWT,
+validationRulesMiddleware.tagValidationRules,
+formValidationMiddleware.tagUpdateValidation,
+editarTagControllerUpdate.updateTag);
 
 router.post("/deletar-tag/:tagId",
 authenticationMiddleware.validateJWT,

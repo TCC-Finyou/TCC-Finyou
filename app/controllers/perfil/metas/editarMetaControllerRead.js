@@ -40,6 +40,9 @@ class EditarMetaController {
 				data: {
 					page_name: "Editar meta",
 					premium,
+                    input_values: {
+                        id: metaId
+					},
 					errors: {
 						editar_meta_error: {
 							msg: "Erro de sistema, tente novamente mais tarde!",

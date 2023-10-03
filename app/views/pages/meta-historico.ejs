@@ -33,14 +33,14 @@
                 <span><%- data.historicoMeta[0].meta.valor_meta %></span>
             </div>
 
-            <div id="historico-meta">
+            <div  id="historico-meta">
                 <% data.historicoMeta.forEach(itemHistorico => { %>
-                <div>
+                <div  id="historico-meta-conteudo">
                     <button class="botao-periodo-cumprido">
                         <img src="/assets/icons/periodo-cumprido-meta.png" alt="Período cumprido">
                     </button>
 
-                    <div class="data-periodo">
+                    <div>
                         <% let data = new Date(itemHistorico.created_at) %>
                         <p class="data-reserva"><%- data.getDate() %>/<%- String(data.getMonth() + 1).padStart(2, "0") %>/<%- data.getFullYear() %></p>
 

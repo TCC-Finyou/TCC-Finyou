@@ -65,12 +65,32 @@
     transform: translate(-50%, -50%);
 }
 
-#historico-meta {
+#historico-meta{
+    background-color: #E3E3E3;
+}
+
+#historico-meta-conteudo {
+    padding: 5%;
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: center;
-    background-color: #E3E3E3;
-    padding: 5%;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin-inline: auto;
+}
+
+.data-reserva{
+    font-weight: 600;
+}
+
+.periodo-cumprido{
+    font-size: 0.8rem;
+}
+
+.valor-depositado{
+    color: var(--text-main-blue-color);
+    font-weight: 700;
 }
 

@@ -1,6 +1,14 @@
 const prisma = require("../../server/database/prismaClient");
 
 class Tag {
+    async getTagById(tagId) {
+        return await prisma.tag.findUnique({
+            where: {
+                id: tagId
+            }
+        });
+    }
+
     async getAllTagsFromUser(userId) {
         return await prisma.tag.findMany({
             where: {
