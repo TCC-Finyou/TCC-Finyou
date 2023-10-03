@@ -51,6 +51,10 @@ const criarMetaControllerRead = require("../controllers/perfil/metas/criarMetaCo
 
 const criarMetaControllerCreate = require("../controllers/perfil/metas/criarMetaControllerCreate");
 
+const editarMetaControllerRead = require("../controllers/perfil/metas/editarMetaControllerRead");
+
+const editarMetaControllerUpdate = require("../controllers/perfil/metas/editarMetaControllerUpdate");
+
 const metaHistoricoControllerRead = require("../controllers/perfil/metas/metaHistorico/metaHistoricoControllerRead");
 
 const tagsControllerRead = require("../controllers/perfil/tags/tagsControllerRead");
@@ -158,8 +162,18 @@ criarMetaControllerRead.getPage);
 router.post("/criar-meta",
 authenticationMiddleware.validateJWT,
 validationRulesMiddleware.metaValidationRules,
-formValidationMiddleware.metaValidation,
+formValidationMiddleware.metaCreateValidation,
 criarMetaControllerCreate.createMeta);
+
+router.get("/editar-meta/:metaId",
+authenticationMiddleware.validateJWT,
+editarMetaControllerRead.getPage);
+
+router.post("/editar-meta/:metaId",
+authenticationMiddleware.validateJWT,
+validationRulesMiddleware.metaValidationRules,
+formValidationMiddleware.metaUpdateValidation,
+editarMetaControllerUpdate.updateMeta);
 
 router.get("/historico-meta/:metaId",
 authenticationMiddleware.validateJWT,

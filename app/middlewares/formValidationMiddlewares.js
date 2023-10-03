@@ -9,7 +9,8 @@ class FormValidation {
 		this.loginValidation = this.loginValidation.bind(this);
 		this.recuperarSenhaValidation = this.recuperarSenhaValidation.bind(this);
 		this.faleConoscoValidation = this.faleConoscoValidation.bind(this);
-		this.metaValidation = this.metaValidation.bind(this);
+		this.metaCreateValidation = this.metaCreateValidation.bind(this);
+        this.metaUpdateValidation = this.metaUpdateValidation.bind(this);
 		this.tagValidation = this.tagValidation.bind(this);
 	}
 
@@ -186,7 +187,7 @@ class FormValidation {
 		return next();
 	}
 
-	metaValidation(req, res, next) {
+	metaCreateValidation(req, res, next) {
 		const errors = validationResult(req);
         const valor_destinado = Number(req.body.valor_destinado);
         const valor_meta = Number(req.body.valor_meta);
@@ -203,13 +204,13 @@ class FormValidation {
 			const periodo_deposito_error = errors.errors.find((error) => error.path === "periodo_deposito");
 			let data_alcancar_meta;
 
-			if ((valor_meta && valor_meta > 0) && (valor_destinado && valor_destinado > 0) && periodo_deposito) {
+			if (valor_meta > 0 && valor_destinado > 0 && periodo_deposito) {
 				data_alcancar_meta = this.#savePreviewValue(valor_meta, valor_destinado, periodo_deposito);
 			}
 
 			return res.render("pages/criar-meta.ejs", {
 				data: {
-					page_name: "Cadastro meta",
+					page_name: "Criar meta",
 					premium,
 					input_values: {
 						nome_meta,
@@ -225,7 +226,56 @@ class FormValidation {
 					},
 					preview_values: {
 						data_alcancar_meta,
+					}
+				},
+			});
+		}
+
+		return next();
+	}
+
+    metaUpdateValidation(req, res, next) {
+		const errors = validationResult(req);
+        const valor_destinado = Number(req.body.valor_destinado);
+        const valor_meta = Number(req.body.valor_meta);
+        const { metaId } = req.params;
+
+		this.#verifyValorMeta(valor_meta, valor_destinado, errors);
+
+		if (!errors.isEmpty()) {
+			const { nome_meta, periodo_deposito } = req.body;
+			const premium = req.session.premium;
+
+			const nome_meta_error = errors.errors.find((error) => error.path === "nome_meta");
+			const valor_meta_error = errors.errors.find((error) => error.path === "valor_meta");
+			const valor_destinado_error = errors.errors.find((error) => error.path === "valor_destinado");
+			const periodo_deposito_error = errors.errors.find((error) => error.path === "periodo_deposito");
+			let data_alcancar_meta;
+
+			if (valor_meta > 0 && valor_destinado > 0 && periodo_deposito) {
+				data_alcancar_meta = this.#savePreviewValue(valor_meta, valor_destinado, periodo_deposito);
+			}
+
+			return res.render("pages/editar-meta.ejs", {
+				data: {
+					page_name: `Editar meta: ${nome_meta}`,
+					premium,
+					input_values: {
+                        id: metaId,
+						nome_meta,
+						valor_meta,
+						valor_destinado,
+						periodo_deposito,
 					},
+					errors: {
+						nome_meta_error,
+						valor_meta_error,
+						valor_destinado_error,
+						periodo_deposito_error,
+					},
+					preview_values: {
+						data_alcancar_meta,
+					}
 				},
 			});
 		}

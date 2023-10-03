@@ -85,9 +85,9 @@
     background-color: rgba(0, 0, 0, .3);
     transform: scale(0);
     transform-origin: center;
-    transition: transform 350ms ease;
 }
 
+#delete-tag-pop-up-container.ativo #delete-tag-pop-up,
 #delete-tag-pop-up-container.ativo {
     transform: scale(1);
     z-index: 4;
@@ -102,6 +102,8 @@
     padding: 24px;
     border-radius: 16px;
     background-color: white;
+    transform: scale(0);
+    transition: transform 350ms ease;
 }
 
 #delete-tag-pop-up h2 {

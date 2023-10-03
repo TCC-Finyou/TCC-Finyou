@@ -6,7 +6,7 @@ class CriarMetaController {
             data: {
                 page_name: "Criar meta",
                 premium
-            }
+            },
         });
     }
 }

@@ -1,6 +1,14 @@
 const prisma = require("../../server/database/prismaClient");
 
 class Meta {
+    async getMetaById(metaId) {
+        return await prisma.meta.findUnique({
+            where: {
+                id: metaId
+            }
+        });
+    }
+
     async getAllMetasFromUser(userId) {
         return await prisma.meta.findMany({
             where: {
@@ -26,7 +34,7 @@ class Meta {
     }
 
     async updateMeta(metaId, data) {
-        await prisma.meta.update({
+        return await prisma.meta.update({
             where: {
                 id: metaId,
             },

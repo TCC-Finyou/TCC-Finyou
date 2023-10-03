@@ -22,10 +22,11 @@
     <%- include('../templates/header-perfil.ejs') %>
 
     <main>
-        <section id="configurar-meta-intro">
-            <h1>Criar meta</h1>
+        <section id="configurar-meta-intro" <%- data.errors ? "class='error-intro'" : "" %>>
+            <% if (!data.errors || (data.errors && !data.errors.editar_meta_error)) { %>
+            <h1>Editar meta: <%- data.input_values.nome_meta %></h1>
 
-            <form action="/criar-meta" method="post" id="configurar-meta-form">
+            <form action="<%- `/editar-meta/${data.input_values.id}` %>" method="post" id="configurar-meta-form">
                 <%- data.errors && data.errors.sistema_error ? `<span class="error-message">${data.errors.sistema_error.msg}</span>` : "" %>
 
                 <label for="nome-meta">Defina o nome da sua meta</label>
@@ -88,6 +89,11 @@
 
                 <button type="submit">Criar meta</button>
             </form>
+            <% } else { %>
+            <h1>Meta não encontrada!</h1>
+
+            <p><%- data.errors.editar_meta_error.msg %></p>
+            <% } %>
         </section>
     </main>
 

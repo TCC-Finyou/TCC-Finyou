@@ -66,5 +66,11 @@
 }
 
 #historico-meta {
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    background-color: #E3E3E3;
+    padding: 5%;
 }
+

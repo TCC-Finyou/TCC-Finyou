@@ -1,11 +1,10 @@
 const metaModel = require("../../../models/Meta");
 const historicoMetaModel = require("../../../models/HistoricoMeta");
-const jwt = require("jsonwebtoken");
 const { Queue, Worker } = require("bullmq");
 
-class CriarMetaController {
+class EditarMetaController {
 	constructor() {
-		this.createMeta = this.createMeta.bind(this);
+		this.updateMeta = this.updateMeta.bind(this);
 		this.queue = new Queue("meta", {
 			connection: {
 				password: process.env.REDISPASSWORD,
@@ -13,22 +12,22 @@ class CriarMetaController {
 		});
 	}
 
-	async createMeta(req, res) {
-		const token = req.session.token;
-		const { userId } = jwt.decode(token, process.env.secret);
+	async updateMeta(req, res) {
+        const { metaId } = req.params;
 
 		const { nome_meta, periodo_deposito } = req.body;
 		const valor_meta = Number(req.body.valor_meta);
 		const valor_destinado = Number(req.body.valor_destinado);
 
 		try {
-			const meta = await metaModel.createMeta({
-				user_id: userId,
+            const meta = await metaModel.updateMeta(metaId, {
 				nome_meta,
 				valor_meta,
 				valor_destinado,
 				periodo_deposito,
-			});
+			})
+
+            await this.#removePreviousScheduleHistoricoUpdate(meta.id);
 
 			await this.#createMetaHistorico({
 				meta_id: meta.id,
@@ -48,11 +47,12 @@ class CriarMetaController {
 				data_alcancar_meta = this.#savePreviewValue(valor_meta, valor_destinado, periodo_deposito);
 			}
 
-			return res.render("pages/criar-meta.ejs", {
+			return res.render("pages/editar-meta.ejs", {
 				data: {
-					page_name: "Criar meta",
+					page_name: `Editar meta: ${nome_meta}`,
 					premium,
 					input_values: {
+                        id: metaId,
 						nome_meta,
 						valor_meta,
 						valor_destinado,
@@ -97,6 +97,10 @@ class CriarMetaController {
 		await historicoMetaModel.createHistoricoMeta(data);
 	}
 
+    async #removePreviousScheduleHistoricoUpdate(jobId) {
+        await this.queue.removeRepeatableByKey(jobId);
+    }
+
 	async #scheduleHistoricoUpdate(meta) {
 		let periodoDeposito;
 
@@ -132,9 +136,6 @@ class CriarMetaController {
 
 		await this.queue.add("metaJob", {}, { attempts: 3, backoff: { type: "exponential", delay: 10000 }, repeat: { every: periodoDeposito, tz: "America/Sao_Paulo" }, jobId: meta.id });
 
-		// await this.queue.removeRepeatableByKey();
-		// ! Para atualizar um job, quando eu alterar uma meta, eu devo deletar o job que está atualizando o histórico e criar um novo com os novos dados que se alteraram
-
 		new Worker(
 			"meta",
 			async () => {
@@ -148,6 +149,6 @@ class CriarMetaController {
 	}
 }
 
-const CriarMetaControllerCreate = new CriarMetaController();
+const editarMetaControllerUpdate = new EditarMetaController();
 
-module.exports = CriarMetaControllerCreate;
+module.exports = editarMetaControllerUpdate;

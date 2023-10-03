@@ -19,7 +19,7 @@
     <%- include('../templates/header-perfil.ejs') %>
 
     <main>
-        <section id="metas-historico-intro" class=<%- data.errors ? "error-intro" : "" %>>
+        <section id="metas-historico-intro" <%- data.errors ? "class='error-intro'" : "" %>>
             <% if (!data.errors) { %>
             <h1>Histórico da meta</h1>
 
@@ -40,7 +40,7 @@
                         <img src="/assets/icons/periodo-cumprido-meta.png" alt="Período cumprido">
                     </button>
 
-                    <div>
+                    <div class="data-periodo">
                         <% let data = new Date(itemHistorico.created_at) %>
                         <p class="data-reserva"><%- data.getDate() %>/<%- String(data.getMonth() + 1).padStart(2, "0") %>/<%- data.getFullYear() %></p>
 
