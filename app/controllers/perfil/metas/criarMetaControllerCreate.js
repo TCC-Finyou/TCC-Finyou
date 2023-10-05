@@ -109,7 +109,7 @@ class CriarMetaController {
 
 			case "Semanalmente":
 				{
-					periodoDeposito = 20000
+					periodoDeposito = "0 0 * * 1"
 				}
 				break;
 
@@ -126,7 +126,7 @@ class CriarMetaController {
 				break;
 		}
 
-		await this.queue.add("metaJob", {}, { attempts: 3, backoff: { type: "exponential", delay: 10000 }, repeat: { every: periodoDeposito, tz: "America/Sao_Paulo" }, jobId: meta.id });
+		await this.queue.add("metaJob", {}, { attempts: 3, backoff: { type: "exponential", delay: 10000 }, repeat: { pattern: periodoDeposito, tz: "America/Sao_Paulo" }, jobId: meta.id });
 
 		new Worker(
 			"meta",

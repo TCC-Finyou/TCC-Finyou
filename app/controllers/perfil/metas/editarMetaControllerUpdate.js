@@ -119,7 +119,7 @@ class EditarMetaController {
 
 			case "Quinzenalmente":
 				{
-					periodoDeposito = "0 0 1,16 * *"
+					periodoDeposito = "0 0 1, 16 * *"
 				}
 				break;
 
@@ -130,7 +130,7 @@ class EditarMetaController {
 				break;
 		}
 
-		await this.queue.add("metaJob", {}, { attempts: 3, backoff: { type: "exponential", delay: 10000 }, repeat: { every: periodoDeposito, tz: "America/Sao_Paulo" }, jobId: meta.id });
+		await this.queue.add("metaJob", {}, { attempts: 3, backoff: { type: "exponential", delay: 10000 }, repeat: { pattern: periodoDeposito, tz: "America/Sao_Paulo" }, jobId: meta.id });
 
 		new Worker(
 			"meta",

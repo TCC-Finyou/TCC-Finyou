@@ -33,6 +33,14 @@ class Meta {
         });
     }
 
+    async deleteMeta(metaId) {
+        await prisma.meta.delete({
+            where: {
+                id: metaId
+            }
+        });
+    }
+
     async updateMeta(metaId, data) {
         return await prisma.meta.update({
             where: {

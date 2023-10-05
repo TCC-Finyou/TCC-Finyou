@@ -1,22 +1,22 @@
-const openDeleteTagPopUpButtons = document.querySelectorAll("[data-open-delete-tag-pop-up]");
-const deleteTagPopUpContainer = document.querySelector("[data-delete-tag-pop-up-container]");
-const closeDeleteTagPopUpButton = document.querySelector("[data-close-delete-tag-pop-up]");
-const deleteTagButton = document.querySelector("[data-delete-tag-button]");
+const openDeleteMetaPopUpButtons = document.querySelectorAll("[data-open-delete-tag-pop-up]");
+const deleteMetaPopUpContainer = document.querySelector("[data-delete-tag-pop-up-container]");
+const closeDeleteMetaPopUpButton = document.querySelector("[data-close-delete-tag-pop-up]");
+const deleteMetaButton = document.querySelector("[data-delete-tag-button]");
 
-function openDeleteTagPopUp(event) {
+function openDeleteMetaPopUp(event) {
 	let selectedTagId = event.currentTarget.getAttribute("data-open-delete-tag-pop-up");
 
-	deleteTagPopUpContainer.classList.add("ativo");
-	deleteTagPopUpContainer.setAttribute("tabindex", "0");
-	deleteTagButton.setAttribute("data-delete-tag-button", selectedTagId);
+	deleteMetaPopUpContainer.classList.add("ativo");
+	deleteMetaPopUpContainer.setAttribute("tabindex", "0");
+	deleteMetaButton.setAttribute("data-delete-tag-button", selectedTagId);
 }
 
-function closeDeleteTagPopUp() {
-	deleteTagPopUpContainer.classList.remove("ativo");
-	deleteTagPopUpContainer.setAttribute("tabindex", "-1");
+function closeDeleteMetaPopUp() {
+	deleteMetaPopUpContainer.classList.remove("ativo");
+	deleteMetaPopUpContainer.setAttribute("tabindex", "-1");
 }
 
-function deleteTag(event) {
+function deleteMeta(event) {
 	let tagId = event.target.getAttribute("data-delete-tag-button");
 	let selectedTag = document.querySelector(`[data-open-delete-tag-pop-up="${tagId}"]`);
 
@@ -33,27 +33,24 @@ function deleteTag(event) {
 			return;
 		})
 		.finally(() => {
-			closeDeleteTagPopUp();
+			closeDeleteMetaPopUp();
 		});
 }
 
-openDeleteTagPopUpButtons.forEach((openDeleteTagPopUpButton) => {
+openDeleteMetaPopUpButtons.forEach((openDeleteTagPopUpButton) => {
 	openDeleteTagPopUpButton.addEventListener("click", (event) => {
-		openDeleteTagPopUp(event);
+		openDeleteMetaPopUp(event);
 	});
 });
 
-deleteTagPopUpContainer.addEventListener("click", (event) => {
+deleteMetaPopUpContainer.addEventListener("click", (event) => {
 	if (event.target.id === "delete-tag-pop-up-container") {
-		closeDeleteTagPopUp();
+		closeDeleteMetaPopUp();
 	}
 });
 
-closeDeleteTagPopUpButton.addEventListener("click", closeDeleteTagPopUp);
+closeDeleteMetaPopUpButton.addEventListener("click", closeDeleteMetaPopUp);
 
-deleteTagButton.addEventListener("click", (event) => {
-    deleteTag(event);
+deleteMetaButton.addEventListener("click", (event) => {
+    deleteMeta(event);
 });
-
-// ! Criar rota para deletar a tag com um fetch
-// ! Adicionar pop-up para confirmar deletar a tag

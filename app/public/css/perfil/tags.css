@@ -79,7 +79,7 @@
     text-overflow: ellipsis;
 }
 
-#tags .tag button {
+#tags .tag .deletar-tag {
     min-width: 36px;
     background: none;
 }
@@ -131,7 +131,7 @@
     color: white;
 }
 
-#delete-tag-pop-up button:last-child {
+#delete-tag-pop-up button:nth-child(3) {
     border: 2px solid var(--main-dark-color);
     background-color: white;
     color: var(--text-dark-color);

@@ -11,6 +11,9 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="/css/perfil/metas.css" />
 
+        <!-- JS -->
+        <script src="/js/perfil/metas.js" defer></script>
+
 		<title><%- data.page_name %></title>
 	</head>
 	<body>
@@ -31,6 +34,10 @@
                                     Editar
                                 </a>
 
+                                <button data-open-delete-meta-pop-up="<%- meta.id %>" class="deletar-meta">
+                                    <img src="/assets/icons/delete-trash.png" alt="Deletar meta" />
+                                </button>
+
                                 <img src="/assets/icons/chart.png" alt="Crescimento"/>
 
                                 <h2><%- meta.nome_meta %></h2>
@@ -47,6 +54,16 @@
                                 </a>
                             </div>
 						<% }) %>
+					</div>
+				</div>
+
+                <div id="delete-meta-pop-up-container" data-delete-meta-pop-up-container tabindex="-1">
+					<div id="delete-meta-pop-up">
+						<h2>Tem certeza que deseja excluir essa meta?</h2>
+
+						<button data-close-delete-meta-pop-up>Não</button>
+
+						<button data-delete-meta-button>Sim</button>
 					</div>
 				</div>
 			</section>

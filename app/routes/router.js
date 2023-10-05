@@ -55,6 +55,8 @@ const editarMetaControllerRead = require("../controllers/perfil/metas/editarMeta
 
 const editarMetaControllerUpdate = require("../controllers/perfil/metas/editarMetaControllerUpdate");
 
+const deletarMetaControllerDelete = require("../controllers/perfil/metas/deletarMetaControllerDelete");
+
 const metaHistoricoControllerRead = require("../controllers/perfil/metas/metaHistorico/metaHistoricoControllerRead");
 
 const tagsControllerRead = require("../controllers/perfil/tags/tagsControllerRead");
@@ -178,6 +180,10 @@ authenticationMiddleware.validateJWT,
 validationRulesMiddleware.metaValidationRules,
 formValidationMiddleware.metaUpdateValidation,
 editarMetaControllerUpdate.updateMeta);
+
+router.post("/deletar-meta/:metaId",
+authenticationMiddleware.validateJWT,
+deletarMetaControllerDelete.deletarMeta);
 
 router.get("/historico-meta/:metaId",
 authenticationMiddleware.validateJWT,

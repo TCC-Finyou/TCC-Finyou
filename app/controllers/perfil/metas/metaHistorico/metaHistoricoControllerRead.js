@@ -3,11 +3,12 @@ const historicoMetaModel = require("../../../../models/HistoricoMeta");
 class MetaHistoricoController {
 	async getPage(req, res) {
         const premium = req.session.premium;
+        const { metaId } = req.params;
 
 		try {
-			const historicoMeta = await historicoMetaModel.getAllHistoricoFromMeta(req.params.metaId);
+			const historicoMeta = await historicoMetaModel.getAllHistoricoFromMeta(metaId);
 
-			if (!historicoMeta) {
+			if (historicoMeta.length === 0) {
                 return res.render("pages/meta-historico.ejs", {
                     data: {
                         page_name: "Histórico de meta",
