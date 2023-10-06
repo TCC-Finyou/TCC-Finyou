@@ -30,11 +30,6 @@ class CriarMetaController {
 				periodo_deposito,
 			});
 
-			await this.#createMetaHistorico({
-				meta_id: meta.id,
-				valor_depositado: meta.valor_destinado,
-			});
-
 			await this.#scheduleHistoricoUpdate(meta);
 
 			return res.redirect("/metas");
