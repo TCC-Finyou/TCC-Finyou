@@ -3,6 +3,7 @@ const { body } = require("express-validator");
 const validationMiddleware = {
     cadastroValidationRules: [
         body("nome")
+        .trim()
         .isLength({min: 3, max: 255})
         .withMessage("Insira seu nome completo!"),
         body("email")

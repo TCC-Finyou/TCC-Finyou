@@ -35,10 +35,9 @@
                 <%- data.errors && data.errors.email_error ? `<span class='error-message'>${data.errors.email_error.msg}</span>` : "" %>
 
                 <label for="senha">Senha</label>
-                <div class="input-container">
+                <div class="input-container <%- data.errors && data.errors.senha_error ? "error" : "" %></div>">
                     <input type="password" placeholder="Senha" id="senha" name="senha"
                     <%- data.input_values ? `value="${data.input_values.senha}"` : "" %>
-                    <%- data.errors && data.errors.senha_error ? `class="error"` : "" %>
                     >
 
                     <img src="/assets/icons/show.png" alt="Mostrar" data-show-password>
