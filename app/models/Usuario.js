@@ -70,6 +70,15 @@ class Usuario {
             }
         })
     }
+
+    async updateEditarPerfil(userId, data){
+        await prisma.usuario.update({
+            where: {
+                id: userId
+            },
+            data
+        })
+    }
 }
 
 const usuarioModel = new Usuario();

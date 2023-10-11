@@ -90,6 +90,9 @@ const stripeWebhookController = require("../controllers/webhook/stripeWebhook");
 const sucessoControllerRead = require("../controllers/info-pages/assinatura/sucessoControllerRead");
 const cancelamentoControllerRead = require("../controllers/info-pages/assinatura/cancelamentoControllerRead");
 
+// * Editar
+const editarPerfilControllerRead = require("../controllers/info-pages/editarPerfilControllerRead");
+
 // * Info pages
 router.get("/",
 homeControllerRead.getPage);
@@ -256,5 +259,8 @@ sucessoControllerRead.getPage);
 router.get("/compra-cancelada",
 authenticationMiddleware.validateJWT,
 cancelamentoControllerRead.getPage);
+
+router.get("/editar-perfil", 
+editarPerfilControllerRead.getPage);
 
 module.exports = router;

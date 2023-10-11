@@ -1,0 +1,114 @@
+/* ! FORMULÁRIO */
+
+#autenticacao-intro {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 40px clamp(30px, 9vw, 50px) 0;
+}
+
+#autenticacao-intro h1 {
+    margin: 0 8px 16px;
+}
+
+#autenticacao-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#autenticacao-form label {
+    margin: 8px;
+}
+
+#autenticacao-form label.error {
+    color: red;
+}
+
+#autenticacao-form input:not([type=checkbox]) {
+    height: 48px;
+    margin-bottom: 8px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}
+
+#autenticacao-form .input-container {
+    position: relative;
+    margin-bottom: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    background-color: white;
+}
+
+#autenticacao-form .input-container input {
+    width: 100%;
+    margin: 0;
+    padding-right: 48px;
+    border: none;
+    background: none;
+}
+
+#autenticacao-form .input-container img {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 28px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#autenticacao-form .input-container img.hide {
+    display: none;
+}
+
+#autenticacao-form input.error,
+#autenticacao-form .input-container.error {
+    border-color: #ff000033;
+}
+
+#autenticacao-form span.error-message {
+    margin-inline: 8px;
+    color: red;
+    font-size: .8rem;
+}
+
+#autenticacao-form label a {
+    color: var(--text-light-color);
+    text-decoration: underline;
+}
+
+#autenticacao-form button {
+    height: 64px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--main-gradient);
+    color: white;
+}
+
+#autenticacao-intro > a {
+    display: block;
+    color: var(--text-light-color);
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* ! LOGIN COM REDES SOCIAIS */
+
+#autenticacao-social-media {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 0 clamp(30px, 9vw, 50px);
+}
+
+#autenticacao-social-media a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 16px;
+    margin-bottom: 40px;
+    padding: 16px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    color: var(--text-dark-color);
+    font-size: .9rem;
+}
