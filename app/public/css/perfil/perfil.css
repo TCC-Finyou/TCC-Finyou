@@ -11,6 +11,17 @@
     color: white;
 }
 
+.container-editar{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.t-editar{
+    color: #ffff;
+    margin-left: 5px;
+}
+
 #contas-container {
     display: flex;
     align-items: center;
