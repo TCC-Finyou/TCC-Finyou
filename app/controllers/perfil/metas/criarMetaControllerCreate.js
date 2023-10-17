@@ -8,6 +8,8 @@ class CriarMetaController {
 		this.createMeta = this.createMeta.bind(this);
 		this.queue = new Queue("meta", {
 			connection: {
+				host: process.env.REDISHOST,
+                port: process.env.REDISPORT,
 				password: process.env.REDISPASSWORD,
 			},
 		});
