@@ -49,7 +49,7 @@ class StripeWebhook {
 
 				break;
 
-            case "invoice.payment_succeeded":
+            case "invoice.finalized":
                 this.#handleInvoicePaid(event);
 
                 break;
