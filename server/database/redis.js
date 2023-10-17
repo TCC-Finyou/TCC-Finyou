@@ -1,14 +1,7 @@
 const redis = require("redis");
 const RedisStore = require("connect-redis").default;
 
-const redisClient = redis.createClient({
-	url: process.env.REDIS_URL,
-	password: process.env.REDISPASSWORD,
-    socket: {
-        host: process.env.REDISHOST,
-        port: process.env.REDISPORT
-    }
-});
+const redisClient = redis.createClient();
 redisClient.connect();
 
 redisClient.on("error", function (err) {
