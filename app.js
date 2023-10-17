@@ -23,7 +23,7 @@ app.use(session({
     }
 }));
 
-app.use(express.raw());
+app.use(express.raw({ type: "application/json" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 app.set('view engine', 'ejs');
