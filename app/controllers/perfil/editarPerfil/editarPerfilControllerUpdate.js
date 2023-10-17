@@ -1,46 +1,44 @@
 const usuarioModel = require("../../../models/Usuario");
+const jwt = require("jsonwebtoken");
 
-class CadastroController {
+class EditarPerfilController {
 	constructor() {
-		this.createUser = this.createUser.bind(this);
+		this.editUser = this.editUser.bind(this);
 	}
 
-	async createUser(req, res) {
-		const { nome, email, data_nascimento, senha, confirmacao_senha, termos_condicoes } = req.body;
-        let termos_condicoes_banco_dados;
+	async editUser(req, res) {
+        const token = req.session.token;
+        const {userId, userType} = jwt.decode(token, process.env.SECRET);
+        const user = await usuarioModel.findUserById(userId);
 
-        if (termos_condicoes === "on") {
-            termos_condicoes_banco_dados = 1;
+        if (userId !== user.id && userType !== "admin") {
+            return res.redirect("/perfil");
         }
 
-		const senhaCriptografada = req.encryptedPassword;
+		const { nome, email, data_nascimento } = req.body;
+
 		const data_nascimento_formated = this.#formatDataNascimento(data_nascimento);
         const data_nascimento_unix = Math.floor(data_nascimento_formated.getTime() / 1000);
 
 		try {
-			await usuarioModel.createUser({
+			await usuarioModel.updatePerfil({
 				nome,
 				email,
-				data_nascimento: data_nascimento_unix,
-				senha: senhaCriptografada,
-                termos_condicoes: termos_condicoes_banco_dados
-			});
+				data_nascimento: data_nascimento_unix
+			}, userId);
 
-			return res.redirect("/login");
+			return res.redirect("/perfil");
 		} catch (erro) {
 			console.log(erro);
 
 			if (erro.code === "P2002") {
-				return res.render("pages/cadastro.ejs", {
+				return res.render("pages/editar-perfil.ejs", {
 					data: {
-						page_name: "Cadastro",
+						page_name: "Editar perfil",
 						input_values: {
 							nome,
 							email,
-							data_nascimento,
-							senha,
-							confirmacao_senha,
-							termos_condicoes,
+							data_nascimento
 						},
 						errors: {
 							email_error: {
@@ -51,16 +49,13 @@ class CadastroController {
 				});
 			}
 
-			return res.render("pages/cadastro.ejs", {
+			return res.render("pages/editar-perfil.ejs", {
 				data: {
-					page_name: "Cadastro",
+					page_name: "Editar perfil",
 					input_values: {
 						nome,
 						email,
 						data_nascimento,
-						senha,
-						confirmacao_senha,
-						termos_condicoes,
 					},
 					errors: {
 						sistema_error: {
@@ -80,6 +75,6 @@ class CadastroController {
 	}
 }
 
-const CadastroControllerCreate = new CadastroController();
+const EditarPerfilControllerCreate = new EditarPerfilController();
 
-module.exports = CadastroControllerCreate;
+module.exports = EditarPerfilControllerCreate;

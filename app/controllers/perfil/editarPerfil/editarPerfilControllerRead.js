@@ -1,8 +1,27 @@
+const usuarioModel = require("../../../models/Usuario");
+const jwt = require("jsonwebtoken");
+
 class EditarPerfilController {
-    getPage(req, res) {
+    async getPage(req, res) {
+        const token = req.session.token;
+        const {userId} = jwt.decode(token, process.env.SECRET);
+        const premium = req.session.premium;
+
+        const user = await usuarioModel.findUserById(userId);
+
+        const dataNascimentoValida = new Date(user.data_nascimento * 1000);
+
+        const dataNascimentoFormatada = `${dataNascimentoValida.getDate()}/${String(dataNascimentoValida.getMonth() + 1).padStart(2, "0")}/${dataNascimentoValida.getFullYear()}`
+
         return res.render("pages/editar-perfil.ejs", {
             data: {
-                page_name: "Finyou"
+                page_name: "Finyou",
+                input_values: {
+                    nome: user.nome,
+                    email: user.email,
+                    data_nascimento: dataNascimentoFormatada
+                },
+                premium
             }
         })
     }

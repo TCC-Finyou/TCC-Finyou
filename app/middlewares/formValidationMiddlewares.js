@@ -6,6 +6,7 @@ const { validationResult } = require("express-validator");
 class FormValidation {
 	constructor() {
 		this.cadastroValidation = this.cadastroValidation.bind(this);
+        this.editarPerfilValidation = this.editarPerfilValidation.bind(this);
 		this.loginValidation = this.loginValidation.bind(this);
 		this.recuperarSenhaValidation = this.recuperarSenhaValidation.bind(this);
 		this.faleConoscoValidation = this.faleConoscoValidation.bind(this);
@@ -58,6 +59,36 @@ class FormValidation {
 		return next();
 	}
 
+    editarPerfilValidation(req, res, next) {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			const { nome, email, data_nascimento } = req.body;
+
+			const nome_error = errors.errors.find((error) => error.path === "nome");
+			const email_error = errors.errors.find((error) => error.path === "email");
+			const data_nascimento_error = errors.errors.find((error) => error.path === "data_nascimento");
+
+			return res.render("pages/editar-perfil.ejs", {
+				data: {
+					page_name: "Editar perfil",
+					input_values: {
+						nome,
+						email,
+						data_nascimento,
+					},
+					errors: {
+						nome_error,
+						email_error,
+						data_nascimento_error,
+					},
+				},
+			});
+		}
+
+		return next();
+	}
+
 	async loginValidation(req, res, next) {
 		const { email, senha } = req.body;
 
@@ -83,7 +114,7 @@ class FormValidation {
 			.compare(senha, user.senha)
 			.then((auth) => {
 				if (auth) {
-					const token = jwt.sign({ userId: user.id }, process.env.SECRET);
+					const token = jwt.sign({ userId: user.id, userType: user.cargo }, process.env.SECRET);
 
 					req.session.token = token;
 

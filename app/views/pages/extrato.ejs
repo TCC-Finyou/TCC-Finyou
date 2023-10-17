@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recurso para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas à sua disposição.">
+    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
+    <%- include('../templates/head.ejs') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/perfil/extrato.css">
+
+    <title><%- data.page_name %></title>
+</head>
+
+<body>
+    <%- include('../templates/header.ejs') %>
+
+    <main>
+        <section id="extrato-intro">
+            <h1>Extratos bancários</h1>
+
+            <picture>
+                <source srcset="/assets/images/webp/guardando-dinheiro-cofre.webp">
+                <img src="/assets/images/guardando-dinheiro-cofre.jpg" alt="Guardando dinheiro no cofre">
+            </picture>
+
+            <div>
+                <h2>Adicione uma transação</h2>
+
+                <a href="/cadastrar-transacao">Inserir</a>
+            </div>
+        </section>
+
+        <section id="extrato">
+            <h2>Extrato</h2>
+            <div id="transferencias">
+                <div class="transferencia">
+                    <img src="/assets/icons/price-tag.png" alt="Compras de mercado" />
+
+                    <div>
+                        <h3>Spotify Duo</h3>
+                        <span>pix</span>
+                    </div>
+
+                    <span class="despesa">R$ -24,90</span>
+                </div>
+
+                <div class="transferencia">
+                    <img src="/assets/icons/user.png" alt="Compras de mercado" />
+
+                    <div>
+                        <h3>Roberto Nunes</h3>
+                        <span>Transferencia</span>
+                    </div>
+
+                    <span class="renda">R$ 200,00</span>
+                </div>
+            </div>
+
+            <a href="/extrato">Extrato completo</a>
+        </section>
+    </main>
+
+    <%- include('../templates/footer.ejs') %>
+</body>
+
+</html>

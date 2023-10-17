@@ -13,11 +13,12 @@ model Usuario {
     nome             String   @db.VarChar(255)
     email            String   @unique @db.VarChar(120)
     senha            String   @db.Char(60)
-    data_nascimento  DateTime @db.Date
+    data_nascimento  Int
     premium          Int      @default(0) @db.TinyInt
     termos_condicoes Int      @db.TinyInt
     created_at       DateTime @default(now())
     updated_at       DateTime @updatedAt
+    cargo           String   @default("usuario")
 
     tokens Token[]
     metas  Meta[]

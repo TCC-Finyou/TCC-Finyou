@@ -11,6 +11,11 @@
     color: white;
 }
 
+#perfil-banner > h2 {
+    color: white;
+    margin-bottom: 32px;
+}
+
 .container-editar{
     display: flex;
     flex-direction: row;

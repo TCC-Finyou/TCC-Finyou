@@ -10,23 +10,20 @@
     <%- include('../templates/head.ejs') %>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/info-pages/editar.css">
-
-    <!-- JS -->
-    <script src="/js/info-pages/autenticacao.js" defer></script>
+    <link rel="stylesheet" href="/css/info-pages/autenticacao.css">
 
     <title><%- data.page_name %></title>
 </head>
 
 <body>
-    <%- include('../templates/header.ejs') %>
+    <%- include('../templates/header-perfil.ejs') %>
 
     <main>
         <section id="autenticacao-intro">
 
             <h1>Editar perfil</h1>
 
-            <form action="/cadastro" method="post" id="autenticacao-form">
+            <form action="/editar-perfil" method="post" id="autenticacao-form">
                 <%- data.errors && data.errors.sistema_error ? `<span class='error-message'>${data.errors.sistema_error.msg}</span>` : "" %>
 
                 <label for="nome">Nome do usuário</label>
@@ -44,6 +41,7 @@
 
                 <%- data.errors && data.errors.data_nascimento_error ? `<span class='error-message'>${data.errors.data_nascimento_error.msg}</span>` : "" %>
 
+                <button type="submit">Editar</button>
             </form>
         </section>
     </main>

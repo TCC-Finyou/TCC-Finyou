@@ -90,6 +90,29 @@ class Authentication {
         }
     }
 
+    validateAdmin(req, res, next) {
+        const token = req.session.token;
+
+        if (!token) {
+            return res.redirect("/login");
+        }
+
+        const {userType} = jwt.decode(token, process.env.SECRET);
+
+        if (userType !== "admin") {
+            return res.redirect("/login");
+        }
+
+        try {
+            jwt.verify(token, process.env.SECRET);
+
+            return next();
+        } catch (erro) {
+            console.log(erro);
+            return res.redirect("/login");
+        }
+    }
+
     verifyPremium(req, res, next) {
         const premium = req.session.premium;
 

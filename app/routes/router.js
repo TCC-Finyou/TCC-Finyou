@@ -41,6 +41,11 @@ const formValidationMiddleware = require("../middlewares/formValidationMiddlewar
 
 // * Perfil
 
+const logoutControllerRead = require("../controllers/perfil/logoutControllerRead");
+
+const editarPerfilControllerRead = require("../controllers/perfil/editarPerfil/editarPerfilControllerRead");
+const editarPerfilControllerUpdate = require("../controllers/perfil/editarPerfil/editarPerfilControllerUpdate");
+
 const homePerfilControllerRead = require("../controllers/perfil/homePerfil/homePerfilControllerRead");
 
 const adicionarContaControllerRead = require("../controllers/perfil/adicionarConta/adicionarContaControllerRead");
@@ -71,11 +76,11 @@ const editarTagControllerUpdate = require("../controllers/perfil/tags/editarTagC
 
 const deletarTagControllerDelete = require("../controllers/perfil/tags/deletarTagControllerDelete");
 
-const questionarioControllerRead = require("../controllers/perfil/questionario/questionarioControllerRead");
-
 const relatorioControllerRead = require("../controllers/perfil/relatorios/relatorioControllerRead");
 
 const contaConjuntaControllerRead = require("../controllers/perfil/contaConjunta/contaConjuntaControllerRead");
+
+const extratoControllerRead = require("../controllers/perfil/extrato/extratoControllerRead");
 
 // * Plano de assinatura Finyou+
 
@@ -90,8 +95,6 @@ const stripeWebhookController = require("../controllers/webhook/stripeWebhook");
 const sucessoControllerRead = require("../controllers/info-pages/assinatura/sucessoControllerRead");
 const cancelamentoControllerRead = require("../controllers/info-pages/assinatura/cancelamentoControllerRead");
 
-// * Editar
-const editarPerfilControllerRead = require("../controllers/perfil/editarPerfil/editarPerfilControllerRead");
 
 // * Info pages
 router.get("/",
@@ -152,6 +155,20 @@ formValidationMiddleware.loginValidation,
 loginControllerReadAuth.authUser);
 
 // * Perfil
+router.get("/logout",
+authenticationMiddleware.validateJWT,
+logoutControllerRead.logout);
+
+router.get("/editar-perfil",
+authenticationMiddleware.validateJWT,
+editarPerfilControllerRead.getPage);
+
+router.post("/editar-perfil",
+authenticationMiddleware.validateJWT,
+validationRulesMiddleware.editarPerfilValidationRules,
+formValidationMiddleware.editarPerfilValidation,
+editarPerfilControllerUpdate.editUser);
+
 router.get("/perfil",
 authenticationMiddleware.validateJWT,
 homePerfilControllerRead.getPage);
@@ -224,10 +241,9 @@ router.get("/relatorios",
 authenticationMiddleware.validateJWT,
 relatorioControllerRead.getPage);
 
-router.get("/questionario",
+router.get("/extrato",
 authenticationMiddleware.validateJWT,
-authenticationMiddleware.verifyPremium,
-questionarioControllerRead.getPage);
+extratoControllerRead.getPage);
 
 // * Conta conjunta
 router.get("/conta-conjunta",
@@ -259,8 +275,5 @@ sucessoControllerRead.getPage);
 router.get("/compra-cancelada",
 authenticationMiddleware.validateJWT,
 cancelamentoControllerRead.getPage);
-
-router.get("/editar-perfil",
-editarPerfilControllerRead.getPage);
 
 module.exports = router;

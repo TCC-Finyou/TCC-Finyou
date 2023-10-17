@@ -1,0 +1,77 @@
+#extrato-intro {
+    padding: 40px clamp(30px, 9vw, 50px);
+}
+
+#extrato-intro h1 {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#extrato-intro img {
+    width: 80%;
+}
+
+#extrato {
+    padding: 40px clamp(30px, 9vw, 50px);
+    background-color: var(--background-darker-color);
+}
+
+#extrato h2 {
+    color: var(--text-main-color);
+    font-size: 1.5rem;
+}
+
+#transferencias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+    justify-items: center;
+    gap: 80px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+#transferencias .transferencia {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+#transferencias .transferencia div {
+    margin: 0 auto 0 16px;
+}
+
+#transferencias .transferencia div h3 {
+    font-size: .9rem;
+}
+
+#transferencias .transferencia div span {
+    font-size: .8rem;
+}
+
+#transferencias .transferencia span {
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+#transferencias .transferencia .renda {
+    color: var(--text-main-blue-color);
+}
+
+#transferencias .transferencia .despesa {
+    color: var(--text-dark-color);
+}
+
+#extrato a {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin-inline: auto;
+    padding: 10px 40px;
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    color: var(--text-dark-color);
+    font-size: .9rem;
+    font-weight: 700;
+    text-align: center;
+}

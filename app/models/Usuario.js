@@ -38,7 +38,7 @@ class Usuario {
         });
     }
 
-    async uppdateUserCustomerId(userId, customerId) {
+    async updateUserCustomerId(userId, customerId) {
         await prisma.usuario.update({
             where: {
                 id: userId
@@ -71,7 +71,7 @@ class Usuario {
         })
     }
 
-    async updateEditarPerfil(userId, data){
+    async updatePerfil(data, userId){
         await prisma.usuario.update({
             where: {
                 id: userId
