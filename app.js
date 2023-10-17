@@ -1,3 +1,7 @@
+process.on('uncaughtException', function (err) {
+    console.log(err);
+  });
+
 require('dotenv').config();
 
 const express = require('express');
