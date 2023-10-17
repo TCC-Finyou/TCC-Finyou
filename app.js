@@ -11,17 +11,21 @@ const notFoundPageController = require('./app/middlewares/notFoundPageMiddleware
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(session({
-    store: redisStore,
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 3,
-        httpOnly: true,
-        sameSite: 'strict'
-    }
-}));
+try {
+    app.use(session({
+        store: redisStore,
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 3,
+            httpOnly: true,
+            sameSite: 'strict'
+        }
+    }));
+} catch (erro) {
+    console.log(erro)
+}
 
 app.use(express.raw({ type: "application/json" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
