@@ -60,10 +60,3 @@ fetch("/pagamento-assinatura", {
 			});
 	});
 });
-
-// This sample only supports a Subscription with payment
-// upfront. If you offer a trial on your subscription, then
-// instead of confirming the subscription's latest_invoice's
-// payment_intent. You'll use stripe.confirmCardSetup to confirm
-// the subscription's pending_setup_intent.
-// See https://stripe.com/docs/billing/subscriptions/trials

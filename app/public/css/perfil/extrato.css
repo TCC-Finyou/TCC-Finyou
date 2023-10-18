@@ -9,6 +9,8 @@
 
 #extrato-intro img {
     width: 80%;
+    max-width: 400px;
+    margin-inline: auto;
 }
 
 #extrato {

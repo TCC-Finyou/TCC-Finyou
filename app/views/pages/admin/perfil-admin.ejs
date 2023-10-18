@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças."
+    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
+    <%- include('../../templates/head-admin.ejs') %>
+
+    <link rel="stylesheet" href="/css/admin/perfil-admin.css">
+
+    <title><%- data.page_name %></title>
+</head>
+<body>
+    <%- include('../../templates/header-admin.ejs') %>
+
+    <main>
+        <section id="perfil-admin-intro">
+            <h1>Welcome, Anna!</h1>
+
+            <form action="/pesquisa-usuario" method="get">
+                <label for="pesquisa_usuario">Pesquise o ID do usuário</label>
+
+                <div>
+                    <img src="/assets/icons/search.png" alt="Pesquisa">
+                    <input type="search" name="pesquisa_usuario" id="pesquisa_usuario" placeholder="Ex: 18beb9fb-8ae5-43c0-893c-fad87d8e66ec">
+                </div>
+            </form>
+        </section>
+
+        <section id="usuarios">
+            <div class="usuario">
+                <a href="#" class="editar">
+                    <img src="/assets/icons/editar.png" alt="Editar">
+                </a>
+
+                <h2>Usuário</h2>
+
+                <h3>ID: 000000</h3>
+
+                <a href="#" class="mostrar-usuario">Mostrar informações</a>
+
+                <div class="botoes-usuario">
+                    <button>
+                        <img src="/assets/icons/lock.png" alt="Bloquear">
+                        Bloquear
+                    </button>
+
+                    <button>
+                        <img src="/assets/icons/delete-trash.png" alt="Excluir">
+                        Excluir
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../../templates/footer-admin.ejs') %>
+</body>
+</html>

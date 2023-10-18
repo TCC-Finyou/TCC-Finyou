@@ -95,6 +95,10 @@ const stripeWebhookController = require("../controllers/webhook/stripeWebhook");
 const sucessoControllerRead = require("../controllers/info-pages/assinatura/sucessoControllerRead");
 const cancelamentoControllerRead = require("../controllers/info-pages/assinatura/cancelamentoControllerRead");
 
+// * Admin
+
+const perfilAdminControllerRead = require("../controllers/admin/perfilAdminControllerRead");
+
 
 // * Info pages
 router.get("/",
@@ -275,5 +279,11 @@ sucessoControllerRead.getPage);
 router.get("/compra-cancelada",
 authenticationMiddleware.validateJWT,
 cancelamentoControllerRead.getPage);
+
+// * Perfil admin
+
+router.get("/perfil-admin",
+authenticationMiddleware.validateAdmin,
+perfilAdminControllerRead.getPage);
 
 module.exports = router;

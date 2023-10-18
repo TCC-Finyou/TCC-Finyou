@@ -1,8 +1,17 @@
 const tagModel = require("../../../models/Tag");
+const jwt = require("jsonwebtoken");
 
 class EditarTagController {
 	async updateTag(req, res) {
+        const token = req.session.token;
+        const {userId, userType} = jwt.decode(token, process.env.SECRET);
+
         const { tagId } = req.params;
+        const tag = await tagModel.getTagById(tagId);
+
+        if (userId !== tag.user_id && userType !== "admin") {
+            return res.redirect("/perfil");
+        }
 
 		const { nome_tag, cor_tag } = req.body;
 

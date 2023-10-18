@@ -18,7 +18,7 @@ model Usuario {
     termos_condicoes Int      @db.TinyInt
     created_at       DateTime @default(now())
     updated_at       DateTime @updatedAt
-    cargo           String   @default("usuario")
+    cargo           String   @default("user")
 
     tokens Token[]
     metas  Meta[]

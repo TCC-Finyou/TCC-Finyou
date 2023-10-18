@@ -1,6 +1,7 @@
 const metaModel = require("../../../models/Meta");
 const historicoMetaModel = require("../../../models/HistoricoMeta");
 const { Queue, Worker } = require("bullmq");
+const jwt = require("jsonwebtoken");
 
 class EditarMetaController {
 	constructor() {
@@ -15,7 +16,15 @@ class EditarMetaController {
 	}
 
 	async updateMeta(req, res) {
+        const token = req.session.token;
+        const {userId, userType} = jwt.decode(token, process.env.SECRET);
+
         const { metaId } = req.params;
+        const meta = await metaModel.getMetaById(metaId);
+
+        if (userId !== meta.user_id && userType !== "admin") {
+            return res.redirect("/perfil");
+        }
 
 		const { nome_meta, periodo_deposito } = req.body;
 		const valor_meta = Number(req.body.valor_meta);
