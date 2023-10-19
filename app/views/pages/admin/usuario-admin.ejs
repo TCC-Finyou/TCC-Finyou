@@ -25,7 +25,7 @@
                 <div class="botoes-usuario">
                     <ul>
                         <li>ID: <%- data.user_selected.id %></li>
-                        <li>Data: <%- `${new Date(data.user_selected.data_nascimento / 1000).getDate()}/${String(new Date(data.user_selected.data_nascimento / 1000).getMonth() + 1).padStart(2, "0")}/${new Date(data.user_selected.data_nascimento / 1000).getFullYear()}` %></li>
+                        <li>Data: <%- `${new Date(data.user_selected.data_nascimento * 1000).getDate()}/${String(new Date(data.user_selected.data_nascimento * 1000).getMonth() + 1).padStart(2, "0")}/${new Date(data.user_selected.data_nascimento * 1000).getFullYear()}` %></li>
                         <li>Email: <%- data.user_selected.email %></li>
                     </ul>
                 </div>

@@ -64,7 +64,7 @@
 
 #tag-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, min(100%, 400px));
+    grid-template-columns: repeat(auto-fit, min(100%, 450px));
     justify-content: center;
     padding: 0 clamp(30px, 9vw, 50px);
 }
