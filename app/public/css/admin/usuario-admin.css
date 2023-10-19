@@ -1,0 +1,85 @@
+#usuarios{
+    padding: 32px clamp(30px, 9vw, 50px) 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.usuario{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 32px 40px;
+    background-color: white;
+    width: 100%;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+}
+
+.usuario span{
+    color: #23a3b4;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.botoes-usuario{
+    margin-top: 16px;
+}
+
+.botoes-usuario li{
+    margin-top: 4px;
+    color: #6e6e6e;
+}
+
+#links-admin{
+    padding: 24px 16px 16px 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#links-admin button{
+    padding: 8px;
+    border-radius: 24px;
+    background: none;
+    border: 1px solid #6e6e6e;
+    color: #6e6e6e;
+}
+
+@media screen and (min-width: 1024px){
+
+    .usuario{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        padding: 32px 40px;
+        background-color: white;
+        width: 500px;
+        border: none;
+        border-radius: 24px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    }
+
+    .botoes-usuario{
+        margin-top: 16px;
+    }
+
+    #usuarios{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-bottom: 24px;
+    }
+
+    #links-admin{
+        padding: 24px 16px 16px 8px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    #links-admin button{
+        margin: 8px;
+    }
+}

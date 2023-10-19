@@ -45,7 +45,9 @@ class EditarMetaController {
 				valor_depositado: meta.valor_destinado,
 			});
 
-			await this.#scheduleHistoricoUpdate(meta);
+            if (userType === "admin") {
+                return res.redirect("/metas-admin");
+            }
 
 			return res.redirect("/metas");
 		} catch (error) {
@@ -111,49 +113,6 @@ class EditarMetaController {
     async #removePreviousScheduleHistoricoUpdate(jobId) {
         await this.queue.removeRepeatableByKey(jobId);
     }
-
-	async #scheduleHistoricoUpdate(meta) {
-		let periodoDeposito;
-
-		switch (meta.periodo_deposito) {
-			case "Diariamente":
-				{
-					periodoDeposito = "0 0 * * *"
-				}
-				break;
-
-			case "Semanalmente":
-				{
-					periodoDeposito = "0 0 * * 0"
-				}
-				break;
-
-			case "Quinzenalmente":
-				{
-					periodoDeposito = "0 0 1, 16 * *"
-				}
-				break;
-
-			case "Mensalmente":
-				{
-					periodoDeposito = "0 0 1 * *"
-				}
-				break;
-		}
-
-		await this.queue.add("metaJob", {}, { attempts: 3, backoff: { type: "exponential", delay: 10000 }, repeat: { pattern: periodoDeposito, tz: "America/Sao_Paulo" }, jobId: meta.id });
-
-		new Worker(
-			"meta",
-			async () => {
-				await this.#createMetaHistorico({
-					meta_id: meta.id,
-					valor_depositado: meta.valor_destinado,
-				});
-			},
-			{ connection: { password: process.env.REDISPASSWORD } }
-		);
-	}
 }
 
 const editarMetaControllerUpdate = new EditarMetaController();

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <%- include('../templates/header.ejs') %>
+    <%- include('../templates/header-perfil.ejs') %>
 
     <main>
         <section id="extrato-intro">
@@ -37,30 +37,19 @@
         <section id="extrato">
             <h2>Extrato</h2>
             <div id="transferencias">
+                <% data.transacoes.forEach(transacao => { %>
                 <div class="transferencia">
                     <img src="/assets/icons/price-tag.png" alt="Compras de mercado" />
 
                     <div>
-                        <h3>Spotify Duo</h3>
-                        <span>pix</span>
+                        <h3><%- transacao.nome_transacao %></h3>
+                        <span><%- transacao.meio_transacao %></span>
                     </div>
 
-                    <span class="despesa">R$ -24,90</span>
+                    <span class="<%- transacao.tipo_transacao === "lucro" ? "renda" : "despesa" %>">R$ <%- transacao.tipo_transacao === "lucro" ? "+" : "-" %><%- Number(transacao.valor_transacao).toFixed(2) %></span>
                 </div>
-
-                <div class="transferencia">
-                    <img src="/assets/icons/user.png" alt="Compras de mercado" />
-
-                    <div>
-                        <h3>Roberto Nunes</h3>
-                        <span>Transferencia</span>
-                    </div>
-
-                    <span class="renda">R$ 200,00</span>
-                </div>
+                <% }) %>
             </div>
-
-            <a href="/extrato">Extrato completo</a>
         </section>
     </main>
 

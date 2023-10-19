@@ -19,10 +19,11 @@ class Meta {
                 nome_meta: true,
                 valor_meta: true,
                 valor_destinado: true,
-                periodo_deposito: true
+                periodo_deposito: true,
+                historico_meta: true
             },
             orderBy: {
-                created_at: "desc"
+                created_at: "desc",
             }
         });
     }

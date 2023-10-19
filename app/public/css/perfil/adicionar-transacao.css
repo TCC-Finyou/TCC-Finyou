@@ -1,0 +1,183 @@
+#extrato-intro {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 40px clamp(30px, 9vw, 50px) 0;
+}
+
+#extrato-intro h1 {
+    margin: 0 8px 16px;
+}
+
+#transacao-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#transacao-form label {
+    margin: 8px;
+}
+
+#transacao-form label.error {
+    color: red;
+}
+
+#transacao-form input:not([type=checkbox], [type=radio]) {
+    height: 48px;
+    margin-bottom: 8px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}
+
+#transacao-form .input-container {
+    position: relative;
+    margin-bottom: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    background-color: white;
+}
+
+#transacao-form .input-container input {
+    width: 100%;
+    margin: 0;
+    padding-right: 48px;
+    border: none;
+    background: none;
+}
+
+#transacao-form .input-container img {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 28px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#transacao-form .input-container img.hide {
+    display: none;
+}
+
+#transacao-form input.error,
+#transacao-form .input-container.error {
+    border-color: #ff000033;
+}
+
+#transacao-form span.error-message {
+    margin-inline: 8px;
+    color: red;
+    font-size: .8rem;
+}
+
+#transacao-form label a {
+    color: var(--text-light-color);
+    text-decoration: underline;
+}
+
+#transacao-form button[type=button] {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    margin-bottom: 8px;
+    padding-inline: 8px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+    background: white;
+    transition: border-radius 350ms ease;
+}
+
+#transacao-form button[type=button].ativo {
+    border-radius: 8px 8px 0 0;
+}
+
+#transacao-form button[type=button] img {
+    transition: transform 350ms ease;
+}
+
+#transacao-form button[type=button].ativo img {
+    transform: rotate(-180deg);
+}
+
+#transacao-form button[type=submit] {
+    height: 64px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--main-gradient);
+    color: white;
+}
+
+#tag-dropdown-container {
+    position: absolute;
+    top: 100%;
+    left: -2px;
+    width: calc(100% + 4px);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#tag-dropdown {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    border: 2px solid #00000033;
+    border-radius: 0 0 8px 8px;
+    background-color: white;
+    overflow: hidden;
+    pointer-events: all;
+    transform: translateY(-100%);
+    transform-origin: top;
+    transition: transform 350ms ease;
+    z-index: 3;
+}
+
+#transacao-form button[type=button].ativo #tag-dropdown {
+    transform: translateY(0);
+}
+
+#tag-dropdown label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#tag-dropdown label.ativo {
+    background-color: hsl(0, 0%, 80%) !important;
+}
+
+#tag-dropdown label:hover {
+    background-color: hsl(0, 0%, 95%);
+}
+
+#tag-dropdown label input {
+    display: none;
+}
+
+#tipo-transacao-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 16px;
+    border: 2px solid #00000033;
+    border-radius: 8px;
+}
+
+#tipo-transacao-container.error {
+    color: red;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

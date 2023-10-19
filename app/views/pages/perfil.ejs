@@ -1,160 +1,154 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content="No perfil, o usuário vai poder navegar e encontrar todos os recursos disponíveis." />
-		<meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
-		<%- include('../templates/head.ejs') %>
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="/css/perfil/perfil.css" />
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="No perfil, o usuário vai poder navegar e encontrar todos os recursos disponíveis." />
+    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio." />
+    <%- include('../templates/head.ejs') %>
 
-		<title><%- data.page_name %></title>
-	</head>
-	<body>
-		<%- include('../templates/header-perfil.ejs') %>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/perfil/perfil.css" />
 
-		<main>
-			<section id="perfil-banner">
-                <div class="container-editar">
-                    <img src="/assets/icons/edit.png" alt="edit-perfil">
-                    <a href="/editar-perfil" class="t-editar">Editar perfil</a>
+    <title><%- data.page_name %></title>
+</head>
+
+<body>
+    <%- include('../templates/header-perfil.ejs') %>
+
+    <main>
+        <section id="perfil-banner">
+            <div class="container-editar">
+                <img src="/assets/icons/edit.png" alt="edit-perfil">
+                <a href="/editar-perfil" class="t-editar">Editar perfil</a>
+            </div>
+            <h1>Bem vindo, <%- data.user.nome %>!</h1>
+            <h2>Contas</h2>
+
+            <div id="contas-container">
+                <div id="contas-slide">
+                    <div class="conta">
+                        <h2>MasterCard</h2>
+                        <span class="data">Atualmente</span>
+
+                        <span class="saldo">R$ 2.784,67</span>
+                    </div>
+
+                    <div class="conta">
+                        <h2>Elo</h2>
+                        <span class="data">Atualmente</span>
+
+                        <span class="saldo">R$ 212,31</span>
+                    </div>
                 </div>
-                <h1>Bem vindo, <%- data.user.nome %>!</h1>
-				<h2>Contas</h2>
 
-				<div id="contas-container">
-					<div id="contas-slide">
-						<div class="conta">
-							<h2>MasterCard</h2>
-							<span class="data">Atualmente</span>
+                <a href="/adicionar-conta" id="add-conta">+</a>
+            </div>
+        </section>
 
-							<span class="saldo">R$ 2.784,67</span>
-						</div>
+        <section id="months-statistics">
+            <div id="statistics-container">
+                <div id="statistics-graph-header">
+                    <div id="header-info">
+                        <div id="month-selector">
+                            Meses
 
-						<div class="conta">
-							<h2>Elo</h2>
-							<span class="data">Atualmente</span>
+                            <img src="/assets/icons/arrow-down.png" alt="Seta para baixo" />
+                        </div>
 
-							<span class="saldo">R$ 212,31</span>
-						</div>
-					</div>
+                        <div id="percentual-statistics">
+                            <h2>Estatísticas</h2>
+                            <span>+ 1,09%</span>
+                        </div>
+                    </div>
 
-					<a href="/adicionar-conta" id="add-conta">+</a>
-				</div>
-			</section>
+                    <div id="months">
+                        <span>Mai</span>
+                        <span>Jun</span>
+                        <span>Jul</span>
+                        <span>Ago</span>
+                        <span>Set</span>
+                        <span>Out</span>
+                        <span>Nov</span>
+                    </div>
+                </div>
+                <div id="statistics-graph">
+                    <svg height="auto" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m0 122.757 133 7.78 133 112.18L399 82.17l133 217.194 133-124.181 133-123.3L800 400H0Z" fill="none" />
+                        <path d="m0 122.757 133 7.78 133 112.18L399 82.17l133 217.194 133-124.181 133-123.3" fill="none" stroke="#23a3b4" stroke-width="2" />
+                    </svg>
+                </div>
+            </div>
+        </section>
 
-			<section id="months-statistics">
-				<div id="statistics-container">
-					<div id="statistics-graph-header">
-						<div id="header-info">
-							<div id="month-selector">
-								Meses
+        <section id="total-payments">
+            <div id="pie-chart-container">
+                <div id="chart-values">
+                    <h2>Total de gastos</h2>
+                    <span>R$324.01</span>
 
-								<img src="/assets/icons/arrow-down.png" alt="Seta para baixo" />
-							</div>
+                    <div class="chart-sector">
+                        <h3>Outros</h3>
+                        <span>R$102,31</span>
+                    </div>
 
-							<div id="percentual-statistics">
-								<h2>Estatísticas</h2>
-								<span>+ 1,09%</span>
-							</div>
-						</div>
+                    <div class="chart-sector">
+                        <h3>Outros</h3>
+                        <span>R$102,31</span>
+                    </div>
+                </div>
 
-						<div id="months">
-							<span>Mai</span>
-							<span>Jun</span>
-							<span>Jul</span>
-							<span>Ago</span>
-							<span>Set</span>
-							<span>Out</span>
-							<span>Nov</span>
-						</div>
-					</div>
-					<div id="statistics-graph">
-						<svg height="auto" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-							<path d="m0 122.757 133 7.78 133 112.18L399 82.17l133 217.194 133-124.181 133-123.3L800 400H0Z" fill="none" />
-							<path d="m0 122.757 133 7.78 133 112.18L399 82.17l133 217.194 133-124.181 133-123.3" fill="none" stroke="#23a3b4" stroke-width="2" />
-						</svg>
-					</div>
-				</div>
-			</section>
+                <div id="pie-chart">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="sv" width="180" height="180" viewBox="0 0 180 180">
+                        <path id="0" fill="#23a3b4" d="M90, 0 A90,90 0 0 1 175.5965425575103,117.80704770737674 L147.0643617050069,108.53803180491784 A60,60 0 0 0 90,30 Z"></path>
+                        <path id="1" fill="#230aab" d="M175.5965425575103, 117.80704770737674 A90,90 0 1 1 89.98429203681187,0.0000013707783779182137 L89.98952802454124,30.000000913852254 A60,60 0 1 0 147.0643617050069,108.53803180491784 Z"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
 
-			<section id="total-payments">
-				<div id="pie-chart-container">
-					<div id="chart-values">
-						<h2>Total de gastos</h2>
-						<span>R$324.01</span>
+        <section id="perfil-functions">
+            <div id="functions-container">
+                <div class="function">
+                    <p>Já está disponível o seu</p>
+                    <h2>Relatório Mensal</h2>
 
-						<div class="chart-sector">
-							<h3>Outros</h3>
-							<span>R$102,31</span>
-						</div>
+                    <a href="#">Analisar</a>
+                </div>
 
-						<div class="chart-sector">
-							<h3>Outros</h3>
-							<span>R$102,31</span>
-						</div>
-					</div>
+                <div class="function">
+                    <p>Veja as suas finanças utilizando a</p>
+                    <h2>Conta Conjunta</h2>
 
-					<div id="pie-chart">
-						<svg xmlns="http://www.w3.org/2000/svg" id="sv" width="180" height="180" viewBox="0 0 180 180">
-							<path id="0" fill="#23a3b4" d="M90, 0 A90,90 0 0 1 175.5965425575103,117.80704770737674 L147.0643617050069,108.53803180491784 A60,60 0 0 0 90,30 Z"></path>
-							<path id="1" fill="#230aab" d="M175.5965425575103, 117.80704770737674 A90,90 0 1 1 89.98429203681187,0.0000013707783779182137 L89.98952802454124,30.000000913852254 A60,60 0 1 0 147.0643617050069,108.53803180491784 Z"></path>
-						</svg>
-					</div>
-				</div>
-			</section>
+                    <a href="#">Verificar</a>
+                </div>
+            </div>
+        </section>
 
-			<section id="perfil-functions">
-				<div id="functions-container">
-					<div class="function">
-						<p>Já está disponível o seu</p>
-						<h2>Relatório Mensal</h2>
+        <section id="extrato">
+            <h2>Extrato</h2>
+            <div id="transferencias">
+                <% data.transacoes.forEach(transacao => { %>
+                <div class="transferencia">
+                    <img src="/assets/icons/price-tag.png" alt="Compras de mercado" />
 
-						<a href="#">Analisar</a>
-					</div>
+                    <div>
+                        <h3><%- transacao.nome_transacao %></h3>
+                        <span><%- transacao.meio_transacao %></span>
+                    </div>
 
-					<div class="function">
-						<p>Veja as suas finanças utilizando a</p>
-						<h2>Conta Conjunta</h2>
+                    <span class="<%- transacao.tipo_transacao === "lucro" ? "renda" : "despesa" %>">R$ <%- transacao.tipo_transacao === "lucro" ? "+" : "-" %><%- Number(transacao.valor_transacao).toFixed(2) %></span>
+                </div>
+                <% }) %>
+            </div>
 
-						<a href="#">Verificar</a>
-					</div>
-				</div>
-			</section>
+            <a href="/extrato">Extrato completo</a>
+        </section>
+    </main>
 
-			<section id="extrato">
-				<h2>Extrato</h2>
-				<div id="transferencias">
-					<div class="transferencia">
-						<img src="/assets/icons/price-tag.png" alt="Compras de mercado" />
+    <%- include('../templates/footer.ejs') %>
+</body>
 
-						<div>
-							<h3>Spotify Duo</h3>
-							<span>pix</span>
-						</div>
-
-						<span class="despesa">R$ -24,90</span>
-					</div>
-
-					<div class="transferencia">
-						<img src="/assets/icons/user.png" alt="Compras de mercado" />
-
-						<div>
-							<h3>Roberto Nunes</h3>
-							<span>Transferencia</span>
-						</div>
-
-						<span class="renda">R$ 200,00</span>
-					</div>
-				</div>
-
-				<a href="/extrato">Extrato completo</a>
-			</section>
-		</main>
-
-		<%- include('../templates/footer.ejs') %>
-	</body>
 </html>

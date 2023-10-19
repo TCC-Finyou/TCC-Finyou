@@ -1,4 +1,5 @@
 const usuarioModel = require("../../../models/Usuario");
+const transacaoModel = require("../../../models/Transacao");
 const jwt = require("jsonwebtoken");
 
 class HomePerfilController {
@@ -9,11 +10,14 @@ class HomePerfilController {
 
         const premium = req.session.premium;
 
+        const transacoes = await transacaoModel.getSomeTransacoesFromUser(userId);
+
         return res.render("pages/perfil.ejs", {
             data: {
                 page_name: "Perfil",
                 premium,
-                user
+                user,
+                transacoes
             }
         })
     }

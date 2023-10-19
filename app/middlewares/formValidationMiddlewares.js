@@ -1,12 +1,15 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const usuarioModel = require("../models/Usuario");
+const tagModel = require("../models/Tag");
 const { validationResult } = require("express-validator");
 
 class FormValidation {
 	constructor() {
 		this.cadastroValidation = this.cadastroValidation.bind(this);
         this.editarPerfilValidation = this.editarPerfilValidation.bind(this);
+        this.editarPerfilAdminValidation = this.editarPerfilAdminValidation.bind(this);
+        this.editarUsuarioAdminValidation = this.editarUsuarioAdminValidation.bind(this);
 		this.loginValidation = this.loginValidation.bind(this);
 		this.recuperarSenhaValidation = this.recuperarSenhaValidation.bind(this);
 		this.faleConoscoValidation = this.faleConoscoValidation.bind(this);
@@ -14,6 +17,7 @@ class FormValidation {
         this.metaUpdateValidation = this.metaUpdateValidation.bind(this);
 		this.tagCreateValidation = this.tagCreateValidation.bind(this);
         this.tagUpdateValidation = this.tagUpdateValidation.bind(this);
+        this.transacaoCreateValidation = this.transacaoCreateValidation.bind(this);
 	}
 
 	cadastroValidation(req, res, next) {
@@ -81,6 +85,83 @@ class FormValidation {
 						nome_error,
 						email_error,
 						data_nascimento_error,
+					},
+				},
+			});
+		}
+
+		return next();
+	}
+
+    async editarPerfilAdminValidation(req, res, next) {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+            const token = req.session.token;
+            const {userId} = jwt.decode(token, process.env.SECRET);
+			const { nome, email, data_nascimento } = req.body;
+
+            const user = await usuarioModel.findUserById(userId);
+
+			const nome_error = errors.errors.find((error) => error.path === "nome");
+			const email_error = errors.errors.find((error) => error.path === "email");
+			const data_nascimento_error = errors.errors.find((error) => error.path === "data_nascimento");
+
+			return res.render("pages/admin/editar-perfil-admin.ejs", {
+				data: {
+					page_name: "Editar perfil",
+                    user,
+					input_values: {
+						nome,
+						email,
+						data_nascimento,
+					},
+					errors: {
+						nome_error,
+						email_error,
+						data_nascimento_error,
+					},
+                    userId
+				},
+			});
+		}
+
+		return next();
+	}
+
+    async editarUsuarioAdminValidation(req, res, next) {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+            const token = req.session.token;
+            const userIdAdmin = jwt.decode(token, process.env.SECRET);
+            const userId = req.params.userId;
+
+            const admin = await usuarioModel.findUserById(userIdAdmin.userId);
+
+			const { nome, email, data_nascimento, cargo } = req.body;
+
+			const nome_error = errors.errors.find((error) => error.path === "nome");
+			const email_error = errors.errors.find((error) => error.path === "email");
+			const data_nascimento_error = errors.errors.find((error) => error.path === "data_nascimento");
+            const cargo_error = errors.errors.find((error) => error.path === "cargo");
+
+			return res.render("pages/admin/editar-perfil-usuario.ejs", {
+				data: {
+					page_name: "Editar perfil",
+                    userId,
+                    user: admin,
+					input_values: {
+						nome,
+						email,
+						data_nascimento,
+                        cargo
+					},
+					errors: {
+						nome_error,
+						email_error,
+						data_nascimento_error,
+                        cargo_error
 					},
 				},
 			});
@@ -319,10 +400,10 @@ class FormValidation {
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
-			const { nome_tag, cor_tag } = req.body;
+			const { tag, cor_tag } = req.body;
 			const premium = req.session.premium;
 
-			const nome_tag_error = errors.errors.find((error) => error.path === "nome_tag");
+			const tag_error = errors.errors.find((error) => error.path === "tag");
 			const cor_tag_error = errors.errors.find((error) => error.path === "cor_tag");
 
 			return res.render("pages/criar-tag.ejs", {
@@ -330,11 +411,11 @@ class FormValidation {
 					page_name: "Criar tag",
 					premium,
 					input_values: {
-						nome_tag,
+						tag,
 						cor_tag,
 					},
 					errors: {
-						nome_tag_error,
+						tag_error,
 						cor_tag_error,
 					},
 				},
@@ -349,24 +430,70 @@ class FormValidation {
         const { tagId } = req.params;
 
 		if (!errors.isEmpty()) {
-			const { nome_tag, cor_tag } = req.body;
+			const { tag, cor_tag } = req.body;
 			const premium = req.session.premium;
 
-			const nome_tag_error = errors.errors.find((error) => error.path === "nome_tag");
+			const tag_error = errors.errors.find((error) => error.path === "tag");
 			const cor_tag_error = errors.errors.find((error) => error.path === "cor_tag");
 
 			return res.render("pages/editar-tag.ejs", {
 				data: {
-					page_name: `Editar tag: ${nome_tag}`,
+					page_name: `Editar tag: ${tag}`,
 					premium,
 					input_values: {
                         id: tagId,
-						nome_tag,
+						tag,
 						cor_tag,
 					},
 					errors: {
-						nome_tag_error,
+						tag_error,
 						cor_tag_error,
+					},
+				},
+			});
+		}
+
+		return next();
+	}
+
+    async transacaoCreateValidation(req, res, next) {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+            const token = req.session.token;
+            const {userId} = jwt.decode(token, process.env.SECRET);
+
+			const { tag, nome, valor, tipo_transacao, meio_transacao } = req.body;
+			const premium = req.session.premium;
+
+			const tag_error = errors.errors.find((error) => error.path === "tag");
+			const nome_error = errors.errors.find((error) => error.path === "nome");
+            const valor_error = errors.errors.find((error) => error.path === "valor");
+            const tipo_transacao_error = errors.errors.find((error) => error.path === "tipo_transacao");
+            const meio_transacao_error = errors.errors.find((error) => error.path === "meio_transacao");
+
+            const tags = await tagModel.getAllTagsFromUser(userId);
+            const tagDatabase = await tagModel.getTagById(tag);
+
+			return res.render("pages/adicionar-transacao.ejs", {
+				data: {
+					page_name: "Criar tag",
+					premium,
+                    tags,
+					input_values: {
+						tag,
+                        tag_name: tagDatabase.nome_tag,
+						nome,
+                        valor,
+                        tipo_transacao,
+                        meio_transacao
+					},
+					errors: {
+						tag_error,
+						nome_error,
+                        valor_error,
+                        tipo_transacao_error,
+                        meio_transacao_error
 					},
 				},
 			});

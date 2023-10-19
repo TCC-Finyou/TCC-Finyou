@@ -1,0 +1,134 @@
+#tags-topo {
+    padding: 32px clamp(30px, 9vw, 50px) 0;
+}
+
+#tags-topo h1{
+    text-align: center;
+}
+
+#q-tag{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+#q-tag span {
+    margin: 16px;
+    color: #797979;
+}
+
+#q-tag button {
+    text-align: center;
+    background: none;
+    border-radius: 24px;
+    border: 1px solid #797979;
+    color: #797979;
+    height: 40px;
+    padding: 6px;
+}
+
+.container-tag {
+    border: none;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    margin: 24px;
+    max-width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+}
+
+.tag-info-text {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min(100%, 150px));
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.tag-info-text div {
+    flex: 1;
+    text-align: center;
+}
+
+.tag-info-text div h2 {
+    color: var(--text-main-blue-color);
+    font-size: 1rem;
+}
+
+#tag-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min(100%, 400px));
+    justify-content: center;
+    padding: 0 clamp(30px, 9vw, 50px);
+}
+
+#tag-info .container-tag button{
+    background: none;
+    background-color: #23a3b4;
+    border: none;
+    border-radius: 24px;
+    padding: 8px;
+    color: #ffffff;
+    margin: 16px;
+    width: 200px;
+}
+
+#delete-meta-pop-up-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .3);
+    transform: scale(0);
+    transform-origin: center;
+}
+
+#delete-meta-pop-up-container.ativo #delete-meta-pop-up,
+#delete-meta-pop-up-container.ativo {
+    transform: scale(1);
+    z-index: 4;
+}
+
+#delete-meta-pop-up {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 400px;
+    max-width: 100%;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: white;
+    transform: scale(0);
+    transition: transform 350ms ease;
+}
+
+#delete-meta-pop-up h2 {
+    grid-column: 1/3;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+#delete-meta-pop-up button {
+    height: 64px;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+#delete-meta-pop-up button:nth-child(2) {
+    background: var(--main-gradient);
+    color: white;
+}
+
+#delete-meta-pop-up button:nth-child(3) {
+    border: 2px solid var(--main-dark-color);
+    background-color: white;
+    color: var(--text-dark-color);
+}

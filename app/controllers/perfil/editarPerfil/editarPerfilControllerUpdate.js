@@ -27,6 +27,10 @@ class EditarPerfilController {
 				data_nascimento: data_nascimento_unix
 			}, userId);
 
+            if (userType === "admin") {
+                return res.redirect("/perfil-admin");
+            }
+
 			return res.redirect("/perfil");
 		} catch (erro) {
 			console.log(erro);

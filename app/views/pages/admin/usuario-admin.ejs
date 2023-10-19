@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças."
+    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
-    <%- include('../../templates/head.ejs') %>
-
+    <%- include('../../templates/head-admin.ejs') %>
+    <link rel="stylesheet" href="/css/admin/usuario-admin.css">
     <title><%- data.page_name %></title>
 </head>
+
 <body>
     <%- include('../../templates/header-admin.ejs') %>
 
+    <main>
+        <section id="usuarios">
+            <div class="usuario">
+
+                <h2><%- data.user_selected.nome %></h2>
+                <span><%- data.user_selected.premium ? "Conta com plano" : "Conta sem plano" %></span>
+
+                <div class="botoes-usuario">
+                    <ul>
+                        <li>ID: <%- data.user_selected.id %></li>
+                        <li>Data: <%- `${new Date(data.user_selected.data_nascimento / 1000).getDate()}/${String(new Date(data.user_selected.data_nascimento / 1000).getMonth() + 1).padStart(2, "0")}/${new Date(data.user_selected.data_nascimento / 1000).getFullYear()}` %></li>
+                        <li>Email: <%- data.user_selected.email %></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="links-admin">
+                <button><a href="/tags-admin/<%- data.user_selected.id %>">Tags</a></button>
+                <button><a href="/relatorios-admin/<%- data.user_selected.id %>">Relatórios</a></button>
+                <button><a href="/metas-admin/<%- data.user_selected.id %>">Metas</a></button>
+            </div>
+        </section>
+    </main>
+
     <%- include('../../templates/footer-admin.ejs') %>
 </body>
+
 </html>

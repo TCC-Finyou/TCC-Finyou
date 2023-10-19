@@ -11,6 +11,36 @@
     width: 80%;
     max-width: 400px;
     margin-inline: auto;
+    margin-bottom: 62px;
+}
+
+#extrato-intro > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 450px;
+    margin-inline: auto;
+    padding: 32px;
+    border-radius: 42px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+}
+
+#extrato-intro > div h2 {
+    margin-bottom: 16px;
+    font-weight: normal;
+    font-size: 1.1rem;
+}
+
+#extrato-intro > div a {
+    display: block;
+    width: 50%;
+    min-width: fit-content;
+    padding: 5px 10px;
+    border: 1px solid var(--text-dark-color);
+    border-radius: 1000px;
+    color: var(--text-dark-color);
+    font-weight: 700;
+    text-align: center;
 }
 
 #extrato {

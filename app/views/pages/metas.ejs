@@ -42,12 +42,30 @@
 
                                 <h2><%- meta.nome_meta %></h2>
 
-                                <p>Valor da meta: R$ <%- meta.valor_meta %></p>
-                                <p>Valor destinado: R$ <%- meta.valor_destinado %></p>
+                                <p>Valor da meta: R$ <%- Number(meta.valor_meta).toFixed(2) %></p>
+                                <p>Valor destinado: R$ <%- Number(meta.valor_destinado).toFixed(2) %></p>
 
-                                <p class="progress-text">Meses para atingir a meta: 1</p>
+                                <p class="progress-text"><% if (meta.periodo_deposito === "Diariamente") { %>
+                                    Dias
+                                <% } else if (meta.periodo_deposito === "Semanalmente") { %>
+                                    Semanas
+                                <% } else if (meta.periodo_deposito === "Quinzenalmente") { %>
+                                    Quinzenas
+                                <% } else if (meta.periodo_deposito === "Mensalmente") { %>
+                                    Meses
+                                <% } %> para atingir a meta: <%- Math.ceil(Number(meta.valor_meta) / Number(meta.valor_destinado)) %></p>
 
-                                <div class="progress-bar"></div>
+                                <% let valorAcumuladoMeta = 0;
+                                meta.historico_meta.forEach(itemHistorico => {
+                                    if (itemHistorico.periodo_cumprido) {
+                                        valorAcumuladoMeta += itemHistorico.valor_depositado
+                                    }
+                                 })
+                                %>
+
+                                <div class="progress-bar">
+                                    <div class="inner-progress-bar" <%- `style="width: ${Math.ceil(Number(valorAcumuladoMeta * 100) / Number(meta.valor_meta))}% ;"` %> ></div>
+                                </div>
 
                                 <a href="/historico-meta/<%- meta.id %>" class="historico-meta">
                                     Verificar histórico

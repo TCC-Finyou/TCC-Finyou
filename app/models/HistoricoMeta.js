@@ -31,6 +31,21 @@ class HistoricoMeta {
             data
         })
     }
+
+    async getValorTotalHistoricoMeta(metaId) {
+        return await prisma.historico_Meta.findMany({
+            where: {
+                AND: [
+                    {
+                        meta_id: metaId
+                    },
+                    {
+                        periodo_cumprido: 1
+                    }
+                ]
+            },
+        })
+    }
 }
 
 const historicoMetaModel = new HistoricoMeta();

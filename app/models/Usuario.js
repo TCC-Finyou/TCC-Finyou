@@ -21,9 +21,73 @@ class Usuario {
         return user;
     }
 
+    async findAllUsers(userId) {
+        return await prisma.usuario.findMany({
+            where: {
+                NOT: {
+                    id: userId
+                }
+            }
+        });
+    }
+
+    async findAllUsersPesquisados(filtroPesquisa) {
+        return await prisma.usuario.findMany({
+            where: {
+                OR: [
+                    {
+                        email: {
+                            contains: filtroPesquisa
+                        }
+                    },
+                    {
+                        id: {
+                            contains: filtroPesquisa
+                        }
+                    },
+                    {
+                        nome: {
+                            contains: filtroPesquisa
+                        }
+                    }
+                ]
+            }
+        })
+    }
+
     async createUser(data) {
-        await prisma.usuario.create({
+        return await prisma.usuario.create({
             data
+        })
+    }
+
+    async deleteUser(userId) {
+        return await prisma.usuario.delete({
+            where: {
+                id: userId,
+            }
+        })
+    }
+
+    async blockUser(userId) {
+        return await prisma.usuario.update({
+            where: {
+                id: userId
+            },
+            data: {
+                bloqueado: 1
+            }
+        })
+    }
+
+    async unblockUser(userId) {
+        return await prisma.usuario.update({
+            where: {
+                id: userId
+            },
+            data: {
+                bloqueado: 0
+            }
         })
     }
 

@@ -24,7 +24,7 @@
     color: red;
 }
 
-#autenticacao-form input:not([type=checkbox]) {
+#autenticacao-form input:not([type=checkbox], [type=radio]) {
     height: 48px;
     margin-bottom: 8px;
     padding-inline: 8px;

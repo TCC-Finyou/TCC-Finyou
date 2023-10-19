@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças."
+    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <%- include('../../templates/head-admin.ejs') %>
 
@@ -12,50 +13,61 @@
 
     <title><%- data.page_name %></title>
 </head>
+
 <body>
     <%- include('../../templates/header-admin.ejs') %>
 
     <main>
         <section id="perfil-admin-intro">
-            <h1>Welcome, Anna!</h1>
+            <h1>Bem vindo, <%- data.user.nome %>!</h1>
 
             <form action="/pesquisa-usuario" method="get">
-                <label for="pesquisa_usuario">Pesquise o ID do usuário</label>
+                <label for="filtro-pesquisa">Pesquise o ID do usuário</label>
 
                 <div>
                     <img src="/assets/icons/search.png" alt="Pesquisa">
-                    <input type="search" name="pesquisa_usuario" id="pesquisa_usuario" placeholder="Ex: 18beb9fb-8ae5-43c0-893c-fad87d8e66ec">
+                    <input type="search" name="filtro_pesquisa" id="filtro-pesquisa" placeholder="Ex: 18beb9fb-8ae5-43c0-893c-fad87d8e66ec" <%- data.filtroPesquisa ? `value="${data.filtroPesquisa}"` : "" %>>
                 </div>
             </form>
         </section>
 
         <section id="usuarios">
+            <% data.users.forEach(user => { %>
             <div class="usuario">
-                <a href="#" class="editar">
+                <a href="/editar-usuario/<%- user.id %>" class="editar">
                     <img src="/assets/icons/editar.png" alt="Editar">
                 </a>
 
-                <h2>Usuário</h2>
+                <h2><%- user.nome %></h2>
 
-                <h3>ID: 000000</h3>
+                <h3>ID: <%- user.id %></h3>
 
-                <a href="#" class="mostrar-usuario">Mostrar informações</a>
+                <a href="/usuario-admin/<%- user.id %>" class="mostrar-usuario">Mostrar informações</a>
 
                 <div class="botoes-usuario">
-                    <button>
-                        <img src="/assets/icons/lock.png" alt="Bloquear">
-                        Bloquear
-                    </button>
+                    <% if (user.bloqueado) { %>
+                        <button>
+                            <img src="/assets/icons/unlock.png" alt="Bloquear">
+                            <a href="/desbloquear-usuario/<%- user.id %>">Desbloquear</a>
+                        </button>
+                    <% } else { %>
+                        <button>
+                            <img src="/assets/icons/locked.png" alt="Bloquear">
+                            <a href="/bloquear-usuario/<%- user.id %>">Bloquear</a>
+                        </button>
+                    <% } %>
 
                     <button>
                         <img src="/assets/icons/delete-trash.png" alt="Excluir">
-                        Excluir
+                        <a href="/deletar-usuario/<%- user.id %>">Excluir</a>
                     </button>
                 </div>
             </div>
+            <% }) %>
         </section>
     </main>
 
     <%- include('../../templates/footer-admin.ejs') %>
 </body>
+
 </html>

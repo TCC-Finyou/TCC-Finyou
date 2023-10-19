@@ -38,6 +38,23 @@ const validationMiddleware = {
         .matches(/^(((0[1-9]|[12][0-9]|3[01])[- /.](0[13578]|1[02])|(0[1-9]|[12][0-9]|30)[- /.](0[469]|11)|(0[1-9]|1\d|2[0-8])[- /.]02)[- /.]\d{4}|29[- /.]02[- /.](\d{2}(0[48]|[2468][048]|[13579][26])|([02468][048]|[1359][26])00))$/)
         .withMessage("Insira sua data de nascimento no padrão DD/MM/YYYY"),
     ],
+    editarPerfilUsuarioAdminValidationRules: [
+        body("nome")
+        .trim()
+        .isLength({min: 3, max: 255})
+        .withMessage("Insira seu nome completo!"),
+        body("email")
+        .isEmail()
+        .withMessage("Insira seu email completo!"),
+        body("data_nascimento")
+        .isLength({min: 10, max: 10})
+        .withMessage("Insira sua data de nascimento no padrão DD/MM/YYYY")
+        .matches(/^(((0[1-9]|[12][0-9]|3[01])[- /.](0[13578]|1[02])|(0[1-9]|[12][0-9]|30)[- /.](0[469]|11)|(0[1-9]|1\d|2[0-8])[- /.]02)[- /.]\d{4}|29[- /.]02[- /.](\d{2}(0[48]|[2468][048]|[13579][26])|([02468][048]|[1359][26])00))$/)
+        .withMessage("Insira sua data de nascimento no padrão DD/MM/YYYY"),
+        body("cargo")
+        .isIn(["user", "admin"])
+        .withMessage("Selecione uma opção válida!")
+    ],
     recuperarSenhaValidationRules: [
         body("senha")
         .isStrongPassword({
@@ -95,6 +112,36 @@ const validationMiddleware = {
         .withMessage("Selecione uma cor para a sua tag!")
         .isLength({min: 7, max: 7})
         .withMessage("Selecione uma cor válida para a sua tag!")
+    ],
+    transacaoValidationRules: [
+        body("tag")
+        .trim()
+        .isString()
+        .withMessage("Selecione uma transação!"),
+        body("nome")
+        .trim()
+        .isString()
+        .withMessage("Informe um nome para a sua transação!")
+        .isLength({min: 3})
+        .withMessage("Sua transaçao não pode ter menos de 3 caracteres!")
+        .isLength({max: 255})
+        .withMessage("Sua transação não pode ter mais de 255 caracteres!"),
+        body("valor")
+        .isFloat({min: 0})
+        .withMessage("Informe um valor válido para a sua transação")
+        .isFloat({max: 1000000})
+        .withMessage("O valor máximo da sua transação é de 1.000.000"),
+        body("tipo_transacao")
+        .isIn(["gasto", "lucro"])
+        .withMessage("Selecione uma opção válida para o tipo da transação!"),
+        body("meio_transacao")
+        .trim()
+        .isString()
+        .withMessage("Digite o meio que essa transação foi feita!")
+        .isLength({min: 3})
+        .withMessage("O meio para a transação deve ter no mínimo 3 caracteres!")
+        .isLength({max: 100})
+        .withMessage("O meio para a transação deve ter no máximo 100 caracteres!")
     ]
 }
 

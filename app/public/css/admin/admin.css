@@ -124,28 +124,29 @@ header nav {
 }
 
 #usuario {
+    display: flex;
+    flex-direction: row;
     position: relative;
     margin-left: auto;
-    padding: 8px 64px 8px 16px;
+    padding: 8px 16px 8px 16px;
     border: 1px solid white;
     border-radius: 1000px;
-}
-
-#usuario::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    height: calc(100% - 16px);
-    aspect-ratio: 1;
-    background-color: white;
-    border-radius: 50%;
-    transform: translateY(-50%);
+    align-items: center;
+    text-align: center;
 }
 
 #usuario span {
+    margin-bottom: 0;
     color: white;
     font-size: 1rem;
+}
+
+#usuario a{
+    margin-left: 8px;
+}
+
+.editar-perfil{
+    margin: 0px 0px 0px 6px;
 }
 
 nav a:not(#logo) {

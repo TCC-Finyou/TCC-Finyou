@@ -9,6 +9,7 @@
 		<%- include('../templates/head.ejs') %>
 
 		<!-- CSS -->
+        <link rel="stylesheet" href="/css/info-pages/sucesso-assinatura.css">
 
 		<title><%- data.page_name %></title>
 	</head>
@@ -16,9 +17,18 @@
 		<%- include('../templates/header-perfil.ejs') %>
 
 		<main>
-			<form action="/criar-portal-assinatura" method="POST">
-				<button id="checkout-and-portal-button" type="submit">Verificar plano</button>
-			</form>
+			<section id="sucesso-assinatura-intro">
+                <h1>Assinatura comprada com sucesso</h1>
+
+                <picture>
+                    <source srcset="/assets/images/webp/barraca-limao.webp">
+                    <img src="/assets/images/barraca-limao.jpg" alt="Barraca de limão">
+                </picture>
+
+                <form action="/criar-portal-assinatura" method="POST">
+                    <button id="checkout-and-portal-button" type="submit">Verificar plano</button>
+                </form>
+            </section>
 		</main>
 
 		<%- include('../templates/footer.ejs') %>

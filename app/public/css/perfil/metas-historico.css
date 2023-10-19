@@ -36,6 +36,7 @@
     margin: 16px auto 40px;
     border-radius: 24px;
     background-color: var(--main-color);
+    overflow: hidden;
 }
 
 #progress-bar > span {
@@ -49,7 +50,6 @@
 
 #inner-progress-bar {
     position: relative;
-    width: 50%;
     height: 100%;
     border-radius: 24px;
     outline: 1px solid white;
@@ -59,10 +59,10 @@
 #inner-progress-bar > span {
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 0;
     color: white;
     font-weight: 700;
-    transform: translate(-50%, -50%);
+    transform: translate(100%, -50%);
 }
 
 #historico-meta{

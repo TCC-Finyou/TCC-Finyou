@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças.">
+    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
+    <%- include('../../templates/head-admin.ejs') %>
+    <link rel="stylesheet" href="/css/admin/metas-admin.css">
+
+    <script src="/js/admin/metas.js" defer></script>
+
+    <title><%- data.page_name %></title>
+</head>
+
+<body>
+    <%- include('../../templates/header-admin.ejs') %>
+    <main>
+        <section id="tags-topo">
+
+            <h1>Metas do usuário</h1>
+
+            <div id="q-tag">
+
+                <span>Quantidade: <%- data.metas ? data.metas.length : "0" %></span>
+
+            </div>
+        </section>
+
+        <section id="tag-info">
+            <% data.metas.forEach(meta => { %>
+            <div class="container-tag">
+                <div class="tag-info-text">
+                    <div>
+                        <h2>Nome</h2>
+
+                        <p><%- meta.nome_meta %></p>
+                    </div>
+
+                    <div>
+                        <h2>valor destinado</h2>
+
+                        <p>R$ <%- Number(meta.valor_destinado).toFixed(2) %></p>
+                    </div>
+
+                    <div>
+                        <h2>Valor total</h2>
+
+                        <p>R$ <%- Number(meta.valor_meta).toFixed(2) %></p>
+                    </div>
+
+                    <div>
+                        <h2>Tempo</h2>
+
+                        <p><%- meta.periodo_deposito %></p>
+                    </div>
+                </div>
+
+                <button data-open-delete-meta-pop-up="<%- meta.id %>">
+                    Excluir meta
+                </button>
+            </div>
+            <% }) %>
+
+            <div id="delete-meta-pop-up-container" data-delete-meta-pop-up-container tabindex="-1">
+                <div id="delete-meta-pop-up">
+                    <h2>Tem certeza que deseja excluir essa meta?</h2>
+
+                    <button data-close-delete-meta-pop-up>Não</button>
+
+                    <button data-delete-meta-button>Sim</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <%- include('../../templates/footer-admin.ejs') %>
+</body>
+
+</html>

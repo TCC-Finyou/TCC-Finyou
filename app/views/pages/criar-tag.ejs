@@ -7,6 +7,7 @@
     <meta name="description" content=" O usuário vai poder criar tags com nomes para que assim sempre que concluir algo ou se quiser lembrar-se, é soó criar a tag.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
     <%- include('../templates/head.ejs') %>
+    <%- data.userType === "admin" ? include('../templates/head-admin.ejs') : "" %>
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/perfil/configurar-tag.css">
@@ -14,7 +15,7 @@
     <title><%- data.page_name %></title>
 </head>
 <body>
-    <%- include('../templates/header-perfil.ejs') %>
+    <%- data.userType === "admin" ? include('../templates/header-admin.ejs') : include('../templates/header-perfil.ejs') %>
 
     <main>
         <section id="configurar-tag-intro">

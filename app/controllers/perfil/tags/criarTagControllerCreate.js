@@ -7,13 +7,23 @@ class CriarTagController {
 
 		try {
             const token = req.session.token;
-			const { userId } = jwt.decode(token, process.env.secret);
+			const { userId, userType } = jwt.decode(token, process.env.secret);
+            let tag_global = 0;
+
+            if (userType === "admin") {
+                tag_global = 1;
+            }
 
 			await tagModel.createTag({
                 user_id: userId,
 				nome_tag,
-				cor_tag
+				cor_tag,
+                tag_global
 			});
+
+            if (userType === "admin") {
+                return res.redirect(`/tags-admin/${userId}`);
+            }
 
 			return res.redirect("/tags");
 		} catch (erro) {

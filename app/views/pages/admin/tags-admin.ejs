@@ -1,18 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças."
+    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
-    <%- include('../../templates/head.ejs') %>
+    <%- include('../../templates/head-admin.ejs') %>
+    <link rel="stylesheet" href="/css/admin/tags-admin.css">
+
+    <script src="/js/admin/tags.js" defer></script>
 
     <title><%- data.page_name %></title>
 </head>
+
 <body>
     <%- include('../../templates/header-admin.ejs') %>
+    <main>
+        <section id="tags-topo">
 
+            <h1>Tags do usuário</h1>
+
+            <div id="q-tag">
+
+                <span>Quantidade: <%- data.tags ? data.tags.length : "0" %></span>
+                <button>
+                    <a href="/criar-tag">Criar tag</a>
+                </button>
+
+            </div>
+        </section>
+
+        <section id="tag-info">
+            <% data.tags.forEach(tag => { %>
+            <div class="container-tag">
+                <div class="tag-info-text">
+                    <div>
+                        <h2>Nome</h2>
+
+                        <p><%- tag.nome_tag %></p>
+                    </div>
+
+                    <div>
+                        <h2>Cor</h2>
+
+                        <p><%- tag.cor_tag %></p>
+                    </div>
+                </div>
+                <button data-open-delete-tag-pop-up="<%- tag.id %>">
+                    Excluir tag
+                </button>
+            </div>
+            <% }) %>
+
+            <div id="delete-tag-pop-up-container" data-delete-tag-pop-up-container tabindex="-1">
+                <div id="delete-tag-pop-up">
+                    <h2>Tem certeza que deseja excluir essa tag?</h2>
+
+                    <button data-close-delete-tag-pop-up>Não</button>
+
+                    <button data-delete-tag-button>Sim</button>
+                </div>
+            </div>
+        </section>
+    </main>
     <%- include('../../templates/footer-admin.ejs') %>
 </body>
+
 </html>

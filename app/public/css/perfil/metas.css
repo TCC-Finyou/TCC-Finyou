@@ -105,14 +105,13 @@
     height: 15px;
     border-radius: 400px;
     background-color: var(--main-color);
+    overflow: hidden;
 }
 
-#metas .meta .progress-bar::before {
-    content: '';
+#metas .meta .progress-bar .inner-progress-bar {
     position: absolute;
     top: 0;
     left: 0;
-    width: 40%;
     height: 100%;
     border-radius: 400px;
     background-color: var(--main-dark-color);

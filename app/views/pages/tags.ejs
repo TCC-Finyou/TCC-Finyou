@@ -31,7 +31,7 @@
 
 					<div id="tags">
 						<% data.tags.forEach(tag => { %>
-						<div class="tag">
+						<div class="tag" data-tag="<%- tag.id %>">
                             <a href="/editar-tag/<%- tag.id %>" class="editar-tag">
                                 <img src="/assets/icons/editar.png" alt="Editar tag">
                             </a>

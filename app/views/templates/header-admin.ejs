@@ -5,7 +5,10 @@
         </a>
 
         <div id="usuario">
-            <span>Anna</span>
+            <span><%- data.user.nome %></span>
+            <a href="/editar-admin">
+                <img src="/assets/icons/edit.png" alt="edit-perfil" class="editar-perfil">
+            </a>
         </div>
 
         <a href="/logout">Sair</a>

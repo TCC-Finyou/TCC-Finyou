@@ -26,11 +26,11 @@
             <h2><%- data.historicoMeta[0].meta.nome_meta %></h2>
 
             <div id="progress-bar">
-                <div id ="inner-progress-bar">
-                    <span>758,20</span>
+                <div id ="inner-progress-bar" <%- `style="width: ${Math.ceil(Number(data.totalAcumuladoMeta * 100) / Number(data.historicoMeta[0].meta.valor_meta))}% ;"` %>">
+                    <span><%- Number(data.totalAcumuladoMeta).toFixed(2) %></span>
                 </div>
 
-                <span><%- data.historicoMeta[0].meta.valor_meta %></span>
+                <span><%- Number(data.historicoMeta[0].meta.valor_meta).toFixed(2) %></span>
             </div>
 
             <div  id="historico-meta">
@@ -47,7 +47,7 @@
                         <p class="periodo-cumprido"><%- itemHistorico.periodo_cumprido ? "Período cumprido" : "Período não cumprido" %></p>
                     </div>
 
-                    <p class="valor-depositado">R$ <%- itemHistorico.valor_depositado %></p>
+                    <p class="valor-depositado">R$ <%- Number(itemHistorico.valor_depositado).toFixed(2) %></p>
                 </div>
                 <% }) %>
             </div>

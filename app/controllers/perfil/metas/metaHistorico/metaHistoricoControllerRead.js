@@ -22,11 +22,20 @@ class MetaHistoricoController {
                 })
             }
 
+            const historicoMetasPeriodoCumprido = await historicoMetaModel.getValorTotalHistoricoMeta(metaId);
+
+            let totalAcumuladoMeta = 0;
+
+            historicoMetasPeriodoCumprido.forEach(periodoCumprido => {
+                totalAcumuladoMeta += periodoCumprido.valor_depositado;
+            })
+
 			return res.render("pages/meta-historico.ejs", {
 				data: {
 					page_name: `Histórico da meta: ${historicoMeta[0].meta.nome_meta}`,
 					premium,
-					historicoMeta
+					historicoMeta,
+                    totalAcumuladoMeta
 				},
 			});
 		} catch (erro) {

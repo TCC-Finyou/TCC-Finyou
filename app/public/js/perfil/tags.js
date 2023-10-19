@@ -3,6 +3,8 @@ const deleteMetaPopUpContainer = document.querySelector("[data-delete-tag-pop-up
 const closeDeleteMetaPopUpButton = document.querySelector("[data-close-delete-tag-pop-up]");
 const deleteMetaButton = document.querySelector("[data-delete-tag-button]");
 
+const tags = document.querySelectorAll("[data-tag]");
+
 function openDeleteMetaPopUp(event) {
 	let selectedTagId = event.currentTarget.getAttribute("data-open-delete-tag-pop-up");
 

@@ -1,0 +1,28 @@
+/* ! PRIMEIRA SEÇÃO */
+
+#sucesso-assinatura-intro {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 40px clamp(30px, 9vw, 50px);
+}
+
+#sucesso-assinatura-intro h1 {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#sucesso-assinatura-intro img {
+    display: block;
+    width: 80%;
+    max-width: 400px;
+    margin-inline: auto;
+}
+
+#sucesso-assinatura-intro button {
+    width: 100%;
+    height: 64px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--main-gradient);
+    color: white;
+}

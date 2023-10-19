@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças."
+    <meta name="description" content="Recurso disponível para usuário adcionar conta individual ou conjunta. A Finyou se propõe a fornecer as ferramentas para que todos possam gerir suas finanaças.">
     <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
-    <%- include('../../templates/head.ejs') %>
+    <%- include('../../templates/head-admin.ejs') %>
+    <link rel="stylesheet" href="/css/info-pages/autenticacao.css">
 
     <title><%- data.page_name %></title>
 </head>
+
 <body>
     <%- include('../../templates/header-admin.ejs') %>
 
+    <main>
+        <section id="autenticacao-intro">
+
+            <h1>Editar perfil Admin</h1>
+
+            <form action="/editar-admin/<%- data.userId %>" method="post" id="autenticacao-form">
+                <%- data.errors && data.errors.sistema_error ? `<span class='error-message'>${data.errors.sistema_error.msg}</span>` : "" %>
+
+                <label for="nome">Nome do usuário</label>
+                <input type="text" placeholder="Nome do usuário" id="nome" name="nome" <%- data.input_values ? `value="${data.input_values.nome}"` : "" %> <%- data.errors && data.errors.nome_error ? `class="error"` : "" %>>
+
+                <%- data.errors && data.errors.nome_error ? `<span class='error-message'>${data.errors.nome_error.msg}</span>` : "" %>
+
+                <label for="email">E-mail</label>
+                <input type="email" placeholder="E-mail" id="email" name="email" <%- data.input_values ? `value="${data.input_values.email}"` : "" %> <%- data.errors && data.errors.email_error ? `class="error"` : "" %>>
+
+                <%- data.errors && data.errors.email_error ? `<span class='error-message'>${data.errors.email_error.msg}</span>` : "" %>
+
+                <label for="data-nascimento">Data de nascimento</label>
+                <input type="text" placeholder="DD/MM/AAAA" id="data-nascimento" name="data_nascimento" <%- data.input_values ? `value="${data.input_values.data_nascimento}"` : "" %> <%- data.errors && data.errors.data_nascimento_error ? `class="error"` : "" %>>
+
+                <%- data.errors && data.errors.data_nascimento_error ? `<span class='error-message'>${data.errors.data_nascimento_error.msg}</span>` : "" %>
+
+                <button type="submit">Editar</button>
+            </form>
+        </section>
+    </main>
+
     <%- include('../../templates/footer-admin.ejs') %>
 </body>
+
 </html>

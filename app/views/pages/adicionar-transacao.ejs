@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recurso para o usuário se cadastrar no site, assim que o usuário entrar, o site vai fornecer as ferramentas à sua disposição.">
+    <meta name="keywords" content="finanças, gestão financeira, ferramentas financeiras, auxílio.">
+    <%- include('../templates/head.ejs') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/perfil/adicionar-transacao.css">
+
+    <!-- JS -->
+    <script src="/js/perfil/adicionar-transacao.js" defer></script>
+
+    <title><%- data.page_name %></title>
+</head>
+
+<body>
+    <%- include('../templates/header-perfil.ejs') %>
+
+    <main>
+        <section id="extrato-intro">
+            <h1>Adicione uma transação</h1>
+
+            <form action="/cadastrar-transacao" method="post" id="transacao-form">
+                <%- data.errors && data.errors.sistema_error ? `<span class='error-message'>${data.errors.sistema_error.msg}</span>` : "" %>
+
+                <label>A qual tag pertence essa transação:</label>
+
+                <button type="button" data-tag-dropdown-button <%- data.errors && data.errors.tag_error ? `class="error"` : "" %>>
+                    <span data-tag-selected><%- data.input_values && data.input_values.tag_name ? data.input_values.tag_name : "Escolha o período" %></span>
+
+                    <img src="/assets/icons/arrow-down-blue.png" alt="Seta para baixo" />
+
+                    <div id="tag-dropdown-container">
+                        <div id="tag-dropdown">
+                            <% data.tags.forEach(tag => { %>
+                                <label for="tag-<%- tag.id %>" <%- data.input_values && data.input_values.tag === tag.id ? "class='ativo'"  : "" %>>
+                                    <input type="radio" name="tag" id="tag-<%- tag.id %>" value="<%- tag.id %>" data-tag-input <%- data.input_values && data.input_values.tag === tag.id ? "checked"  : "" %> />
+                                    <%- tag.nome_tag %>
+                                </label>
+                            <% }) %>
+                        </div>
+                    </div>
+                </button>
+
+                <%- data.errors && data.errors.tag_error ? `<span class='error-message'>${data.errors.tag_error.msg}</span>` : "" %>
+
+                <label for="nome">Nome da transacao</label>
+
+                <input type="text" name="nome" id="nome" placeholder="Ex: Netflix"
+                <%- data.errors && data.errors.nome_error ? `class="error"` : "" %>
+                <%- data.input_values ? `value="${data.input_values.nome}"` : "" %>>
+
+                <%- data.errors && data.errors.nome_error ? `<span class='error-message'>${data.errors.nome_error.msg}</span>` : "" %>
+
+                <label for="valor">Digite o valor</label>
+
+                <input type="number" name="valor" id="valor" placeholder="R$ 00,00" step="0.01"
+                <%- data.errors && data.errors.valor_error ? `class="error"` : "" %>
+                <%- data.input_values ? `value="${data.input_values.valor}"` : "" %>>
+
+                <%- data.errors && data.errors.valor_error ? `<span class='error-message'>${data.errors.valor_error.msg}</span>` : "" %>
+
+                <label for="meio-transacao">Informe o meio dessa transação</label>
+
+                <input type="text" name="meio_transacao" id="meio-transacao" placeholder="Ex: Pix, Cartão, Dinheiro"
+                <%- data.errors && data.errors.meio_transacao_error ? `class="error"` : "" %>
+                <%- data.input_values ? `value="${data.input_values.meio_transacao}"` : "" %>>
+
+                <%- data.errors && data.errors.meio_transacao_error ? `<span class='error-message'>${data.errors.meio_transacao_error.msg}</span>` : "" %>
+
+                <label>Informe o tipo da transação</label>
+
+                <div id="tipo-transacao-container"
+                <%- data.errors && data.errors.tipo_transacao_error ? `class="error"` : "" %>>
+                    <label for="gasto">
+                        <input type="radio" name="tipo_transacao" id="gasto" value="gasto"
+                        <%- data.input_values && data.input_values.tipo_transacao === "gasto" ? `checked` : "" %>>
+                        Saiu da minha conta
+                    </label>
+
+                    <label for="lucro">
+                        <input type="radio" name="tipo_transacao" id="lucro" value="lucro"
+                        <%- data.input_values && data.input_values.tipo_transacao === "lucro" ? `checked` : "" %>>
+                        Entrou na minha conta
+                    </label>
+                </div>
+
+                <%- data.errors && data.errors.tipo_transacao_error ? `<span class='error-message'>${data.errors.tipo_transacao_error.msg}</span>` : "" %>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+    </main>
+
+    <%- include('../templates/footer.ejs') %>
+</body>
+
+</html>

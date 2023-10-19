@@ -1,0 +1,43 @@
+#perfil-intro input{
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid #afafaf;
+}
+
+button{
+    margin: 32px 0px 32px 0px;
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    color: white;
+    background-color: #095a72;
+}
+
+@media screen and (min-width: 1024px){
+
+    #perfil-intro{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    #perfil-intro form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 600px;
+    }
+    
+    #perfil-intro label{
+        margin: 8px;
+        font-size: 1rem;
+    }
+    
+    #perfil-intro input{
+        padding: 4px;
+        border-radius: 8px;
+        border: 1px solid #afafaf;
+    }
+}

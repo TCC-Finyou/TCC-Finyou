@@ -17,7 +17,7 @@ class CriarMetaController {
 
 	async createMeta(req, res) {
 		const token = req.session.token;
-		const { userId } = jwt.decode(token, process.env.secret);
+		const { userId, userType } = jwt.decode(token, process.env.secret);
 
 		const { nome_meta, periodo_deposito } = req.body;
 		const valor_meta = Number(req.body.valor_meta);
@@ -33,6 +33,10 @@ class CriarMetaController {
 			});
 
 			await this.#scheduleHistoricoUpdate(meta);
+
+            if (userType === "admin") {
+                return res.redirect(`/metas-admin/${userId}`);	
+            }
 
 			return res.redirect("/metas");
 		} catch (error) {

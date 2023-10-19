@@ -21,6 +21,10 @@ class EditarTagController {
                 cor_tag
             });
 
+            if (userType === "admin") {
+                return res.redirect("/tags-admin");
+            }
+
 			return res.redirect("/tags");
 		} catch (error) {
 			console.log(error);

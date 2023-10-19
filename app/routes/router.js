@@ -82,6 +82,10 @@ const contaConjuntaControllerRead = require("../controllers/perfil/contaConjunta
 
 const extratoControllerRead = require("../controllers/perfil/extrato/extratoControllerRead");
 
+const adicionarTransacaoControllerRead = require("../controllers/perfil/extrato/adicionarTransacaoControllerRead");
+
+const adicionarTransacaoControllerCreate = require("../controllers/perfil/extrato/adicionarTransacaoControllerCreate");
+
 // * Plano de assinatura Finyou+
 
 const pagamentoAssinaturaControllerRead = require("../controllers/info-pages/assinatura/pagamentoAssinaturaControllerRead");
@@ -98,7 +102,23 @@ const cancelamentoControllerRead = require("../controllers/info-pages/assinatura
 // * Admin
 
 const perfilAdminControllerRead = require("../controllers/admin/perfilAdminControllerRead");
+const editarPerfilAdminControllerRead = require("../controllers/admin/editarPerfilAdminControllerRead");
+const editarPerfilAdminControllerUpdate = require("../controllers/admin/editarPerfilAdminControllerUpdate");
 
+const editarUsuarioAdminControllerRead = require("../controllers/admin/editarPerfilUsuarioAdminControllerRead");
+const editarUsuarioAdminControllerUpdate = require("../controllers/admin/editarPerfilUsuarioAdminControllerUpdate");
+const deletarUsuarioAdminControllerDelete = require("../controllers/admin/deletarUsuarioAdminControllerDelete");
+const bloquearUsuarioAdminControllerUpdate = require("../controllers/admin/bloquearUsuarioAdminControllerUpdate");
+const desbloquearUsuarioAdminControllerUpdate = require("../controllers/admin/desbloquearUsuarioAdminControllerUpdate");
+
+const usuarioAdminControllerRead = require("../controllers/admin/usuarioAdminControllerRead");
+
+const relatoriosAdminControllerRead = require("../controllers/admin/relatoriosAdminControllerRead");
+
+const tagsAdminControllerRead = require("../controllers/admin/tagsAdminControllerRead");
+
+const metasAdminControllerRead = require("../controllers/admin/metasAdminControllerRead");
+const pesquisaUsuarioControllerRead = require("../controllers/admin/pesquisaUsuariosControllerRead");
 
 // * Info pages
 router.get("/",
@@ -249,6 +269,16 @@ router.get("/extrato",
 authenticationMiddleware.validateJWT,
 extratoControllerRead.getPage);
 
+router.get("/cadastrar-transacao",
+authenticationMiddleware.validateJWT,
+adicionarTransacaoControllerRead.getPage);
+
+router.post("/cadastrar-transacao",
+authenticationMiddleware.validateJWT,
+validationRulesMiddleware.transacaoValidationRules,
+formValidationMiddleware.transacaoCreateValidation,
+adicionarTransacaoControllerCreate.createTransacao);
+
 // * Conta conjunta
 router.get("/conta-conjunta",
 authenticationMiddleware.validateJWT,
@@ -285,5 +315,57 @@ cancelamentoControllerRead.getPage);
 router.get("/perfil-admin",
 authenticationMiddleware.validateAdmin,
 perfilAdminControllerRead.getPage);
+
+router.get("/pesquisa-usuario",
+authenticationMiddleware.validateAdmin,
+pesquisaUsuarioControllerRead.getPage);
+
+router.get("/editar-usuario/:userId",
+authenticationMiddleware.validateAdmin,
+editarUsuarioAdminControllerRead.getPage);
+
+router.post("/editar-usuario/:userId",
+authenticationMiddleware.validateAdmin,
+validationRulesMiddleware.editarPerfilValidationRules,
+formValidationMiddleware.editarUsuarioAdminValidation,
+editarUsuarioAdminControllerUpdate.editUser);
+
+router.get("/deletar-usuario/:userId",
+authenticationMiddleware.validateAdmin,
+deletarUsuarioAdminControllerDelete.deleteUser);
+
+router.get("/bloquear-usuario/:userId",
+authenticationMiddleware.validateAdmin,
+bloquearUsuarioAdminControllerUpdate.blockUser);
+
+router.get("/desbloquear-usuario/:userId",
+authenticationMiddleware.validateAdmin,
+desbloquearUsuarioAdminControllerUpdate.unblockUser);
+
+router.get("/editar-admin",
+authenticationMiddleware.validateAdmin,
+editarPerfilAdminControllerRead.getPage);
+
+router.post("/editar-admin/:userId",
+authenticationMiddleware.validateAdmin,
+validationRulesMiddleware.editarPerfilValidationRules,
+formValidationMiddleware.editarPerfilAdminValidation,
+editarPerfilAdminControllerUpdate.editUser);
+
+router.get("/usuario-admin/:userId",
+authenticationMiddleware.validateAdmin,
+usuarioAdminControllerRead.getPage);
+
+router.get("/relatorios-admin",
+authenticationMiddleware.validateAdmin,
+relatoriosAdminControllerRead.getPage);
+
+router.get("/tags-admin/:userId",
+authenticationMiddleware.validateAdmin,
+tagsAdminControllerRead.getPage);
+
+router.get("/metas-admin/:userId",
+authenticationMiddleware.validateAdmin,
+metasAdminControllerRead.getPage);
 
 module.exports = router;
